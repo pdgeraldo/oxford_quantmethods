@@ -1,0 +1,137 @@
+---
+title: "Quantitative Methods -- Human Sciences"
+subtitle: "*From correlation to causation. An introduction to causal inference*"
+author: "Pablo Geraldo Bastías (pablo.geraldo@sociology.ox.ac.uk)"
+format: 
+  pdf:
+    number-sections: true
+    colorlinks: true
+    mainfont: "Crimson Text"
+    monofont: "Crimson Text"
+    sansfont: "Crimson Text"
+    fontsize: 12pt
+margin-left: 2.5cm
+margin-right: 2.5cm
+margin-top: 2cm
+margin-bottom: 2cm
+---
+
+University of Oxford - Michaelmas and Hilary 2026-2027 |
+Location: Lecture room, Pauling Centre |
+Lectures: Wednesdays, 9:30-10:30 am | Tutorials: Wednesdays, 10:30-11:30 am | Class website: [Canvas](https://canvas.ox.ac.uk/courses/299754) 
+
+
+## Course Summary
+
+You have probably heard that "correlation does not imply causation", but can we possibly infer one from the other? If so, under which conditions? Can we just "let the data speak for itself" to adjudicate between competing causal assertions? How to evaluate the causal claims we encounter, including our own? How we answer these questions has important scientific and policy implications. 
+
+This course introduces contemporary frameworks of *counterfactual* causal inference as practiced in the social sciences, with a focus on using *graphical models* (in particular, Directed Acyclic Graphs) to make our assumptions explicit and open to scrutiny. The course has three aims: 1) Understanding the conceptual foundations of causal inference; 2) Familiarising yourself with common research designs ("identification strategies") used to justify causal claims; 3) Implementing these designs using the `R` statistical language. 
+
+
+## Learning Outcomes
+ 
+On successfully completing this course, students should have an understanding of the central role of causality in the social sciences and be able to cast a critical eye on the causal claims that social scientists make. Students should also appreciate the central role of untestable assumptions in identifying causal effects, and how to encode them using graphical models. Finally, students should be able to decide on an appropriate analytical strategy to address their own research questions, and they should be able to estimate a range of empirical models in the context of causal inference applications, using the `R` statistical language.
+ 
+## Content and Structure
+ 
+The course focuses on the identification and estimation of causal effects, including the use of formal languages to define the target quantity (“estimand”), the conditions that should be met for a causal interpretation to be valid (“identification assumptions”), and the evaluation of different algorithms (“estimators”) that can be used to obtain answers from data given assumptions.
+
+Our main textbook is Huntington-Klein's *The Effect* (2nd ed., 2025), which is available online for free [[link]](https://theeffectbook.net). It is a very nice introduction to causal inference, with minimal pre-requisites and a lot of supporting materials. 
+
+Some other books that may be useful to check if you want a different perspective on the topics we are covering, or if you want to deepen your understanding of causal inference, are the following:
+
+* Angrist, J. and Pischke, J-S. (2009). Mostly Harmless Econometrics. Princeton University Press
+
+* Chernozhukov, V., Hansen, C., Kallus, N., Spindler, M., and Syrgkanis, V. (2024): Applied Causal Inference Powered by ML and AI; arXiv:2403.02467. Free online: [https://CausalML-book.org](https://CausalML-book.org) 
+
+* Hernán, M., and Robins, J. (2025). Causal Inference. What if. Chapman and Hall/CRC. Free online: [https://miguelhernan.org/whatifbook](https://miguelhernan.org/whatifbook)
+
+* Morgan, S.L., and Winship, C. (2014). Counterfactuals and Causal Inference: Methods and Principles for Social Research (2nd edition), Cambridge University Press
+
+* Pearl, J., Glymour, M.,  and Jewell, N.P. (2016). Causal Inference in Statistics. Wiley
+
+* Wager, S. (2024). Causal Inference. A Statistical Learning Approach. Free online: [https://web.stanford.edu/~swager/causal_inf_book.pdf](https://web.stanford.edu/~swager/causal_inf_book.pdf)
+
+## Weekly plan
+
+Each week during Michaelmas, we are going to have a lecture meeting followed by a tutorial immediate after. The topics for each session are as follows:
+
+**Week 1**: Causality and the experimental ideal
+
+**Week 2**: A crash course on Directed Acyclic Graphs
+
+**Week 3**: Selection on observables I (matching, regression, weighting)
+
+**Week 4**: Selection on observables II (matching, regression, weighting)
+
+**Week 5**: As-if-random assignment (instrumental variables and quasi-experiments)
+
+**Week 6**: Parallel trends I (difference-in-differences and extensions)
+
+**Week 7**: Parallel trends II (difference-in-differences and extensions)
+
+**Week 8**: Sensitivity analysis (quantitative bias analysis)
+
+Additionally, one review session before the take-home assignment, and one review session before the final exam will be scheduled. 
+
+
+## Prerequisites
+ 
+Basic knowledge of probability and statistics is a prerequisite, but resources will be provided for those who need to refresh their statistics foundations. It is very likely that you will find the answer to your questions in the appropriate sections of the following books (but feel free to ask me if that’s not the case):
+
+- Aronow, P. M., & Miller, B. T. (2019). Foundations of Agnostic Statistics. Cambridge University Press.
+
+- Blackwell, M. (2024). A User’s Guide to Statistical Inference and Regression. Free online: [link](https://mattblackwell.github.io/gov2002-book/) 
+
+- Shalizi, C. R. (2024). Advanced Data Analysis from an Elementary Point of View. Free online: [link](https://www.stat.cmu.edu/~cshalizi/ADAfaEPoV/ADAfaEPoV.pdf)
+
+
+
+## How to prepare for lectures
+
+While not attempting to provide an exhaustive coverage of causal inference, there is still a lot to learn in this class, and attending lectures alone won’t be enough. The role of the lecture is to provide a general panorama, and to build intuition to get you started and up to speed. You will encounter more technical material in the readings, and the `R` exercises will challenge you to apply the concepts and methods covered in class to real examples.
+
+To get the most out of the class (to understand, to the point of being able to build and support causal claims on your own research), you will need to engage. Learning requires not only *seeing*, but *doing.* Both the readings and the practical exercises are essential components of the course. Asking questions (to yourself, to the readings, to your classmates, and to me) is one of the most important parts of active learning. So feel free to ask as many questions as you need (in person and online)!
+
+## Course Assessment
+
+The option is examined by one take-home assignment (50%) in Hilary Term, and one closed-book exam (50%) at the end of Trinity Term. You will also be given weekly problem sheets (starting in Week 2), which are due before each lecture. These will not be marked but will be used to monitor progress and inform tutorial discussions. 
+
+
+## Programming and software
+
+For this class we will be using the `R` statistical language. You can find the `R` installation instructions for your system on the [CRAN website](https://cran.r-project.org/). I highly recommend installing [RStudio](https://posit.co/download/rstudio-desktop/) as your development environment, but you can also use other alternatives (such as `VS Code`).
+
+You will find many free tutorials and books online, targeted at various levels of experience. If you are not familiar with `R`, I recommend the following resources:
+
+* Imai, K. (2018). Quantitative Social Science. An Introduction. Princeton University Press
+
+* Llaudet, E., and Imai, K. (2023). Data Analysis for Social Science. A Friendly and Practical Introduction, Princeton University Press (more beginner’s friendly than the one above)
+
+* Wickham, H., Çetinkaya-Rundel, M., and Grolemund, G. (2023). R for Data Science, 2nd Edition, O’Reilly Media, Free online: [https://r4ds.hadley.nz/](https://r4ds.hadley.nz/) 
+
+Finally, Quarto. Quarto is a publishing system (a "type of document") where you can seamlessly write text and code, run your analyses, and get output (tables and plots) directly incorporated. From the same source code, you can render a PDF document or an HTML version (like a local website). It is therefore an amazing tool for research and data science, making your work well documented and reproducible. There is a Quarto chapter in the r4ds book ([here](https://r4ds.hadley.nz/quarto)), and the official documentation is very well explained. To get started go here: [https://quarto.org/docs/get-started/hello/rstudio.html](https://quarto.org/docs/get-started/hello/rstudio.html)
+
+For the programming exercises, we will use Quarto. You can probably get away with just modifying the template I will provide, so don't worry too much about this. 
+
+## Using Generative AI tools
+
+The University has adopted the Russell Group guidelines for the use of Generative AI in education [[here](https://russellgroup.ac.uk/media/6137/rg_ai_principles-final.pdf)]. Additional resources can be found [here.](https://www.ox.ac.uk/students/life/it/genai-tools) Up-to-date policies on Plagiarism can be found [here](https://www.ox.ac.uk/students/academic/guidance/skills/plagiarism). 
+
+For this class, using Generative AI tools is strongly discouraged, and it can also be permitted under the following (strict) conditions. 
+
+* During take-home assignments and weekly exercises, you can only use Generative AI tools to help you correct typos and grammar, as long as you include your prompt and list the model used (ChatGPT, Claude, or any other) in your submission.
+
+* For help in *understanding* the materials, asking questions, and clarifying doubts, you can engage with chat interfaces. However, the materials provided, including the references listed on the syllabus, should be your starting point. 
+
+* In terms of producing *answers*, however, no generative AI output can be submitted as part of your work, either for the weekly exercises or the take-home assignment. You should write and check your own code, and write your own answers. 
+
+The reason for this is so we can focus on developing the understanding of the *conceptual foundations* of causal inference on our own. Only once you have acquired the foundations can Generative AI be use responsibly and productively on your own research. 
+
+It is important to do the required readings, not just read an automated summary of them. Reading is learning!
+
+It is important to write your own answers to the questions in the problem sets, not just write  a prompt. Writing is thinking!
+
+It is important to write your own code, and to check that it correctly implements your desired analysis. Understanding each step is part of research!
+ 
+

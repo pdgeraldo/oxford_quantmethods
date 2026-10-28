@@ -1,0 +1,559 @@
+---
+title: "Quantitative Methods -- Human Sciences"
+subtitle: "Reading list"
+author: "Pablo Geraldo Bastías (pablo.geraldo@sociology.ox.ac.uk)"
+format: 
+  pdf:
+    number-sections: true
+    colorlinks: true
+    mainfont: "Crimson Text"
+    monofont: "Crimson Text"
+    sansfont: "Crimson Text"
+    fontsize: 12pt
+margin-left: 2.5cm
+margin-right: 2.5cm
+margin-top: 2cm
+margin-bottom: 2cm
+---
+
+For every topic covered in this class, I am borrowing references from across several disciplines (mostly Sociology, Economics, Political Science, Epidemiology, Statistics, and Computer Sciences). Causal inference is an interdisciplinary effort, and no single discipline covers all fronts. Additionally, different disciplines have slightly different ways of explaining and justifying things, and you may find some of them more helpful and illuminating than others. Eventually, I hope you will develop the skill to read across these niches and fill in the gaps when background knowledge is assumed.
+
+There is another reason why I believe it is important to broaden the spectrum of one's readings. When doing research, you will encounter cases in which the research designs you already know are not really suitable for your application. Lacking good examples, you may be tempted to force your analysis into something known. Or, if you're very committed, you're going to find yourself reinventing the wheel. But it may well be the case that the answer to your question has been found somewhere else! You're just not going to find it if you only search inside your disciplinary journals.
+
+That said, the only *required* readings are from Huntington-Klein's *The Effect* (2nd ed., 2025), which is available online for free [[link]](https://theeffectbook.net). The remaining references provide further context, including the historical genealogy of the concepts we are using, or go more in depth into some aspect of the problem, including some cutting-edge developments. Feel free to explore them as you see fit. It is fine if you don't get everything in the first pass (in fact, it is expected). It is also fine if you need to pause, read again, find a Youtube video explaining the math, bring some paper and a pen, and work through some details yourself. 
+
+
+\newpage
+
+# Required readings
+
+**Week 1**: Causality and the experimental ideal
+
+*The Effect*, chapters 1-4
+
+**Week 2**: A crash course on Directed Acyclic Graphs
+
+*The Effect*, chapters 5-8
+
+**Week 3**: Selection on observables I (matching, regression, weighting)
+
+*The Effect*, chapters 13-14
+
+**Week 4**: Selection on observables II (matching, regression, weighting)
+
+*The Effect*, chapters 13-14
+
+**Week 5**: As-if-random assignment (instrumental variables and quasi-experiments)
+
+*The Effect*, chapters 19-20
+
+**Week 6**: Parallel trends I (difference-in-differences and extensions)
+
+*The Effect*, chapters 16-18
+
+**Week 7**: Parallel trends II (difference-in-differences and extensions)
+
+*The Effect*, chapters 16-18
+
+**Week 8**: Sensitivity analysis (quantitative bias analysis)
+
+*The Effect*, chapter 21
+
+\newpage
+
+# Further readings
+
+## Why causal inference?
+
+***Keywords**: theoretical estimand, empirical estimand, estimator, estimate, assumptions* 
+
+*Start here*
+
+Lundberg, Ian, Rebecca Johnson, and Brandon M. Stewart. 2021. “What Is Your Estimand? Defining the Target Quantity Connects Statistical Evidence to Theory.” American Sociological Review 86(3):532–65. doi: 10.1177/00031224211004187. (**)
+
+Morgan, Stephen L. and Christopher Winship (2014). Counterfactuals and Causal Inference: Methods and Principles for Social Research (2nd edition), Cambridge University Press, Chapters 1-2 (*)
+
+
+*If you want more*
+
+Greenland, Sander. 2022. “The Causal Foundations of Applied Probability and Statistics.” Pp. 605–24 in Probabilistic and Causal Inference: The Works of Judea Pearl. Vol. 36. New York, NY, USA: Association for Computing Machinery.
+
+Hernán, Miguel A., John Hsu, and Brian Healy. 2019. “A Second Chance to Get Causal Inference Right: A Classification of Data Science Tasks.” CHANCE 32(1):42–49. doi: 10.1080/09332480.2019.1579578.
+
+Imbens, Guido W. 2022. “Causality in Econometrics: Choice vs Chance.” Econometrica 90(6):2541–66. doi: 10.3982/ECTA21204.
+
+Mitra, Nandita, Jason Roy, and Dylan Small. 2022. “The Future of Causal Inference.” American Journal of Epidemiology 191(10):1671–76. doi: 10.1093/aje/kwac108.
+
+Ogburn, Elizabeth L., and Ilya Shpitser. 2021. “Causal Modelling: The Two Cultures.” Observational Studies 7(1):179–83.
+
+Pearl, Judea, and Dana Mackenzie. 2019. The Book of Why: The New Science of Cause and Effect. 1st edition. London: Penguin.
+
+## Potential outcomes to hypothesize, experiments to learn
+
+***Keywords**: potential outcomes, switching equation, treatment effect, SUTVA, consistency, exchangeability, ignorability, independence, identification, randomization, balance, clusters, blocks*
+
+*Start here*
+
+Gerber, Alan S., and Donald P. Green. 2012. Field Experiments – Design, Analysis, and Interpretation. Illustrated edition. New York London: W. W. Norton & Company, Chapters 1-3 (*)
+
+Holland, Paul W. 1986. “Statistics and Causal Inference.” Journal of the American Statistical Association 81(396):945–60. doi: 10.2307/2289064.
+
+Pager, Devah. 2003. “The Mark of a Criminal Record.” American Journal of Sociology 108(5):937–75. doi: 10.1086/374403.
+
+Senn, Stephen. 2013. “Seven Myths of Randomisation in Clinical Trials.” Statistics in Medicine 32(9):1439–50. doi: 10.1002/sim.5713.
+
+*If you want more*
+
+Deaton, Angus, and Nancy Cartwright. 2018. “Understanding and Misunderstanding Randomized Controlled Trials.” Social Science & Medicine 210:2–21. doi: 10.1016/j.socscimed.2017.12.005.
+
+Doan, Long, Natasha Quadlin, and Katharine Khanna. 2024. “Using Experiments to Study Families and Intimate Relationships.” Journal of Marriage and Family 86(5):1251–71. doi: 10.1111/jomf.12959.
+
+Druckman, James N. 2022. Experimental Thinking: A Primer on Social Science Experiments. Cambridge: Cambridge University Press.
+
+Elwert, Felix, Tamás Keller, and Andreas Kotsadam. 2023. “Rearranging the Desk Chairs: A Large Randomized Field Experiment on the Effects of Close Contact on Interethnic Relations.” American Journal of Sociology 128(6):1809–40. doi: 10.1086/724865.
+
+Glennerster, Rachel, and Kudzai Takavarasha. 2013. Running Randomized Evaluations: A Practical Guide. Illustrated edition. Princeton, NJ: Princeton University Press.
+
+Imbens, Guido W., and Donald B. Rubin. 2015. Causal Inference for Statistics, Social, and Biomedical Sciences: An Introduction. Cambridge: Cambridge University Press, Chapters 1-3
+
+Kohavi, Ron. 2020. Trustworthy Online Controlled Experiments: A Practical Guide to A/B Testing. 1st edition. Cambridge: Cambridge University Press.
+
+Pager, Devah, Rebecca Goldstein, Helen Ho, and Bruce Western. 2022. “Criminalizing Poverty: The Consequences of Court Fees in a Randomized Experiment.” American Sociological Review 87(3):529–53. doi: 10.1177/00031224221075783.
+
+Quadlin, Natasha. 2018. “The Mark of a Woman’s Record: Gender and Academic Performance in Hiring.” American Sociological Review 83(2):331–60. doi: 10.1177/0003122418762291.
+
+Rubin, Donald B. 2008. “For Objective Causal Inference, Design Trumps Analysis.” The Annals of Applied Statistics 2(3):808–40. doi: 10.1214/08-AOAS187.
+
+Sävje, Fredrik. 2021. “Randomization Does Not Imply Unconfoundedness.”
+
+Veltri, Giuseppe. 2023. Designing Online Experiments for the Social Sciences. 1st edition. Los Angeles London New Delhi Singapore Washington DC Melbourne: SAGE Publications Ltd.
+
+Weisshaar, Katherine, Koji Chavez, and Tania Hutt. 2024. “Hiring Discrimination Under Pressures to Diversify: Gender, Race, and Diversity Commodification across Job Transitions in Software Engineering.” American Sociological Review 89(3):584–613. doi: 10.1177/00031224241245706.
+
+
+## Structural causal model as scaffoldings
+
+***Keywords**: structural equations, directed acyclic graphs, chain, fork, collider, do-operator, interventional graph, testing graph, backdoor criterion, frontdoor criterion, adjustment formula, non-parametric identification*
+
+*Start here*
+
+Elwert, Felix, and Christopher Winship. 2014. “Endogenous Selection Bias: The Problem of Conditioning on a Collider Variable.” Annual Review of Sociology 40(1):31–53. doi: 10.1146/annurev-soc-071913-043455. (**)
+
+Morgan, Stephen L. and Christopher Winship (2014). Counterfactuals and Causal Inference: Methods and Principles for Social Research (2nd edition), Cambridge University Press, Chapter 3 (*)
+
+Pearl, Judea, Madelyn Glymour, and Nicholas P. Jewell. 2016. Causal Inference in Statistics: A Primer. 1st edition. Chichester: Wiley, Chapter 3 (until section 3.7)
+
+*If you want more*
+
+Akimova, Evelina T., Richard Breen, David M. Brazel, and Melinda C. Mills. 2021. “Gene-Environment Dependencies Lead to Collider Bias in Models with Polygenic Scores.” Scientific Reports 11(1):9457. doi: 10.1038/s41598-021-89020-x.
+
+Bareinboim, Elias, Juan D. Correa, Duligur Ibeling, and Thomas Icard. 2022. “On Pearl’s Hierarchy and the Foundations of Causal Inference.” Pp. 507–56 in Probabilistic and Causal Inference: The Works of Judea Pearl. Vol. 36. New York, NY, USA: Association for Computing Machinery.
+
+Dawid, A. P. 1995. “Causal Diagrams for Empirical Research: Discussion of ‘Causal Diagrams for Empirical Research’ by J. Pearl.” Biometrika 82(4):689–90. doi: 10.1093/biomet/82.4.689.
+
+Dawid, A. Philip. 2010. “Beware of the DAG!” Pp. 59–86 in Proceedings of Workshop on Causality: Objectives and Assessment at NIPS 2008. PMLR.
+
+Greenland, Sander, Judea Pearl, and James M. Robins. 1999. “Causal Diagrams for Epidemiologic Research:” Epidemiology 10(1):37–48. doi: 10.1097/00001648-199901000-00008.
+
+Griffith, Gareth J., Tim T. Morris, Matthew J. Tudball, Annie Herbert, Giulia Mancano, Lindsey Pike, Gemma C. Sharp, Jonathan Sterne, Tom M. Palmer, George Davey Smith, Kate Tilling, Luisa Zuccolo, Neil M. Davies, and Gibran Hemani. 2020. “Collider Bias Undermines Our Understanding of COVID-19 Disease Risk and Severity.” Nature Communications 11(1):5749. doi: 10.1038/s41467-020-19478-2.
+
+Hernán, Miguel A., Sonia Hernández-Díaz, and James M. Robins. 2004. “A Structural Approach to Selection Bias” Epidemiology 15(5):615–25. doi: 10.1097/01.ede.0000135174.63482.43.
+
+Imbens, Guido W., and Donald B. Rubin. 1995. “Causal Diagrams for Empirical Research: Discussion of ‘Causal Diagrams for Empirical Research’ by J. Pearl.” Biometrika 82(4):694–95. doi: 10.1093/biomet/82.4.694.
+
+Keele, Luke, Randolph T. Stevenson, and Felix Elwert. 2020. “The Causal Interpretation of Estimated Associations in Regression Models.” Political Science Research and Methods 8(1):1–13. doi: 10.1017/psrm.2019.31.
+
+Knight, Carly R., and Christopher Winship. 2013. “The Causal Implications of Mechanistic Thinking: Identification Using Directed Acyclic Graphs (DAGs).” Pp. 275–99 in Handbook of Causal Analysis for Social Research, Handbooks of Sociology and Social Research, edited by S. L. Morgan. Dordrecht: Springer Netherlands.
+
+Knox, Dean, Will Lowe, and Jonathan Mummolo. 2020. “Administrative Records Mask Racially Biased Policing.” American Political Science Review 114(3):619–37. doi: 10.1017/S0003055420000039.
+
+Pearl, Judea. 1995a. “Causal Diagrams for Empirical Research.” Biometrika 82(4):669–88. doi: 10.1093/biomet/82.4.669.
+
+Pearl, Judea. 1995b. “Rejoinder to Discussions of Causal Diagrams for Empirical Research.” Biometrika 82(4):702–10. doi: 10.2307/2337339.
+
+Robins, James M. 1995. “Discussion of Causal Diagrams for Empirical Research by J. Pearl.” Biometrika 82(4):695–98. doi: 10.2307/2337335.
+
+Rosenbaum, Paul R. 1995. “Causal Diagrams for Empirical Research: Discussion of ‘Causal Diagrams for Empirical Research’ by J. Pearl.” Biometrika 82(4):698–99. doi: 10.1093/biomet/82.4.698.
+
+Shalizi, Cosma Rohilla, and Andrew C. Thomas. 2011. “Homophily and Contagion Are Generically Confounded in Observational Social Network Studies.” Sociological Methods & Research 40(2):211–39. doi: 10.1177/0049124111404820.
+
+Westreich, Daniel, and Sander Greenland. 2013. “The Table 2 Fallacy: Presenting and Interpreting Confounder and Modifier Coefficients.” American Journal of Epidemiology 177(4):292–98. doi: 10.1093/aje/kws412.
+
+
+## Identification strategies as research templates
+
+***Keywords**: identification strategies, identification assumptions, credibility ladder, (non-)parametric assumptions, as-if-random, observational studies, quasi-experiments, natural experiments*
+
+*Start here*
+
+Imbens, Guido W. 2024. “Causal Inference in the Social Sciences.” Annual Review of Statistics and Its Application 11(Volume 11, 2024):123–52. doi: 10.1146/annurev-statistics-033121-114601.
+
+Keele, Luke, and William Minozzi. 2013. “How Much Is Minnesota Like Wisconsin? Assumptions and Counterfactuals in Causal Inference with Observational Data.” Political Analysis 21(2):193–216. doi: 10.1093/pan/mps041.
+
+*If you want more*
+
+Angrist, Joshua D., and Jörn-Steffen Pischke. 2010. “The Credibility Revolution in Empirical Economics: How Better Research Design Is Taking the Con out of Econometrics.” Journal of Economic Perspectives 24(2):3–30. doi: 10.1257/jep.24.2.3.
+
+Imbens, Guido W. 2020. “Potential Outcome and Directed Acyclic Graph Approaches to Causality: Relevance for Empirical Practice in Economics.” Journal of Economic Literature 58(4):1129–79. doi: 10.1257/jel.20191597.
+
+Lewbel, Arthur. 2019. “The Identification Zoo: Meanings of Identification in Econometrics.” Journal of Economic Literature 57(4):835–903. doi: 10.1257/jel.20181361.
+
+Steiner, Peter M., Yongnam Kim, Courtney E. Hall, and Dan Su. 2017. “Graphical Models for Quasi-Experimental Designs.” Sociological Methods & Research 46(2):155–88. doi: 10.1177/0049124115582272.
+
+Winship, Christopher, and Stephen L. Morgan. 1999. “The Estimation of Causal Effects from Observational Data.” Annual Review of Sociology 25(Volume 25, 1999):659–706. doi: 10.1146/annurev.soc.25.1.659.
+
+
+## Modeling $E(Y|X)$: regression adjustment and imputation
+
+***Keywords**: adjustment set, admissible set, adjustment formula, deconfounding, regression analysis, (partial) linear model, imputation, g-computation*
+
+
+*Start here*
+
+Angrist, Joshua D., Jorn-steffen Pischke, and Jörn-steffen Pischke. 2009. Mostly Harmless Econometrics – An Empiricist`s Companion. Illustrated edition. Princeton: Princeton University Press, Regression Chapter (*)
+
+Cinelli, Carlos, Andrew Forney, and Judea Pearl. 2024. “A Crash Course in Good and Bad Controls.” Sociological Methods & Research 53(3):1071–1104. doi: 10.1177/00491241221099552.(**)
+
+Chatton, Arthur, and Julia M. Rohrer. 2024. “The Causal Cookbook: Recipes for Propensity Scores, G-Computation, and Doubly Robust Standardization.” Advances in Methods and Practices in Psychological Science 7(1). doi: 10.1177/25152459241236149.
+
+
+*If you want more*
+
+Brand, Jennie E., and Yu Xie. 2010. “Who Benefits Most from College?: Evidence for Negative Selection in Heterogeneous Economic Returns to Higher Education.” American Sociological Review 75(2):273–302. doi: 10.1177/0003122410363567.
+
+Breen, Richard, Seongsoo Choi, and Anders Holm. 2015. “Heterogeneous Causal Effects and Sample Selection Bias.” Sociological Science 2:351–69. doi: 10.15195/v2.a17.
+
+Bruns-Smith, David, Oliver Dukes, Avi Feller, and Elizabeth L. Ogburn. 2024. “Augmented Balancing Weights as Linear Regression.”
+
+Chattopadhyay, Ambarish, and José R. Zubizarreta. 2023. “On the Implied Weights of Linear Regression for Causal Inference.” Biometrika 110(3):615–29. doi: 10.1093/biomet/asac058.
+
+Goldsmith-Pinkham, Paul, Peter Hull, and Michal Kolesár. 2024. “Contamination Bias in Linear Regressions.” American Economic Review 114(12):4015–51. doi: 10.1257/aer.20221116.
+
+Hainmueller, Jens, and Chad Hazlett. 2014. “Kernel Regularized Least Squares: Reducing Misspecification Bias with a Flexible and Interpretable Machine Learning Approach.” Political Analysis 22(2):143–68. doi: 10.1093/pan/mpt019.
+
+Hazlett, Chad, and Tanvi Shinkre. 2024. “Demystifying and Avoiding the OLS ‘Weighting Problem’: Unmodeled Heterogeneity and Straightforward Solutions.”
+
+Imbens, Guido, and Yiqing Xu. 2024. “LaLonde (1986) after Nearly Four Decades: Lessons Learned.”
+
+Mazrekaj, Deni, Kristof De Witte, and Sofie Cabus. 2020. “School Outcomes of Children Raised by Same-Sex Parents: Evidence from Administrative Panel Data.” American Sociological Review 85(5):830–56. doi: 10.1177/0003122420957249.
+
+Passaretta, Giampiero, and Jan Skopek. 2021. “Does Schooling Decrease Socioeconomic Inequality in Early Achievement? A Differential Exposure Approach.” American Sociological Review 86(6):1017–42. doi: 10.1177/00031224211049188.
+
+
+## Modeling $E(D|X)$: matching and weighting
+
+***Keywords**: propensity score, greedy matching, optimal matching, inverse probability weighting, calibration weighting, balance in expectation, balance in sample*
+
+*Start here*
+
+Hainmueller, Jens. 2012. “Entropy Balancing for Causal Effects: A Multivariate Reweighting Method to Produce Balanced Samples in Observational Studies.” Political Analysis 20(1):25–46. doi: 10.1093/pan/mpr025.
+
+Stuart, Elizabeth A. 2010. “Matching Methods for Causal Inference: A Review and a Look Forward.” Statistical Science 25(1):1–21. doi: 10.1214/09-STS313.
+
+Zhou, Xiang. 2019. “Equalization or Selection? Reassessing the ‘Meritocratic Power’ of a College Degree in Intergenerational Income Mobility.” American Sociological Review 84(3):459–85. doi: 10.1177/0003122419844992.
+
+*If you want more*
+
+Abadie, Alberto, and Guido W. Imbens. 2011. “Bias-Corrected Matching Estimators for Average Treatment Effects.” Journal of Business & Economic Statistics 29(1):1–11. doi: 10.1198/jbes.2009.07333.
+
+Abadie, Alberto, and Guido W. Imbens. 2016. “Matching on the Estimated Propensity Score.” Econometrica 84(2):781–807. doi: 10.3982/ECTA11293.
+
+Brand, Jennie E., and Juli Simon Thomas. 2014. “Job Displacement among Single Mothers: Effects on Children’s Outcomes in Young Adulthood.” American Journal of Sociology 119(4):955–1001. doi: 10.1086/675409.
+
+Chattopadhyay, Ambarish, Christopher H. Hase, and José R. Zubizarreta. 2020. “Balancing vs Modeling Approaches to Weighting in Practice.” Statistics in Medicine 39(24):3227–54. doi: 10.1002/sim.8659.
+
+Dehejia, Rajeev H., and Sadek Wahba. 1999. “Causal Effects in Nonexperimental Studies: Reevaluating the Evaluation of Training Programs.” Journal of the American Statistical Association 94(448):1053–62. doi: 10.2307/2669919.
+
+Dehejia, Rajeev H., and Sadek Wahba. 2002. “Propensity Score-Matching Methods for Nonexperimental Causal Studies.” The Review of Economics and Statistics 84(1):151–61.
+
+Hazlett, Chad. 2016. “Kernel Balancing: A Flexible Non-Parametric Weighting Procedure for Estimating Causal Effects.” SSRN Electronic Journal. doi: 10.2139/ssrn.2746753.
+
+Imbens, Guido W. 2015. “Matching Methods in Practice: Three Examples.” The Journal of Human Resources 50(2):373–419.
+
+Kim, Kwangho, Bijan A. Niknam, and José R. Zubizarreta. 2024. “Scalable Kernel Balancing Weights in a Nationwide Observational Study of Hospital Profit Status and Heart Attack Outcomes.” Biostatistics 25(3):736–53. doi: 10.1093/biostatistics/kxad032.
+
+Morgan, Stephen L., and David J. Harding. 2006. “Matching Estimators of Causal Effects: Prospects and Pitfalls in Theory and Practice.” Sociological Methods & Research 35(1):3–60. doi: 10.1177/0049124106289164.
+
+Rosenbaum, Paul R. 2009. Design of Observational Studies. 2010th edition. New York: Springer-Verlag New York Inc.
+
+Rosenbaum, Paul R. 2020. “Modern Algorithms for Matching in Observational Studies.” Annual Review of Statistics and Its Application 7(Volume 7, 2020):143–76. doi: 10.1146/annurev-statistics-031219-041058.
+
+Rosenbaum, Paul R., and Donald B. Rubin. 1983. “The Central Role of the Propensity Score in Observational Studies for Causal Effects.” Biometrika 70(1):41–55. doi: 10.1093/biomet/70.1.41.
+Rubin, Donald B. 2006. Matched Sampling for Causal Effects. 1st edition. Cambridge University Press.
+
+Sekhon, Jasjeet S. 2009. “Opiates for the Matches: Matching Methods for Causal Inference.” Annual Review of Political Science 12(1):487–508. doi: 10.1146/annurev.polisci.11.060606.135444.
+
+Wolfe, Joseph D., Mieke Beth Thomeer, and Shawn Bauldry. 2024. “Twentieth-Century Change in the Educational Costs of Adolescent Childbearing.” American Journal of Sociology 129(6):1763–91. doi: 10.1086/729819.
+
+Zubizarreta, José R. 2015. “Stable Weights That Balance Covariates for Estimation With Incomplete Outcome Data.” Journal of the American Statistical Association 110(511):910–22. doi: 10.1080/01621459.2015.1023805.
+
+Zubizarreta, José R., Ricardo D. Paredes, and Paul R. Rosenbaum. 2014. “Matching for Balance, Pairing for Heterogeneity in an Observational Study of the Effectiveness of for-Profit and Not-for-Profit High Schools in Chile.” The Annals of Applied Statistics 8(1):204–31. doi: 10.1214/13-AOAS713.
+
+
+## Using the side-door: instrumental variables
+
+***Keywords**: instrument, as-if-random, exogeneity, exclusion restriction, monotonicity, homogeneity, principal strata, compliers, local average treatment effect*
+
+*Start here*
+
+Felton, Chris, and Brandon M. Stewart. 2024. “Handle with Care: A Sociologist’s Guide to Causal Inference with Instrumental Variables.” Sociological Methods & Research 00491241241235900. doi: 10.1177/00491241241235900. (*)
+
+Lal, Apoorva, Mackenzie Lockhart, Yiqing Xu, and Ziwen Zu. 2024. “How Much Should We Trust Instrumental Variable Estimates in Political Science? Practical Advice Based on 67 Replicated Studies.” Political Analysis 32(4):521–40. doi: 10.1017/pan.2024.2.
+
+Sharkey, Patrick, Gerard Torrats-Espinosa, and Delaram Takyar. 2017. “Community and the Crime Decline: The Causal Effect of Local Nonprofits on Violent Crime.” American Sociological Review 82(6):1214–40. doi: 10.1177/0003122417736289. (**)
+
+
+*If you want more*
+
+Angrist, Joshua D., Guido W. Imbens, and Donald B. Rubin. 1996. “Identification of Causal Effects Using Instrumental Variables.” Journal of the American Statistical Association 91(434):444–55. doi: 10.1080/01621459.1996.10476902.
+
+Borusyak, Kirill, and Peter Hull. 2023. “Nonrandom Exposure to Exogenous Shocks.” Econometrica 91(6):2155–85. doi: 10.3982/ECTA19367.
+
+Doyle, Joseph, John Graves, and Jonathan Gruber. 2019. “Evaluating Measures of Hospital Quality: Evidence from Ambulance Referral Patterns.” The Review of Economics and Statistics 101(5):841–52. doi: 10.1162/rest_a_00804.
+
+Greenland, Sander. 2000. “An Introduction to Instrumental Variables for Epidemiologists.” International Journal of Epidemiology 29(4):722–29. doi: 10.1093/ije/29.4.722.
+
+Harding, David J., Jeffrey D. Morenoff, Anh P. Nguyen, and Shawn D. Bushway. 2018. “Imprisonment and Labor Market Outcomes: Evidence from a Natural Experiment.” American Journal of Sociology 124(1):49–110. doi: 10.1086/697507.
+
+Hernán, Miguel A., and James M. Robins. 2006. “Instruments for Causal Inference: An Epidemiologist’s Dream?” Epidemiology 17(4):360. doi: 10.1097/01.ede.0000222409.00878.37.
+
+Imbens, Guido W. 2010. “Better LATE Than Nothing: Some Comments on Deaton (2009) and Heckman and Urzua (2009).” Journal of Economic Literature 48(2):399–423. doi: 10.1257/jel.48.2.399.
+
+Imbens, Guido W. 2014. “Instrumental Variables: An Econometrician’s Perspective.” Statistical Science 29(3):323–58. doi: 10.1214/14-STS480.
+
+Imbens, Guido W., and Donald B. Rubin. 1997. “Bayesian Inference for Causal Effects in Randomized Experiments with Noncompliance.” The Annals of Statistics 25(1):305–27. doi: 10.1214/aos/1034276631.
+
+Kirk, David S. 2009. “A Natural Experiment on Residential Change and Recidivism: Lessons from Hurricane Katrina.” American Sociological Review 74(3):484–505. doi: 10.1177/000312240907400308.
+
+Labrecque, Jeremy, and Sonja A. Swanson. 2018. “Understanding the Assumptions Underlying Instrumental Variable Analyses: A Brief Review of Falsification Strategies and Related Tools.” Current Epidemiology Reports 5(3):214–20. doi: 10.1007/s40471-018-0152-1.
+
+Legewie, Joscha, and Thomas A. DiPrete. 2012. “School Context and the Gender Gap in Educational Achievement.” American Sociological Review 77(3):463–85. doi: 10.1177/0003122412440802.
+
+Mellon, Jonathan. 2024. “Rain, Rain, Go Away: 194 Potential Exclusion-Restriction Violations for Studies Using Weather as an Instrumental Variable.” American Journal of Political Science n/a(n/a). doi: 10.1111/ajps.12894.
+
+Robins, James M., and Sander Greenland. 1996. “Identification of Causal Effects Using Instrumental Variables: Comment.” Journal of the American Statistical Association 91(434):456–58. doi: 10.2307/2291630.
+
+Sovey, Allison J., and Donald P. Green. 2011. “Instrumental Variables Estimation in Political Science: A Readers’ Guide.” American Journal of Political Science 55(1):188–200. doi: 10.1111/j.1540-5907.2010.00477.x.
+
+Swanson, Sonja A., and Miguel A. Hernán. 2013. “Commentary: How to Report Instrumental Variable Analyses (Suggestions Welcome).” Epidemiology 24(3):370. doi: 10.1097/EDE.0b013e31828d0590.
+
+Swanson, Sonja A., and Miguel A. Hernán. 2014. “Think Globally, Act Globally: An Epidemiologist’s Perspective on Instrumental Variable Estimation.” Statistical Science 29(3):371–74.
+
+Swanson, Sonja A., and Miguel A. Hernán. 2018. “The Challenging Interpretation of Instrumental Variable Estimates under Monotonicity.” International Journal of Epidemiology 47(4):1289–97. doi: 10.1093/ije/dyx038.
+
+de Vaan, Mathijs, and Toby Stuart. 2019. “Does Intra-Household Contagion Cause an Increase in Prescription Opioid Use?” American Sociological Review 84(4):577–608. doi: 10.1177/0003122419857797.
+
+
+## Peeking through the window: regression discontinuity
+
+***Keywords**: running variable, threshold, local effect, extrapolation, local randomization, continuity of potential outcomes, sorting, sharp rdd, fuzzy rdd*
+
+*Start here*
+
+Rauscher, Emily. 2016. “Does Educational Equality Increase Mobility? Exploiting Nineteenth-Century U.S. Compulsory Schooling Laws.” American Journal of Sociology 121(6):1697–1761. doi: 10.1086/685443.
+
+Skovron, Christopher, and Rocıo Titiunik. 2015. “A Practical Guide to Regression Discontinuity Designs in Political Science.”, Unpublished manuscript (*)
+
+
+*If you want more*
+
+Aksoy, Ozan. 2016. “Regression Discontinuity Diagnostics Reveal Statistical Anomalies in Turkish Elections.” Electoral Studies 44:284–92. doi: 10.1016/j.electstud.2016.09.005.
+
+Aksoy, Ozan, and Francesco C. Billari. 2018. “Political Islam, Marriage, and Fertility: Evidence from a Natural Experiment.” American Journal of Sociology 123(5):1296–1340. doi: 10.1086/696193.
+
+Banks, James, and Fabrizio Mazzonna. 2012. “The Effect of Education on Old Age Cognitive Abilities: Evidence from a Regression Discontinuity Design.” The Economic Journal 122(560):418–48. doi: 10.1111/j.1468-0297.2012.02499.x.
+
+Bertoli, Andrew, and Chad Hazlett. 2024. “Seeing Like a District: Understanding What Close-Election Designs for Leader Characteristics Can and Cannot Tell Us.”, Unpublished manuscript
+
+Cattaneo, Matias D., Nicolás Idrobo, and Rocío Titiunik. 2020. A Practical Introduction to Regression Discontinuity Designs: Foundations. Cambridge University Press.
+
+Cattaneo, Matias D., and Rocío Titiunik. 2022. “Regression Discontinuity Designs.” Annual Review of Economics 14(Volume 14, 2022):821–51. doi: 10.1146/annurev-economics-051520-021409.
+
+Cook, Thomas D. 2008. “‘Waiting for Life to Arrive’: A History of the Regression-Discontinuity Design in Psychology, Statistics and Economics.” Journal of Econometrics 142(2):636–54. doi: 10.1016/j.jeconom.2007.05.002.
+
+De La Cuesta, Brandon, and Kosuke Imai. 2016. “Misunderstandings About the Regression Discontinuity Design in the Study of Close Elections.” Annual Review of Political Science 19(1):375–96. doi: 10.1146/annurev-polisci-032015-010115.
+
+Eckles, Dean, Nikolaos Ignatiadis, Stefan Wager, and Han Wu. 2023. “Noise-Induced Randomization in Regression Discontinuity Designs.”
+
+Eggers, Andrew C., Anthony Fowler, Jens Hainmueller, Andrew B. Hall, and James M. Snyder Jr. 2015. “On the Validity of the Regression Discontinuity Design for Estimating Electoral Effects: New Evidence from Over 40,000 Close Races.” American Journal of Political Science 59(1):259–74. doi: 10.1111/ajps.12127.
+
+Gilraine, Michael. 2023. “Air Filters, Pollution, and Student Achievement.” Journal of Human Resources. doi: 10.3368/jhr.0421-11642R2. (Then go and read [this](https://statmodeling.stat.columbia.edu/2020/01/09/filters-benefits/) and [this](https://statmodeling.stat.columbia.edu/2021/03/11/regression-discontinuity-analysis-is-often-a-disaster-so-what-should-you-do-instead-do-we-just-give-up-on-the-whole-natural-experiment-idea-heres-my-recommendation/))
+
+Hausman, Catherine, and David S. Rapson. 2018. “Regression Discontinuity in Time: Considerations for Empirical Applications.” Annual Review of Resource Economics 10(Volume 10, 2018):533–52. doi: 10.1146/annurev-resource-121517-033306.
+
+Imbens, Guido W., and Thomas Lemieux. 2008. “Regression Discontinuity Designs: A Guide to Practice.” Journal of Econometrics 142(2):615–35. doi: 10.1016/j.jeconom.2007.05.001.
+
+Lee, David S., and Thomas Lemieux. 2010. “Regression Discontinuity Designs in Economics.” Journal of Economic Literature 48(2):281–355. doi: 10.1257/jel.48.2.281.
+
+Roman, Marcel, Klara Fredriksson, Chris Cassella, Derek Epp, and Hannah Walker. 2025. “The George Floyd Effect: How Protests and Public Scrutiny Changed Police Behavior.”, Draft
+
+Sekhon, Jasjeet S., and Rocío Titiunik. 2012. “When Natural Experiments Are Neither Natural nor Experiments.” American Political Science Review 106(1):35–57. doi: 10.1017/S0003055411000542.
+
+
+## Canonical difference-in-differences
+
+***Keywords**: parallel trends, no anticipation, two-way fixed effects, event study, absorbing treatment, time-constant unobserved confounding*
+
+*Start here*
+
+Angrist, Joshua D., Jorn-steffen Pischke, and Jörn-steffen Pischke. 2009. Mostly Harmless Econometrics – An Empiricist`s Companion. Illustrated edition. Princeton: Princeton University Press, Chapter 5 (until section 5.2) (*)
+
+Roth, Jonathan, Pedro H. C. Sant’Anna, Alyssa Bilinski, and John Poe. 2023. “What’s Trending in Difference-in-Differences? A Synthesis of the Recent Econometrics Literature.” Journal of Econometrics 235(2):2218–44. doi: 10.1016/j.jeconom.2023.03.008.
+
+Torche, Florencia, and Catherine Sirois. 2019. “Restrictive Immigration Law and Birth Outcomes of Immigrant Women.” American Journal of Epidemiology 188(1):24–33. doi: 10.1093/aje/kwy218. (**)
+
+*If you want more*
+
+Borusyak, Kirill, Xavier Jaravel, and Jann Spiess. 2024. “Revisiting Event-Study Designs: Robust and Efficient Estimation.” The Review of Economic Studies 91(6):3253–85. doi: 10.1093/restud/rdae007.
+
+Card, David, and Alan Krueger. 1993. Minimum Wages and Employment: A Case Study of the Fast Food Industry in New Jersey and Pennsylvania. w4509. Cambridge, MA: National Bureau of Economic Research. doi: 10.3386/w4509.
+
+Card, David, and Alan B. Krueger. 2000. “Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania: Reply.” The American Economic Review 90(5):1397–1420.
+
+Dafoe, Allan. 2018. “Nonparametric Identification of Causal Effects under Temporal Dependence.” Sociological Methods & Research 47(2):136–68. doi: 10.1177/0049124115613784.
+
+Donahue, Samuel Thomas, and Gerard Torrats-Espinosa. 2024. “From the Block to the Beat: How Violence in Officers’ Neighborhoods Influences Racially Biased Policing.” American Journal of Sociology 734296. doi: 10.1086/734296.
+
+Egami, Naoki, and Soichiro Yamauchi. 2023. “Using Multiple Pretreatment Periods to Improve Difference-in-Differences and Staggered Adoption Designs.” Political Analysis 31(2):195–212. doi: 10.1017/pan.2022.8.
+
+Freyaldenhoven, Simon, Christian Hansen, Jorge Pérez Pérez, and Jesse M. Shapiro. 2021. “Visualization, Identification, and Estimation in the Linear Panel Event-Study Design.”
+
+Freyaldenhoven, Simon, Christian Hansen, and Jesse M. Shapiro. 2019. “Pre-Event Trends in the Panel Event-Study Design.” American Economic Review 109(9):3307–38. doi: 10.1257/aer.20180609.
+
+Imai, Kosuke, and In Song Kim. 2019. “When Should We Use Unit Fixed Effects Regression Models for Causal Inference with Longitudinal Data?” American Journal of Political Science 63(2):467–90. doi: 10.1111/ajps.12417.
+
+Legewie, Joscha, and Jeffrey Fagan. 2019. “Aggressive Policing and the Educational Performance of Minority Youth.” American Sociological Review 84(2):220–47. doi: 10.1177/0003122419826020.
+
+Marcus, Michelle, and Pedro H. C. Sant’Anna. 2021. “The Role of Parallel Trends in Event Study Settings: An Application to Environmental Economics.” Journal of the Association of Environmental and Resource Economists 8(2):235–75. doi: 10.1086/711509.
+
+Miller, Douglas L. 2023. “An Introductory Guide to Event Study Models.” Journal of Economic Perspectives 37(2):203–30. doi: 10.1257/jep.37.2.203.
+
+Rüttenauer, Tobias, and Ozan Aksoy. 2024. “When Can We Use Two-Way Fixed-Effects (TWFE): A Comparison of TWFE and Novel Dynamic Difference-in-Differences Estimators.”
+
+Tach, Laura, and Allison Dwyer Emory. 2017. “Public Housing Redevelopment, Neighborhood Change, and the Restructuring of Urban Inequality.” American Journal of Sociology 123(3):686–739. doi: 10.1086/695468.
+
+
+## Same same but different: variations and extensions
+
+***Keywords**: heterogeneity, staggered adoption, negative weights, forbidden comparison, synthetic control, matrix completion, trajectory balancing*
+
+
+*Start here*
+
+Abadie, Alberto, Alexis Diamond, and Jens Hainmueller. 2010. “Synthetic Control Methods for Comparative Case Studies: Estimating the Effect of California’s Tobacco Control Program.” Journal of the American Statistical Association 105(490):493–505. doi: 10.1198/jasa.2009.ap08746. (**)
+
+Liu, Licheng, Ye Wang, and Yiqing Xu. 2024. “A Practical Guide to Counterfactual Estimators for Causal Inference with Time-Series Cross-Sectional Data.” American Journal of Political Science 68(1):160–76. doi: 10.1111/ajps.12723.(*)
+
+*If you want more*
+
+Abadie, Alberto. 2021. “Using Synthetic Controls: Feasibility, Data Requirements, and Methodological Aspects.” Journal of Economic Literature 59(2):391–425. doi: 10.1257/jel.20191450.
+
+Abadie, Alberto, Susan Athey, Guido W. Imbens, and Jeffrey M. Wooldridge. 2023. “When Should You Adjust Standard Errors for Clustering?” The Quarterly Journal of Economics 138(1):1–35. doi: 10.1093/qje/qjac038.
+
+Abadie, Alberto, Alexis Diamond, and Jens Hainmueller. 2015. “Comparative Politics and the Synthetic Control Method.” American Journal of Political Science 59(2):495–510. doi: 10.1111/ajps.12116.
+
+Arkhangelsky, Dmitry, Susan Athey, David A. Hirshberg, Guido W. Imbens, and Stefan Wager. 2021. “Synthetic Difference-in-Differences.” American Economic Review 111(12):4088–4118. doi: 10.1257/aer.20190159.
+
+Athey, Susan, Mohsen Bayati, Nikolay Doudchenko, Guido Imbens, and Khashayar Khosravi. 2021. “Matrix Completion Methods for Causal Panel Data Models.” Journal of the American Statistical Association 116(536):1716–30. doi: 10.1080/01621459.2021.1891924.
+
+Ben-Michael, Eli, Avi Feller, and Jesse Rothstein. 2021. “The Augmented Synthetic Control Method.” Journal of the American Statistical Association 116(536):1789–1803. doi: 10.1080/01621459.2021.1929245.
+
+Callaway, Brantly, and Pedro H. C. Sant’Anna. 2021. “Difference-in-Differences with Multiple Time Periods.” Journal of Econometrics 225(2):200–230. doi: 10.1016/j.jeconom.2020.12.001.
+
+Cengiz, Doruk, Arindrajit Dube, Attila Lindner, and Ben Zipperer. 2019. “The Effect of Minimum Wages on Low-Wage Jobs*.” The Quarterly Journal of Economics 134(3):1405–54. doi: 10.1093/qje/qjz014.
+
+de Chaisemartin, Clément, and Xavier D’Haultfœuille. 2020. “Two-Way Fixed Effects Estimators with Heterogeneous Treatment Effects.” American Economic Review 110(9):2964–96. doi: 10.1257/aer.20181169.
+
+Dettmann, Eva, Alexander Giebler, and Antje Weyh. 2020. “Flexpaneldid: A Stata Toolbox for Causal Analysis with Varying Treatment Time and Duration.”
+
+Doudchenko, Nikolay, and Guido W. Imbens. 2016. “Balancing, Regression, Difference-In-Differences and Synthetic Control Methods: A Synthesis.”
+
+Goodman-Bacon, Andrew. 2021. “Difference-in-Differences with Variation in Treatment Timing.” Journal of Econometrics 225(2):254–77. doi: 10.1016/j.jeconom.2021.03.014.
+
+Hazlett, Chad, and Yiqing Xu. 2018. “Trajectory Balancing: A General Reweighting Approach to Causal Inference With Time-Series Cross-Sectional Data.”
+
+Marx, Philip, Elie Tamer, and Xun Tang. 2024. “Parallel Trends and Dynamic Choices.” Journal of Political Economy Microeconomics 2(1):129–71. doi: 10.1086/727363.
+
+Rambachan, Ashesh, and Jonathan Roth. 2023. “A More Credible Approach to Parallel Trends.” The Review of Economic Studies 90(5):2555–91. doi: 10.1093/restud/rdad018.
+
+Roth, Jonathan. 2022. “Pretest with Caution: Event-Study Estimates after Testing for Parallel Trends.” American Economic Review: Insights 4(3):305–22. doi: 10.1257/aeri.20210236.
+
+Roth, Jonathan, and Pedro H. C. Sant’Anna. 2023. “Efficient Estimation for Staggered Rollout Designs.” Journal of Political Economy Microeconomics 1(4):669–709. doi: 10.1086/726581.
+
+Sant’Anna, Pedro H. C., and Jun Zhao. 2020. “Doubly Robust Difference-in-Differences Estimators.” Journal of Econometrics 219(1):101–22. doi: 10.1016/j.jeconom.2020.06.003.
+
+Shen, Dennis, Peng Ding, Jasjeet Sekhon, and Bin Yu. 2023. “Same Root Different Leaves: Time Series and Cross-Sectional Methods in Panel Data.” Econometrica 91(6):2125–54. doi: 10.3982/ECTA21248.
+
+Sun, Liyang, and Sarah Abraham. 2021. “Estimating Dynamic Treatment Effects in Event Studies with Heterogeneous Treatment Effects.” Journal of Econometrics 225(2):175–99. doi: 10.1016/j.jeconom.2020.09.006.
+
+Xu, Yiqing. 2017. “Generalized Synthetic Control Method: Causal Inference with Interactive Fixed Effects Models.” Political Analysis 25(1):57–76. doi: 10.1017/pan.2016.2.
+
+
+
+## Blocking backdoors (on steroids): machine learning
+
+*Start here*
+
+Glynn, Adam N., and Kevin M. Quinn. 2010. “An Introduction to the Augmented Inverse Propensity Weighted Estimator.” Political Analysis 18(1):36–56. doi: 10.1093/pan/mpp036.
+
+Koch, Bernard J., Tim Sainburg, Pablo Geraldo Bastías, Song Jiang, Yizhou Sun, and Jacob G. Foster. 2024. “A Primer on Deep Learning for Causal Inference.” Sociological Methods & Research 00491241241234866. doi: 10.1177/00491241241234866.
+
+Lundberg, Ian, Jennie E. Brand, and Nanum Jeon. 2022. “Researcher Reasoning Meets Computational Capacity: Machine Learning for Social Science.” Social Science Research 108:102807. doi: 10.1016/j.ssresearch.2022.102807.
+
+*If you want more*
+
+Athey, Susan, and Guido W. Imbens. 2019. “Machine Learning Methods That Economists Should Know About.” Annual Review of Economics 11(Volume 11, 2019):685–725. doi: 10.1146/annurev-economics-080217-053433.
+
+Athey, Susan, Julie Tibshirani, and Stefan Wager. 2019. “Generalized Random Forests.” The Annals of Statistics 47(2):1148–78. doi: 10.1214/18-AOS1709.
+
+Brand, Jennie E., Jiahui Xu, Bernard Koch, and Pablo Geraldo. 2021. “Uncovering Sociological Effect Heterogeneity Using Tree-Based Machine Learning.” Sociological Methodology 51(2):189–223. doi: 10.1177/0081175021993503.
+
+Brand, Jennie E., Xiang Zhou, and Yu Xie. 2023. “Recent Developments in Causal Inference and Machine Learning.” Annual Review of Sociology 49(Volume 49, 2023):81–110. doi: 10.1146/annurev-soc-030420-015345.
+
+Chatton, Arthur, Florent Le Borgne, Clémence Leyrat, Florence Gillaizeau, Chloé Rousseau, Laetitia Barbin, David Laplaud, Maxime Léger, Bruno Giraudeau, and Yohann Foucher. 2020. “G-Computation, Propensity Score-Based Methods, and Targeted Maximum Likelihood Estimator for Causal Inference with Different Covariates Sets: A Comparative Simulation Study.” Scientific Reports 10(1):9219. doi: 10.1038/s41598-020-65917-x.
+
+Chernozhukov, Victor, Denis Chetverikov, Mert Demirer, Esther Duflo, Christian Hansen, Whitney Newey, and James Robins. 2018. “Double/Debiased Machine Learning for Treatment and Structural Parameters.” The Econometrics Journal 21(1):C1–68. doi: 10.1111/ectj.12097.
+
+Chernozhukov, Victor, Christian Hansen, Nathan Kallus, Martin Spindler, and Vasilis Syrgkanis. 2024. “Applied Causal Inference Powered by ML and AI.”
+
+Díaz, Iván. 2020. “Machine Learning in the Estimation of Causal Effects: Targeted Minimum Loss-Based Estimation and Double/Debiased Machine Learning.” Biostatistics 21(2):353–58. doi: 10.1093/biostatistics/kxz042.
+
+Fuhr, Jonathan, Philipp Berens, and Dominik Papies. 2024. “Estimating Causal Effects with Double Machine Learning -- A Method Evaluation.”
+
+Hahn, P. Richard, Carlos M. Carvalho, David Puelz, and Jingyu He. 2018. “Regularization and Confounding in Linear Regression for Treatment Effect Estimation.” Bayesian Analysis 13(1). doi: 10.1214/16-BA1044.
+
+Hoffmann, Nathan I. 2023. “Double Robust, Flexible Adjustment Methods for Causal Inference: An Overview and an Evaluation.”
+
+Laan, Mark J. van der, and Sherri Rose. 2011. Targeted Learning: Causal Inference for Observational and Experimental Data. 2011th edition. New York: Springer.
+
+Laan, Mark van der, and Susan Gruber. 2016. “One-Step Targeted Minimum Loss-Based Estimation Based on Universal Least Favorable One-Dimensional Submodels.” The International Journal of Biostatistics 12(1):351–78. doi: 10.1515/ijb-2015-0054.
+
+Qiu, Hongxiang. 2024. “Non-Plug-In Estimators Could Outperform Plug-In Estimators: A Cautionary Note and a Diagnosis.”
+
+Robins, James M., Andrea Rotnitzky, and Lue Ping Zhao. 1994. “Estimation of Regression Coefficients When Some Regressors Are Not Always Observed.” Journal of the American Statistical Association 89(427):846–66. doi: 10.1080/01621459.1994.10476818.
+
+Tan, Zhiqiang. 2010. “Bounded, Efficient and Doubly Robust Estimation with Inverse Weighting.” Biometrika 97(3):661–82.
+
+van der Laan, Mark, Jeremy Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips, and Alan Hubbard. 2024. Targeted Learning in R: Causal Data Science with the Tlverse Software Ecosystem.
+
+
+
+## What about [*insert alternative explanation*] ? Sensitivity analysis
+
+Altonji, Joseph G., Todd E. Elder, and Christopher R. Taber. 2005. “Selection on Observed and Unobserved Variables: Assessing the Effectiveness of Catholic Schools.” Journal of Political Economy 113(1):151–84. doi: 10.1086/426036.
+
+Chernozhukov, Victor, Carlos Cinelli, Whitney Newey, Amit Sharma, and Vasilis Syrgkanis. 2024. “Long Story Short: Omitted Variable Bias in Causal Machine Learning.”
+
+Cinelli, Carlos, and Chad Hazlett. 2020. “Making Sense of Sensitivity: Extending Omitted Variable Bias.” Journal of the Royal Statistical Society Series B: Statistical Methodology 82(1):39–67. doi: 10.1111/rssb.12348.
+
+Huang, Melody, and Samuel D. Pimentel. 2024. “Variance-Based Sensitivity Analysis for Weighting Estimators Results in More Informative Bounds.” Biometrika asae040. doi: 10.1093/biomet/asae040.
+
+Masten, Matthew A., and Alexandre Poirier. 2024. “The Effect of Omitted Variables on the Sign of Regression Coefficients.”
+
+Oster, Emily. 2019. “Unobservable Selection and Coefficient Stability: Theory and Evidence.” Journal of Business & Economic Statistics 37(2):187–204. doi: 10.1080/07350015.2016.1227711.
+
+Rosenbaum, Paul R. 2002. “Sensitivity to Hidden Bias.” Pp. 105–70 in Observational Studies, edited by P. R. Rosenbaum. New York, NY: Springer.
+
+VanderWeele, Tyler J., and Onyebuchi A. Arah. 2011. “Bias Formulas for Sensitivity Analysis of Unmeasured Confounding for General Outcomes, Treatments, and Confounders.” Epidemiology 22(1):42–52.
+
+

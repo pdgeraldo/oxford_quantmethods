@@ -1,0 +1,2456 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="01-causality-po-experiments_files/libs/clipboard/clipboard.min.js"></script>
+<script src="01-causality-po-experiments_files/libs/quarto-html/tabby.min.js"></script>
+<script src="01-causality-po-experiments_files/libs/quarto-html/popper.min.js"></script>
+<script src="01-causality-po-experiments_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="01-causality-po-experiments_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="01-causality-po-experiments_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="01-causality-po-experiments_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
+
+  <meta name="author" content="Pablo Geraldo Bastías">
+  <meta name="dcterms.date" content="2026-10-14">
+  <title>Quantitative Methods – Human Sciences</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="01-causality-po-experiments_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="01-causality-po-experiments_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="01-causality-po-experiments_files/libs/revealjs/dist/theme/quarto-0fde88a82f0356838740f155f1088782.css">
+  <link href="01-causality-po-experiments_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="01-causality-po-experiments_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="01-causality-po-experiments_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="01-causality-po-experiments_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="01-causality-po-experiments_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="01-causality-po-experiments_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="/img/pexels-carolyn-1539564-3346028.jpg" data-background-opacity="0.4" data-background-size="cover" class="quarto-title-block center">
+  <h1 class="title">Quantitative Methods – Human Sciences</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Pablo Geraldo Bastías 
+</div>
+</div>
+</div>
+
+  <p class="date">October 14, 2026</p>
+</section>
+<section>
+<section id="motivation" class="title-slide slide level1 center" data-background-color="#002147">
+<h1>Motivation</h1>
+
+</section>
+<section id="why-should-we-care-about-causal-inference" class="slide level2">
+<h2>Why should we care about causal inference?</h2>
+<div class="fragment">
+<p><br> The social sciences are experimenting what some authors have described as the rise of “causal empiricism” (Samii, 2016), a “credibility revolution” (Angrist and Pischke, 2010), or simply a “causal revolution” (Pearl and MacKenzie, 2018)</p>
+</div>
+<div class="fragment">
+<p>In artificial intelligence/ML, causality have been deemed <a href="https://phys.org/news/2019-02-causal-disentanglement-frontier-ai.html"><strong>“the next frontier”</strong></a> and <a href="https://www.datasciencecentral.com/profiles/blogs/causality-the-next-most-important-thing-in-ai-ml"><strong>“the next most important thing”</strong></a></p>
+</div>
+<div class="fragment">
+<p>The enormous progress in the last decades has been facilitated by the development of mathematical frameworks that provide researchers with tools to handle causal questions: <span class="fragment highlight-red">Potential Outcomes</span> and the <span class="fragment highlight-red">Structural Causal Model</span></p>
+</div>
+</section>
+<section id="what-should-you-expect-from-this-class" class="slide level2">
+<h2>What should you expect from this class?</h2>
+<p><br></p>
+<p>This class is designed as a first course in causal inference, so we can focus only on a few things:</p>
+<ul>
+<li><p>Familiarize yourself with the most widely used causal inference frameworks</p></li>
+<li><p>Understand the role of randomisation to tackle causal questions</p></li>
+<li><p>Use potential outcomes and the do-operator to formalize causal estimands</p></li>
+<li><p>Use directed acyclic graphs (DAGs) to encode qualitative assumptions</p></li>
+<li><p>Derive identification results and testable implications from a DAG</p></li>
+<li><p>Assess the plausibility of different identification strategies applied to real problems</p></li>
+</ul>
+</section>
+<section id="but-first-what-is-your-estimand" class="slide level2">
+<h2>But, first: What is your estimand?</h2>
+<p>Researchers, at least social scientists, tend to formalize their effect of interest as <strong>regression coefficients</strong> (i.e., their hypothesis are formulated within a statistical model)</p>
+<p><span class="fragment fade-in"><a href=""><strong>This is too restrictive!</strong></a></span></p>
+<div class="fragment">
+<p>Potential outcomes offer a way to formalize what we mean by a <em>causal effect</em> outside any statistical model. Graphical models provides a way to formalize our <em>assumptions</em> without parametric restrictions.</p>
+</div>
+<div class="fragment">
+<p>This allows us to clearly separate <em>what do we want</em> (a certain <strong>estimand</strong>), what needs to be true so we get what we want (<strong>identifying assumptions</strong>), the statistical machinery to transform data into an answer for our question (an <strong>estimator</strong>), and the particular answer we get (our empirical <strong>estimate</strong>).</p>
+
+</div>
+<aside><div>
+<p>Lundberg, Johnson, and Stewart (2021) discuss this point in great detail <a href="https://journals.sagepub.com/doi/10.1177/00031224211004187">[link]</a></p>
+</div></aside></section>
+<section id="but-first-what-is-your-estimand-1" class="slide level2">
+<h2>But, first: What is your estimand?</h2>
+<p><br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/Lundberg_estimand.jpeg" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
+</figure>
+</div>
+</section></section>
+<section>
+<section id="what-is-causal-inference-about" class="title-slide slide level1 center" data-background-color="#002147">
+<h1>What is causal inference about?</h1>
+
+</section>
+<section id="intuitions-about-causality" class="slide level2">
+<h2>Intuitions about causality</h2>
+<h3 id="have-you-heard-any-of-these-before">Have you heard any of these before?</h3>
+<p><br></p>
+<p>“Correlation does not imply causation”</p>
+<div class="fragment r-stack">
+<p><em>But can we go from one to the other?</em></p>
+</div>
+<p>“No causation without manipulation”</p>
+<div class="fragment r-stack">
+<p><em>Then what about race or gender?</em></p>
+</div>
+<p>“Causal inference is a missing data problem”</p>
+<div class="fragment r-stack">
+<p><em>Or is it the other way around?</em></p>
+</div>
+<p>“For causal inference, design trumps analysis”</p>
+<div class="fragment r-stack">
+<p><em>But what do we mean by design? And analysis?</em></p>
+</div>
+</section>
+<section id="statisticsml-vs-causal-inference" class="slide level2">
+<h2>Statistics/ML vs Causal Inference</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong><em>Statistics/ML</em></strong></p>
+<ul>
+<li>Passive observation of the data generating process</li>
+<li>Estimand: Joint probabilities, CEF <span class="math display">\[P(Y,X)\]</span> <span class="math display">\[E(Y|X=x)\]</span></li>
+<li>Focus on asymptotics / out of sample prediction</li>
+<li>Estimation problem: variance-bias tradeoff</li>
+<li>Pearl: “deep learning is just curve fitting”</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong><em>Causal Inference</em></strong></p>
+<ul>
+<li>Prediction <strong>under interventions</strong> on the DGP</li>
+<li>Estimand: interventional quantities <span class="math display">\[P(Y|do(x))\]</span> <span class="math display">\[E(Y|do(x)) - E(Y|do(x'))\]</span> <span class="math display">\[= E(Y_x) - E(Y_{x'})\]</span></li>
+<li>Identification problem: consistency (infinite sample)</li>
+<li>Estimation problem: in general, focus on bias over variance (but changing)</li>
+</ul>
+</div></div>
+</section>
+<section id="the-ladder-of-causation" class="slide level2">
+<h2>The ladder of causation</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/causation_ladder.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Drawing by Maayan Harel, TBOW</p>
+</div></aside></section>
+<section id="the-ladder-of-causation-1" class="slide level2" data-background-color="#002F87">
+<h2>The ladder of causation</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Association</a></li><li><a href="#tabset-1-2">Interventions</a></li><li><a href="#tabset-1-3">Counterfactuals</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 23%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Estimand</th>
+<th>Activity</th>
+<th>Field/Discipline</th>
+<th>Questions</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mathbf{P(Y \vert X)}\)</span></td>
+<td>Seeing, Observing</td>
+<td>Stats, Machine Learning</td>
+<td><em>What would I believe about Y if I see X?</em></td>
+<td>What is the expected income of a college graduate in a given field?</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-1-2">
+<table class="caption-top">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 25%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Estimand</th>
+<th>Activity</th>
+<th>Field/Discipline</th>
+<th>Questions</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mathbf{P(Y \vert do(x))}\)</span></td>
+<td>Doing, Intervening</td>
+<td>Experiments, Policy evaluation</td>
+<td><em>What would happen with Y if I change X?</em></td>
+<td>How would income levels change in response to college expansion?</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-1-3">
+<table class="caption-top">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 25%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Estimand</th>
+<th>Activity</th>
+<th>Field/Discipline</th>
+<th>Questions</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mathbf{P(Y_x \vert x',y')}\)</span></td>
+<td>Imagining, Retrospecting</td>
+<td>Structural Models</td>
+<td><em>What would have happened with Y have I done X instead of X’? Why?</em></td>
+<td>What would have my parents’ income been, have they graduated from college, given that they didn’t go?</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p>Pearl and Mackenzie (2018)</p>
+</div></aside></section>
+<section id="but-is-doing-really-that-different-from-seeing" class="slide level2">
+<h2>But, is <strong>doing</strong> <em>really</em> that different from <strong>seeing</strong>?</h2>
+<p><br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://imgs.xkcd.com/comics/correlation.png" class="quarto-figure quarto-figure-center" width="900"></p>
+</figure>
+</div>
+
+<aside><div>
+<p><a href="https://imgs.xkcd.com/comics/correlation.png">causality</a></p>
+</div></aside></section>
+<section id="is-doing-really-that-different-from-seeing" class="slide level2">
+<h2>Is <strong>doing</strong> <em>really</em> that different from <strong>seeing</strong>?</h2>
+<p>Let’s imagine an example: we want to know the effect of the selectivity of the graduate program a student attends on the quality of their first job after graduation</p>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">1988</span>)</span>
+<span id="cb1-2"><a href=""></a></span>
+<span id="cb1-3"><a href=""></a><span class="co"># sample size</span></span>
+<span id="cb1-4"><a href=""></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb1-5"><a href=""></a></span>
+<span id="cb1-6"><a href=""></a><span class="co"># student "potential"</span></span>
+<span id="cb1-7"><a href=""></a>W <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="at">mean=</span><span class="dv">25</span>, <span class="at">sd=</span><span class="dv">50</span>) </span>
+<span id="cb1-8"><a href=""></a></span>
+<span id="cb1-9"><a href=""></a><span class="co"># program selectivity</span></span>
+<span id="cb1-10"><a href=""></a>X <span class="ot">&lt;-</span> <span class="fl">0.6</span><span class="sc">*</span>W <span class="sc">+</span> <span class="fu">rnorm</span>(N, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">15</span>)</span>
+<span id="cb1-11"><a href=""></a></span>
+<span id="cb1-12"><a href=""></a><span class="co"># quality of first job</span></span>
+<span id="cb1-13"><a href=""></a>Y <span class="ot">&lt;-</span> <span class="fl">0.4</span><span class="sc">*</span>W <span class="sc">-</span> <span class="fl">0.2</span><span class="sc">*</span>X <span class="sc">+</span> <span class="fu">rnorm</span>(N, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">25</span>)</span>
+<span id="cb1-14"><a href=""></a></span>
+<span id="cb1-15"><a href=""></a><span class="co"># store everything</span></span>
+<span id="cb1-16"><a href=""></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Y=</span>Y, <span class="at">X=</span>X, <span class="at">W=</span>W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="01-causality-po-experiments_files/figure-revealjs/unnamed-chunk-2-1.png" style="width:120.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="is-doing-really-that-different-from-seeing-1" class="slide level2">
+<h2>Is <strong>doing</strong> <em>really</em> that different from <strong>seeing</strong>?</h2>
+<p>Then, let’s see what story a simple linear regression would tell</p>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Y ~ X, data = data)
+
+Coefficients:
+(Intercept)            X  
+     2.0391       0.3565  </code></pre>
+</div>
+</div>
+<div class="callout callout-warning no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>However, we know that the true effect is negative!</p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="01-causality-po-experiments_files/figure-revealjs/unnamed-chunk-4-1.png" style="width:120.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="is-doing-really-that-different-from-seeing-2" class="slide level2">
+<h2>Is <strong>doing</strong> <em>really</em> that different from <strong>seeing</strong>?</h2>
+<p>What if we instead randomize students to different programs?</p>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># let's simulate random assignment </span></span>
+<span id="cb3-2"><a href=""></a><span class="co"># of students to programs!</span></span>
+<span id="cb3-3"><a href=""></a></span>
+<span id="cb3-4"><a href=""></a>data<span class="sc">$</span>Xrand <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">min</span>(X)<span class="sc">:</span><span class="fu">max</span>(X),</span>
+<span id="cb3-5"><a href=""></a>            N, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb3-6"><a href=""></a></span>
+<span id="cb3-7"><a href=""></a><span class="co"># now add quality of first job</span></span>
+<span id="cb3-8"><a href=""></a></span>
+<span id="cb3-9"><a href=""></a>data<span class="sc">$</span>Yexp <span class="ot">&lt;-</span> <span class="fl">0.4</span><span class="sc">*</span>W <span class="sc">-</span> <span class="fl">0.2</span><span class="sc">*</span>data<span class="sc">$</span>Xrand <span class="sc">+</span> <span class="fu">rnorm</span>(N, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">25</span>)</span>
+<span id="cb3-10"><a href=""></a></span>
+<span id="cb3-11"><a href=""></a><span class="fu">lm</span>(Yexp<span class="sc">~</span>Xrand, <span class="at">data=</span>data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Yexp ~ Xrand, data = data)
+
+Coefficients:
+(Intercept)        Xrand  
+    10.6238      -0.2126  </code></pre>
+</div>
+</div>
+</div><div class="column" data-widht="60%">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="01-causality-po-experiments_files/figure-revealjs/unnamed-chunk-6-1.png" style="width:120.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>Now we can see the true effect!</p>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="is-doing-really-that-different-from-seeing-3" class="slide level2">
+<h2>Is <strong>doing</strong> <em>really</em> that different from <strong>seeing</strong>?</h2>
+<p>Can we fix the observational comparison by adjusting for <span class="math inline">\(W\)</span>?</p>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># Same regression</span></span>
+<span id="cb5-2"><a href=""></a><span class="co"># Plus "adjustment" for student potential</span></span>
+<span id="cb5-3"><a href=""></a>reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>X<span class="sc">+</span>W, <span class="at">data=</span>data)</span>
+<span id="cb5-4"><a href=""></a></span>
+<span id="cb5-5"><a href=""></a><span class="co"># By FWL theorem, we can replicate</span></span>
+<span id="cb5-6"><a href=""></a><span class="co"># this results with bivariate regs</span></span>
+<span id="cb5-7"><a href=""></a><span class="co"># Run the bivariate regression and save the residuals</span></span>
+<span id="cb5-8"><a href=""></a>regresids <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">augment</span>(<span class="fu">lm</span>(X <span class="sc">~</span> W, <span class="at">data =</span> data))</span>
+<span id="cb5-9"><a href=""></a></span>
+<span id="cb5-10"><a href=""></a>reg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Y ~ X + W, data = data)
+
+Coefficients:
+(Intercept)            X            W  
+    0.07793     -0.20567      0.42104  </code></pre>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="01-causality-po-experiments_files/figure-revealjs/unnamed-chunk-8-1.png" style="width:120.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="is-doing-really-that-different-from-seeing-4" class="slide level2">
+<h2>Is <strong>doing</strong> <em>really</em> that different from <strong>seeing</strong>?</h2>
+<p>Where are we getting the data from?</p>
+<p>Imagine we collected the data by looking at programs’ websites, where they post the job market outcomes but</p>
+<ul>
+<li>more selective programs tend to report more</li>
+<li>students will report to their programs based partially on the quality of their job offers</li>
+</ul>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># Registry of job market candidates</span></span>
+<span id="cb7-2"><a href=""></a><span class="co"># As a function of selectivity and outcome</span></span>
+<span id="cb7-3"><a href=""></a>prob <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(<span class="sc">-</span>(<span class="fl">1.5</span><span class="sc">*</span>X<span class="sc">+</span>Y<span class="sc">*</span><span class="dv">2</span>)))</span>
+<span id="cb7-4"><a href=""></a>data<span class="sc">$</span>C <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(N, <span class="dv">1</span>, <span class="at">prob=</span>prob)</span>
+<span id="cb7-5"><a href=""></a></span>
+<span id="cb7-6"><a href=""></a><span class="co"># What would happen if we change the probs?</span></span>
+<span id="cb7-7"><a href=""></a><span class="co"># prob &lt;- 1/(1+exp(-(X-Y*2)))</span></span>
+<span id="cb7-8"><a href=""></a></span>
+<span id="cb7-9"><a href=""></a><span class="fu">lm</span>(Y <span class="sc">~</span> X <span class="sc">+</span> W, <span class="at">data=</span><span class="fu">subset</span>(data, C<span class="sc">==</span><span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Y ~ X + W, data = subset(data, C == 1))
+
+Coefficients:
+(Intercept)            X            W  
+    16.6189      -0.3868       0.3539  </code></pre>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="01-causality-po-experiments_files/figure-revealjs/unnamed-chunk-10-1.png" style="width:120.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>The last piece was an example of so-called “selection bias”.</p>
+<div class="r-stack">
+<p><img data-src="https://www.explainxkcd.com/wiki/images/9/9b/selection_bias.png" class="fragment" width="600"></p>
+<p><img data-src="https://imgs.xkcd.com/comics/confounding_variables.png" class="fragment" width="900"></p>
+</div>
+
+<aside><div>
+<p><a href="https://www.explainxkcd.com/wiki/images/9/9b/selection_bias.png">selection bias</a></p>
+<p><a href="https://imgs.xkcd.com/comics/confounding_variables.png">confounding</a></p>
+</div></aside></section></section>
+<section>
+<section id="from-causal-methods-to-causal-assumptions" class="title-slide slide level1 center" data-background-color="#002147">
+<h1>From causal methods to causal assumptions</h1>
+
+</section>
+<section id="from-causal-methods-to-causal-assumptions-1" class="slide level2">
+<h2>From causal methods to causal assumptions</h2>
+<p>It is common to hear the idea that some <em>methods</em> are inherently causal: propensity score matching, IPW, instrumental variables, panel methods, and even machine learning</p>
+<p>But there is nothing properly causal about a method (i.e, an estimator, an algorithm, a formula)!</p>
+<p>What makes our conclusions causal is the assumptions we make, whose plausibility is justified (or not) on a given research design</p>
+</section>
+<section id="from-causal-methods-to-causal-assumptions-2" class="slide level2">
+<h2>From causal methods to causal assumptions</h2>
+<p>In this first lecture, we are going to study the formal language that allows us to clearly and transparently state both our quantities of interest and our assumptions</p>
+<p>Then we will <strong>see</strong> this framework in action, to understand how does it work in the context of randomised studies</p>
+<p>We should be able to understand why RCTs are often described as the “gold standard” for causal inference</p>
+</section>
+<section id="the-first-commandment-of-causal-inference" class="slide level2" data-background-color="#692044">
+<h2>The First Commandment of Causal Inference</h2>
+<div class="fragment">
+<h3 id="by-chad-hazlett">(by Chad Hazlett)</h3>
+<div class="callout callout-warning no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>Thou shalt not blindly apply identification strategies as if the <em>procedure</em> makes your results causal</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>Identification strategies are about assumptions, not tools:</p>
+<ul>
+<li><p>learning tools is important, useful, and fun</p></li>
+<li><p>but the tool you use doesn’t make your result causal, your assumptions do</p></li>
+<li><p>most of your effort should go into understanding and communicating whether your assumptions are credible</p></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="callout callout-note no-icon callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Corolary: Never say “my estimate is causal because I used (.)”</strong></p>
+</div>
+<div class="callout-content">
+<p>Where (.) = matching, IPW, IV, RDD, DML, whatever</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="potential-outcomes" class="title-slide slide level1 center" data-background-color="#17a091">
+<h1>Potential Outcomes</h1>
+
+</section>
+<section id="neyman-neyman-rubin-or-rubin-causal-model" class="slide level2">
+<h2>Neyman, Neyman-Rubin, or Rubin Causal Model (?)</h2>
+<p><br></p>
+<p>POs were introduced by Neyman (1923) in the context of experimental design. They remained only used in that context for decades!</p>
+<ul>
+<li><p>Imported and extended by Donald Rubin for observational studies (c.&nbsp;1974)</p></li>
+<li><p>They are really great to clarify <em>what do we want to know</em> (<span class="fragment fade-in"><a href=""><strong>estimand</strong></a></span>)</p></li>
+<li><p>This includes identifying <em>reasons for discrepancies</em> between what we observe and our estimand (<span class="fragment fade-in"><a href=""><strong>bias</strong></a></span>)</p></li>
+<li><p>They are great to formalize <em>what needs to be true</em> for our estimand to be identified with a given <em>estimator</em> (<span class="fragment fade-in"><a href=""><strong>assumptions</strong></a></span>)</p></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>They are not-so-great to assess if our assumptions are plausible or defensible (more on this later!)</li>
+</ul>
+</div>
+</section>
+<section id="notation" class="slide level2">
+<h2>Notation</h2>
+<p>To think <em>causally</em>, we need to go <span style="color:red;">beyond</span> what we can observe. We need to hypothesize about possible worlds (<em>what if</em>s)!</p>
+<div class="fragment">
+<p>To do this, let’s <em>postulate</em> the existence of <span style="color:red;">potential outcomes</span></p>
+<p><br></p>
+<p>Let’s start with some definitions:</p>
+</div>
+<div class="fragment">
+<p><span class="math inline">\(Y\)</span> is the outcome variable <em>as we observe it</em></p>
+<p><span class="math inline">\(D\)</span> is the variable whose effect we want to study (treatment, exposure)</p>
+<p><span class="math inline">\(Y_d\)</span> is the potential outcome when we <span class="fragment highlight-red"><strong>set</strong></span> <span class="math inline">\(D=d\)</span>. For example, when <span class="math inline">\(D \in \{0,1\}\)</span>:</p>
+<ul>
+<li><p><span class="math inline">\(Y_1\)</span> is the potential outcome under “treatment”</p></li>
+<li><p><span class="math inline">\(Y_0\)</span> is the potential outcome under “control”</p></li>
+</ul>
+</div>
+</section>
+<section id="notation-1" class="slide level2">
+<h2>Notation</h2>
+<p>You will find a lot of equivalent notations for potential outcomes. It could be confusing, but it is good to get practice working with different variants</p>
+<p><span class="math display">\[Y(d) = Y_d = Y^d\]</span></p>
+<div class="fragment">
+<div class="callout callout-tip no-icon callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Read it like this:</strong></p>
+</div>
+<div class="callout-content">
+<p>The value that the variable <span class="math inline">\(Y\)</span> would take if we were to set/manipulate the variable <span class="math inline">\(D\)</span> to the value <span class="math inline">\(d\)</span>.</p>
+</div>
+</div>
+</div>
+<div class="fragment r-stack">
+<p>What is the <span style="color:red;"><em>fundamental problem</em></span> of causal inference? (Holland, 1986)</p>
+</div>
+<div class="fragment r-stack">
+<p><em>Can you ever observe any of those potential outcomes?</em></p>
+</div>
+<div class="fragment r-stack">
+<p><em>“Causal inference is a missing data problem”</em></p>
+</div>
+</div>
+</section>
+<section id="notation-2" class="slide level2">
+<h2>Notation</h2>
+<p><strong>Consistency</strong> (also known as SUTVA): <span class="math display">\[D = d \rightarrow Y = Y_d\]</span></p>
+<p>For the binary treatment case, we have: <span class="math display">\[Y = DY_1 + (1-D)Y_0\]</span> (a.k.a., “switching equation”)</p>
+<div class="fragment">
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>What are the assumptions built in this notation? What type of dependence are we ruling out?</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="causal-estimands" class="slide level2">
+<h2>Causal estimands</h2>
+<p>The first thing that potential outcomes allow us to do is to formalize the causal effects we may want to estimate.</p>
+<p>Some frequently invoked estimands are the following:</p>
+<p><br></p>
+<p><span class="fragment fade-in"><span style="color:blue;">Individual treatment effect</span> <span class="math display">\[ITE = \tau_i = Y_{1i} - Y_{0i}\]</span></span></p>
+<div class="fragment">
+<ul>
+<li>How can we read this expression?</li>
+<li>Can we ever estimate it from data?</li>
+</ul>
+</div>
+</section>
+<section id="causal-estimands-1" class="slide level2">
+<h2>Causal estimands</h2>
+<p>The first thing that potential outcomes allow us to do is to formalize the causal effects we may want to estimate.</p>
+<p>Some frequently invoked estimands are the following:</p>
+<p><br></p>
+<p><span style="color:blue;">Average treatment effect</span> <span class="math display">\[
+ATE = E[\tau_i] = E[Y_{1i} - Y_{0i}]\]</span> <span class="math display">\[= E[Y_{1i}] - E[Y_{0i}]
+\]</span></p>
+<div class="fragment">
+<ul>
+<li>How can we read this expression?</li>
+<li>Can we ever estimate it from data?</li>
+</ul>
+</div>
+</section>
+<section id="causal-estimands-2" class="slide level2">
+<h2>Causal estimands</h2>
+<p>The first thing that potential outcomes allow us to do is to formalize the causal effects we may want to estimate.</p>
+<p>Some frequently invoked estimands are the following:</p>
+<p><br></p>
+<p><span style="color:blue;">Average treatment effect on the treated</span> <span class="math display">\[
+ATT = E[\tau_i|D_i=1] = E[Y_{1i} - Y_{0i}|D_i=1]\]</span> <span class="math display">\[= E[Y_{1i}|D_i=1] - E[Y_{0i}|D_i=1]
+\]</span></p>
+<div class="fragment">
+<ul>
+<li>How can we read this expression?</li>
+<li>Can we ever estimate it from data?</li>
+</ul>
+</div>
+</section>
+<section id="causal-estimands-3" class="slide level2">
+<h2>Causal estimands</h2>
+<p>The first thing that potential outcomes allow us to do is to formalize the causal effects we may want to estimate.</p>
+<p>Some frequently invoked estimands are the following:</p>
+<p><br></p>
+<p><span style="color:blue;">Average treatment effect on the controls</span> <span class="math display">\[
+ATC = E[\tau_i|D_i=0] = E[Y_{1i} - Y_{0i}|D_i=0]\]</span> <span class="math display">\[= E[Y_{1i}|D_i=0] - E[Y_{0i}|D_i=0]
+\]</span></p>
+<div class="fragment">
+<ul>
+<li>How can we read this expression?</li>
+<li>Can we ever estimate it from data?</li>
+</ul>
+</div>
+</section>
+<section id="causal-estimands-4" class="slide level2">
+<h2>Causal estimands</h2>
+<p>The first thing that potential outcomes allow us to do is to formalize the causal effects we may want to estimate.</p>
+<p>Some frequently invoked estimands are the following:</p>
+<p><br></p>
+<p><span style="color:blue;">Conditional average treatment effect</span> <span class="math display">\[
+CATE = E[\tau_i|X_i=x] = E[Y_{1i} - Y_{0i}|X_i=x]\]</span> <span class="math display">\[= E[Y_{1i}|X_i=x] - E[Y_{0i}|X_i=x]
+\]</span></p>
+<div class="fragment">
+<ul>
+<li>How can we read this expression?</li>
+<li>Can we ever estimate it from data?</li>
+</ul>
+</div>
+</section>
+<section id="checking-intuitions" class="slide level2">
+<h2>Checking intuitions</h2>
+<p>Let’s assume <span class="math inline">\(D\)</span> (the exposure) is defined as “doing the required readings before lecture”, and <span class="math inline">\(Y\)</span> is “understanding what is going on”. Then,</p>
+<div class="fragment">
+<p><span class="math display">\[E[Y_{1i}] = E[Y_i | D_i=1]?\]</span></p>
+</div>
+<div class="fragment">
+<ul>
+<li><p>Let’s try to parse this out:</p>
+<ul>
+<li><p>What is the individual quantity we are looking at?</p></li>
+<li><p>What is the population we are targeting?</p></li>
+<li><p>How would the observed <span class="math inline">\(Y_{1i}\)</span> (for those with <span class="math inline">\(D_i=1\)</span>) compare to the <span class="math inline">\(Y_{1i}\)</span> you don’t see?</p></li>
+<li><p><span style="color:red;"><strong>When</strong></span> would these two quantities be equivalent?</p></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="checking-intuitions-1" class="slide level2">
+<h2>Checking intuitions</h2>
+<p>Let’s assume <span class="math inline">\(D\)</span> (the exposure) is defined as “doing the required readings before lecture”, and <span class="math inline">\(Y\)</span> is “understanding what is going on”. Then,</p>
+<p><span class="math display">\[E[Y_{1i}] = E[Y_i | D_i=1]?\]</span></p>
+<ul>
+<li><p>If we throw <span class="math inline">\(D_i\)</span> at random in this room:</p>
+<ul>
+<li><p>How would the observed <span class="math inline">\(Y_{1i}\)</span> (for those with <span class="math inline">\(D_i=1\)</span>) compare to the <span class="math inline">\(Y_{1i}\)</span> you don’t see?</p></li>
+<li><p>What about the <span class="math inline">\(Y_{0i}\)</span>?</p></li>
+<li><p>Can we estimate <span class="math inline">\(E[Y_1]\)</span> and <span class="math inline">\(E[Y_0]\)</span>?</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="checking-intuitions-2" class="slide level2">
+<h2>Checking intuitions</h2>
+<p>Let’s assume <span class="math inline">\(D\)</span> (the exposure) is defined as “doing the required readings before lecture”, and <span class="math inline">\(Y\)</span> is “understanding what is going on”. Then,</p>
+<p><span class="math display">\[E[Y_{1i}] = E[Y_i | D_i=1]?\]</span></p>
+<ul>
+<li><p>Suppose <span class="math inline">\(Y_{1i} = Y_{0i}\)</span> for everyone, and I can see them all:</p>
+<ul>
+<li><p>What happens if I give <span class="math inline">\(D_i=1\)</span> more often to those with higher <span class="math inline">\(Y_1\)</span>?</p></li>
+<li><p>How would the <span class="math inline">\(Y_1\)</span> you see vs the <span class="math inline">\(Y_1\)</span> you don’t see relate?</p></li>
+<li><p>What would <span class="math inline">\(E[Y_i|D_i=1] - E[Y_i | D_i=0]\)</span> tell me?</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="short-activity-3-mins" class="slide level2" data-background-color="#692044">
+<h2>Short activity (3 mins)</h2>
+<p>Take a moment to think about your own research:</p>
+<ul>
+<li>What <strong>causal</strong> question is relevant for you to study?</li>
+<li>Can you formulate it using potential outcomes?</li>
+<li>What is the contrast of interest?</li>
+<li>Averaging over which sub-population?</li>
+<li>What are the assumptions your are making in this formalization?</li>
+</ul>
+</section>
+<section id="the-science-table" class="slide level2">
+<h2>The Science Table</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>One advantage of PO is that we can treat them directly as random variables!</p>
+<p>So, everything we already know related to probability manipulation still applies here.</p>
+<p>The basic calculation device (usually implicit) for that matter is the <strong>science table</strong>.</p>
+<p>Basically, the full schedule response of the potential outcomes under different treatment conditions</p>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Unit</th>
+<th><span class="math inline">\(D_i\)</span></th>
+<th><span class="math inline">\(Y_i\)</span></th>
+<th><span class="math inline">\(Y_{ai}\)</span></th>
+<th><span class="math inline">\(Y_{bi}\)</span></th>
+<th><span class="math inline">\(\tau_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>-1</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>B</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>B</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>B</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>B</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>-1</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>B</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</section>
+<section id="average-treatment-effect" class="slide level2">
+<h2>Average Treatment Effect</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Imagine we want to compare two educational programs, <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p>
+<p>We are interested in the employment status of their graduates after a year (<span class="math inline">\(Y\)</span>)</p>
+<p>The causal effect of the program would be the comparison of the potential outcomes <span class="math inline">\(Y_{ai}\)</span> and <span class="math inline">\(Y_{bi}\)</span>, for all units <span class="math inline">\(i\)</span></p>
+<p><span class="math display">\[\text{ATE} = E(Y_{ai}) - E(Y_{bi})\]</span> <span class="math display">\[(6/10) - (5/10) = \mathbf{\color{blue}{0.1}}\]</span></p>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Unit</th>
+<th><span class="math inline">\(D_i\)</span></th>
+<th><span class="math inline">\(Y_i\)</span></th>
+<th><span class="math inline">\(Y_{ai}\)</span></th>
+<th><span class="math inline">\(Y_{bi}\)</span></th>
+<th><span class="math inline">\(\tau_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>-1</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>B</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>B</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>B</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>B</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>-1</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>B</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</section>
+<section id="difference-in-means" class="slide level2">
+<h2>Difference-in-means</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>But we don’t observe all potential outcomes for all units!</p>
+<p>Can we use instead the observational comparison as a proxy?</p>
+<p>Let’s calculate the different in means across groups, based on the <em>actual</em> program each subject attended:</p>
+<p><span class="math display">\[\text{diff-in-means} = E(Y_i|D=a) - E(Y_i|D=b)\]</span> <span class="math display">\[(3/5)-(2/5) = \mathbf{\color{red}{0.2}}\]</span></p>
+<p><span class="math display">\[\color{red}{\text{diff-in-means} \neq \text{ATE}}\]</span></p>
+<p><span class="math inline">\(\color{red}{\text{But why???}}\)</span></p>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Unit</th>
+<th><span class="math inline">\(D_i\)</span></th>
+<th><span class="math inline">\(Y_i\)</span></th>
+<th><span class="math inline">\(Y_{ai}\)</span></th>
+<th><span class="math inline">\(Y_{bi}\)</span></th>
+<th><span class="math inline">\(\tau_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>B</td>
+<td>0</td>
+<td>.</td>
+<td>0</td>
+<td>.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>B</td>
+<td>0</td>
+<td>.</td>
+<td>0</td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>B</td>
+<td>0</td>
+<td>.</td>
+<td>0</td>
+<td>.</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>B</td>
+<td>1</td>
+<td>.</td>
+<td>1</td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>B</td>
+<td>1</td>
+<td>.</td>
+<td>1</td>
+<td>.</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</section>
+<section id="sources-of-bias" class="slide level2">
+<h2>Sources of bias</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><span class="math display">\[E(\text{diff-in-means})\]</span> <span class="math display">\[= E(Y_i|D=a) - E(Y_i|D=b)\]</span> <span class="math display">\[= E(Y_a|D=a) - E(Y_b|D=b)\]</span> <span class="math display">\[= ATE +\]</span> <span class="math display">\[(E[Y_b|D=a] - E[Y_b|D=b])+\]</span> <span class="math display">\[(1-P[D])(ATT-ATC)\]</span> <span class="math display">\[= \mathbf{\color{blue}{0.1}} + \color{red}{0.2 + (0.5)(-0.2) = \mathbf{0.2}}\]</span></p>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Unit</th>
+<th><span class="math inline">\(D_i\)</span></th>
+<th><span class="math inline">\(Y_i\)</span></th>
+<th><span class="math inline">\(Y_{ai}\)</span></th>
+<th><span class="math inline">\(Y_{bi}\)</span></th>
+<th><span class="math inline">\(\tau_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>B</td>
+<td>0</td>
+<td>.</td>
+<td>0</td>
+<td>.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>B</td>
+<td>0</td>
+<td>.</td>
+<td>0</td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>B</td>
+<td>0</td>
+<td>.</td>
+<td>0</td>
+<td>.</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>B</td>
+<td>1</td>
+<td>.</td>
+<td>1</td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>B</td>
+<td>1</td>
+<td>.</td>
+<td>1</td>
+<td>.</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</section>
+<section id="identification-assumptions" class="slide level2">
+<h2>Identification assumptions</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>We need the following condition to be true: <span class="math display">\[
+Y_d \perp\!\!\!\perp D
+\]</span></p>
+<p>Do we meet that condition here? No! <span class="math display">\[(Y_{ai},Y_{bi}) \not\!\perp\!\!\!\perp D\]</span></p>
+<p>Because: <span class="math display">\[P(Y_a = y | D=a) \neq P(Y_a = y)\]</span> <span class="math display">\[P(Y_b = y | D=b) \neq P(Y_b = y)\]</span></p>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Unit</th>
+<th><span class="math inline">\(D_i\)</span></th>
+<th><span class="math inline">\(Y_i\)</span></th>
+<th><span class="math inline">\(Y_{ai}\)</span></th>
+<th><span class="math inline">\(Y_{bi}\)</span></th>
+<th><span class="math inline">\(\tau_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>-1</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>B</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>B</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>B</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>B</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>-1</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>B</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</section>
+<section id="identification-assumptions-1" class="slide level2">
+<h2>Identification assumptions</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>What about including another covariate <span class="math inline">\(W\)</span>?</p>
+<p>Does the following condition holds? <span class="math display">\[
+Y_d \perp\!\!\!\perp D | W
+\]</span></p>
+<p>Not quite either! But still “better” than before, right? right?</p>
+<p>Let’s define: <span class="math display">\[\text{CATE}_{w} = E(Y_a-Y_b|W=w)\]</span></p>
+<p>and the estimator <span class="math inline">\(\widehat{\text{CATE}}_{w} =\)</span> <span class="math display">\[E(Y_i|X=a,W=w) - E(Y_i|X=b,W=w)\]</span></p>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Unit</th>
+<th><span class="math inline">\(D_i\)</span></th>
+<th><span class="math inline">\(Y_i\)</span></th>
+<th><span class="math inline">\(Y_{ai}\)</span></th>
+<th><span class="math inline">\(Y_{bi}\)</span></th>
+<th><span class="math inline">\(\tau_i\)</span></th>
+<th><span class="math inline">\(W_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>Quant</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Quant</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>-1</td>
+<td>Qual</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>Quant</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>Qual</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>B</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>Qual</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>B</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>Quant</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>B</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Qual</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>B</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>-1</td>
+<td>Qual</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>B</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>Quant</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</section>
+<section id="identification-assumptions-2" class="slide level2">
+<h2>Identification assumptions</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><span class="math display">\[\widehat{\text{CATE}}_{Quant} = \widehat{\text{CATE}}_{Qual} = 0.16\]</span> <span class="math display">\[\text{ATE} = \sum_w\text{CATE}_w P(w)\]</span> <span class="math display">\[\widehat{\text{ATE}} = (0.5)(0.16) + (0.5)(0.16) = 0.16\]</span></p>
+<p>However, look a the true <span class="math inline">\(\text{ATE}_W\)</span>: <span class="math display">\[\text{CATE}_{Quant} = -0.2\]</span> <span class="math display">\[\text{CATE}_{Qual} = 0.4\]</span> <span class="math display">\[\text{ATE} = (0.5)(-0.2) + (0.5)(0.4) = \color{blue}{\mathbf{0.1}}\]</span></p>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Unit</th>
+<th><span class="math inline">\(D_i\)</span></th>
+<th><span class="math inline">\(Y_i\)</span></th>
+<th><span class="math inline">\(Y_{ai}\)</span></th>
+<th><span class="math inline">\(Y_{bi}\)</span></th>
+<th><span class="math inline">\(\tau_i\)</span></th>
+<th><span class="math inline">\(W_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>Quant</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Quant</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>-1</td>
+<td>Qual</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>Quant</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>Qual</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>B</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>Qual</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>B</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>Quant</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>B</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Qual</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>B</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>-1</td>
+<td>Qual</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>B</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>Quant</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</section>
+<section id="so-how-do-we-know" class="slide level2">
+<h2>So, how do we know?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>In general, we rely on <strong>extra-statistical assumptions</strong> about the data generating process to claim causal identification.</p>
+<div class="callout callout-tip no-icon callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>“No causes in, no cases out”</strong></p>
+</div>
+<div class="callout-content">
+<p>Nancy Cartwright</p>
+</div>
+</div>
+</div>
+<p>Is there a way to design an study in which we know, <strong>by design</strong>, that the needed assumptions hold?</p>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Unit</th>
+<th><span class="math inline">\(D_i\)</span></th>
+<th><span class="math inline">\(Y_i\)</span></th>
+<th><span class="math inline">\(Y_{ai}\)</span></th>
+<th><span class="math inline">\(Y_{bi}\)</span></th>
+<th><span class="math inline">\(\tau_i\)</span></th>
+<th><span class="math inline">\(W_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>.</td>
+<td>.</td>
+<td>Quant</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>.</td>
+<td>.</td>
+<td>Quant</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>.</td>
+<td>.</td>
+<td>Qual</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>.</td>
+<td>.</td>
+<td>Quant</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>.</td>
+<td>.</td>
+<td>Qual</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>B</td>
+<td>0</td>
+<td>.</td>
+<td>0</td>
+<td>.</td>
+<td>Qual</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>B</td>
+<td>0</td>
+<td>.</td>
+<td>0</td>
+<td>.</td>
+<td>Quant</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>B</td>
+<td>0</td>
+<td>.</td>
+<td>0</td>
+<td>.</td>
+<td>Qual</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>B</td>
+<td>1</td>
+<td>.</td>
+<td>1</td>
+<td>.</td>
+<td>Qual</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>B</td>
+<td>1</td>
+<td>.</td>
+<td>1</td>
+<td>.</td>
+<td>Quant</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</section></section>
+<section>
+<section id="randomised-experiments" class="title-slide slide level1 center" data-background-color="#17a091">
+<h1>Randomised Experiments</h1>
+
+</section>
+<section id="why-randomisation" class="slide level2">
+<h2>Why randomisation?</h2>
+<p><br></p>
+<p>If we want to <span style="color:blue;"><strong>predict under interventions</strong></span>, then the best way to do it is <strong>interveening</strong>!</p>
+<div class="fragment">
+<p>Random assignment has been called the <strong>gold standard</strong> for causal inference: it guarantees the necessary assumptions for causal inference hold by design.</p>
+</div>
+<div class="fragment">
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>What is the difference between random <em>assignment</em> and random <em>sampling</em>???</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="why-randomisation-1" class="slide level2">
+<h2>Why randomisation?</h2>
+<p><br></p>
+<p>When unfeasible, imagining a hypothetical experiment still offers a useful benchmark to assess the validity of causal claims, and even to clarify <span style="color:blue;">what do we mean</span> by a particular causal effect.</p>
+<p>Experiments come in many different flavors: lab, field, survey, and even quasi-experiments!</p>
+<p>Here we will only scratch the surface of social science experiments: the idea is to get you interested and point you to the resources out there</p>
+</section>
+<section id="why-randomisation-intuition" class="slide level2">
+<h2>Why randomisation? Intuition</h2>
+<p>Let’s go back for a second to the switching equation introduced earlier:</p>
+<div class="fragment">
+<p><span class="math display">\[
+Y = DY_1 + (1-D)Y_0
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Basically, the idea (somewhat counter-intuitive) is that:</p>
+<ul>
+<li><p>Potential outcomes are fixed (<span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_0\)</span> just exists out there)</p></li>
+<li><p>The treatment’s <span class="math inline">\(D\)</span> sole function is to “reveal” one or another!</p></li>
+</ul>
+<p>Then, it is clear that, <span style="color:green;">when <span class="math inline">\(D\)</span> is randomly assigned</span>, we get a random sample of both <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_0\)</span>, allowing us to estimate the ATE!</p>
+
+</div>
+<aside><div>
+<p>We won’t discuss it here, but there are ways to conceptualize potential outcomes as random instead of fixed. This mostly affects estimation rather than identification</p>
+</div></aside></section>
+<section id="why-randomisation-2" class="slide level2">
+<h2>Why randomisation?</h2>
+<h3 id="more-formally">(more formally)</h3>
+<p>We already said that we can identify the causal effect of <span class="math inline">\(D\)</span> on <span class="math inline">\(Y\)</span> if the treatment assignment is independent of the potential outcomes. Formally, when <span class="math display">\[(Y_{d=1},Y_{d=0}) \perp\!\!\!\perp D\]</span></p>
+</section>
+<section id="why-randomisation-3" class="slide level2">
+<h2>Why randomisation?</h2>
+<h3 id="more-formally-1">(more formally)</h3>
+<p>Recall the diff-in-means bias decomposition we reviewed earlier:</p>
+<p>By consistency</p>
+<p><span class="math display">\[E(Y_i|D=1) - E(Y_i|D=0) = E(Y_1|D=1) - E(Y_{0}|D=0)\]</span></p>
+<p>Plus some algebra (explicit derivation in Morgan and Winship)</p>
+<p><span class="math display">\[= E(Y_1 - Y_{0}) + (E[Y_{0}|D=1] - E[Y_{0}|D=0])+(1-P[D])(ATT-ATC)\]</span></p>
+<p><span class="fragment fade-in highlight-blue">Pause! What is the meaning of each term?</span></p>
+</section>
+<section id="why-randomisation-4" class="slide level2">
+<h2>Why randomisation?</h2>
+<h3 id="more-formally-2">(more formally)</h3>
+<p><span class="math display">\[= E(Y_1 - Y_{0}) + (E[Y_{0}|D=1] - E[Y_{0}|D=0])+(1-P[D])(ATT-ATC)\]</span></p>
+<p>Given <span style="color:red;"><strong>ignorability</strong></span> of the treatment assignment, we can further simplify it as:</p>
+<p><span class="math display">\[E(Y_1 - Y_{0}) = ATE\]</span></p>
+</section>
+<section id="forms-of-validity" class="slide level2">
+<h2>Forms of validity</h2>
+<p><br></p>
+<p>Traditionally, researchers have argued about the validity of a study’s causal conclusion (and, more generally, about the validity of different research designs) based on the potential biases that pose <strong>threats to validity</strong>.</p>
+<p>Check <a href="https://journals.lww.com/epidem/Fulltext/2020/05000/A_Graphical_Catalog_of_Threats_to_Validity_.11.aspx">this</a> amazing paper by Matthay and Glymour for a review.</p>
+</section>
+<section id="forms-of-validity-1" class="slide level2">
+<h2>Forms of validity</h2>
+<p><br></p>
+<p>We reviewed the bias in the difference-in-means estimator: baseline differences (under the control condition), and differential response to the treatment (under the exposure condition).</p>
+<div class="fragment">
+<p>But when we randomize an exposure, we know that who ends up in each treatment arm has nothing to do with their potential outcomes!</p>
+</div>
+<div class="fragment">
+<p>This is why we generally say that experiments are great for <span style="color:green;">internal validity</span>: among the people that participated in our study, we can rule out systematic sources of bias!</p>
+<p>However, this does not imply that our results are <span style="color:red;">externally valid</span>, i.e., that they apply to people outside our study! We need further assumptions to move from one to another.</p>
+</div>
+</section>
+<section id="types-of-experiments" class="slide level2">
+<h2>Types of experiments</h2>
+<ul>
+<li><p><span class="fragment highlight-blue"><strong>Laboratory experiments</strong></span>: Usually conducted with a small sample (of undergraduate psychology students), many times involving games in a computer. Helpful for cognitive/behavioral questions.</p></li>
+<li><p><span class="fragment highlight-blue"><strong>Field experiments</strong></span>: In order to obtain more <em>externally valid</em> results, experiments conducted in the field (i.e., under real-world conditions) are the way to go. Definitely more expensive though. Audit studies are a particular type of field experiment.</p></li>
+<li><p><span class="fragment highlight-blue"><strong>Survey experiments</strong></span>: One can randomize treatment conditions <em>in a survey</em> to evaluate how participants change their responses based on certain stimulus. Vignettes and list experiments are examples of this approach.</p></li>
+<li><p><span class="fragment highlight-blue"><strong>(Bonus) Quasi-experiments</strong></span>: Researchers usually call quasi-experiments to real-world situations that offer as-if random variation in a treatment of interest. For example, earthquakes, change in laws, date of birth, etc.</p></li>
+</ul>
+</section>
+<section id="short-activity-3-mins-1" class="slide level2" data-background-color="#692044">
+<h2>Short activity (3 mins)</h2>
+<p>Sometimes it is hard to imagine an experiment that would be relevant for the type of questions we care about.</p>
+<p>Some people even say (and I for sure partially agree!) that experiments tend to emphasize “small” versus “big” questions, promoting incremental/testable policies.</p>
+<p>However, there are tons of examples of researchers using experiments to address important, <strong>big</strong> and difficult questions. <strong>Do you know of any example?</strong></p>
+</section>
+<section id="how-to-randomise" class="slide level2">
+<h2>How to randomise?</h2>
+<p><br></p>
+<p>We use randomisation not just for identification (<span style="color:red;"><strong>ignorability</strong></span>), but also for estimation!</p>
+<p>If we assume the potential outcomes are fixed, and the only thing that varies is the treatment assignment scheme, we can derive a <span class="fragment highlight-blue"><strong>permutation distribution</strong></span> and use it for inference.</p>
+</section>
+<section id="how-to-randomise-1" class="slide level2">
+<h2>How to randomise?</h2>
+<p><br></p>
+<p>How much dispersion (i.e.&nbsp;uncertainty) is in our distribution will be affected by <span style="color:blue;"><strong>the level</strong></span> at which randomization (or, more precisely, the treatment) happens: is it at the individual level? or at a cluster/group level?</p>
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>The more the aggregation, the more uncertainty. So why would we want to randomize at the cluster level?</p>
+</div>
+</div>
+</div>
+</section>
+<section id="how-to-randomise-2" class="slide level2">
+<h2>How to randomise?</h2>
+<p><br></p>
+<p>Conditional randomization (i.e., blocking) increases efficiency, when we have variables that are highly predictive of the outcome of interest</p>
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>One extreme of this is randomization in matched pairs: for each pair of individual with similar covariates, we randomly assign one to treatment and one to control</p>
+</div>
+</div>
+</div>
+</section>
+<section id="blocking" class="slide level2">
+<h2>Blocking</h2>
+<p><br></p>
+<p>Similar to the intuition for stratified random <em>sampling</em> in the context of surveys, blocking may increase precision in experimental design</p>
+<p>Precision gains are similar to increasing the sample size</p>
+<ul>
+<li><p>Collect background information on covariates relevant <em>to the outcome</em></p></li>
+<li><p>Pre-stratify your sample, then randomise within blocks</p>
+<ul>
+<li><p>This ensures that, with respect to the blocked factors, both treatment arms are identical</p></li>
+<li><p>It is essentially the same as running a separate experiment in each strata</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="blocking-1" class="slide level2">
+<h2>Blocking</h2>
+<p><br></p>
+<p>For estimation, obtain block-specific effects, and average according to population shares. With <span class="math inline">\(J\)</span> strata:</p>
+<p><span class="math display">\[
+\tau_{\text{block}} = \sum_{j=1}^{J} \frac{N_j}{N} \tau_j
+\]</span> with variance:</p>
+<p><span class="math display">\[V(\tau_{\text{block}}) = \sum_{j=1}^{J} \Big(\frac{N_j}{N}\Big)^2 V(\tau_j)\]</span></p>
+
+<aside><div>
+<p>When would this be equal to regression with block fixed effects?</p>
+</div></aside></section>
+<section id="how-to-estimate" class="slide level2">
+<h2>How to estimate?</h2>
+<p><br></p>
+<p>Once we have random assignment, estimation is super easy!</p>
+<p>All that matters is that your estimation procedure follows your (known) assignment rule</p>
+<div class="callout callout-warning no-icon callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>In other words: Estimate as you randomise!</strong></p>
+</div>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li><p>A simple difference in means will recover the ATE</p></li>
+<li><p>This is equivalent to running a bivariate regression (no controls)</p></li>
+<li><p>With controls is a little trickier (see <a href="https://projecteuclid.org/journals/annals-of-applied-statistics/volume-2/issue-1/On-regression-adjustments-in-experiments-withseveral-treatments/10.1214/07-AOAS143.full">Freedman 2008</a> and <a href="https://projecteuclid.org/journals/annals-of-applied-statistics/volume-7/issue-1/Agnostic-notes-on-regression-adjustments-to-experimental-data--Reexamining/10.1214/12-AOAS583.full">Lin 2013</a>), but more useful (increased precision)!</p></li>
+<li><p>Your standard errors depend on your randomisation scheme!</p>
+<ul>
+<li>is assignment at the individual level?</li>
+<li>do probabilities vary by block?</li>
+<li>is randomisation conducted among clusters?</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="covariate-balance" class="slide level2">
+<h2>Covariate balance</h2>
+<p><br></p>
+<p>When you randomise the treatment, pre-treatment variables will be (in expectation) balanced across treatment arms</p>
+<p>This is usually a way to “check” if the randomisation step worked out correctly</p>
+<p>However, one should be careful to not discard “unlucky” realizations in an arbitrary manner</p>
+<div class="fragment">
+<p>Also, note that imbalance <span style="color:red;"><strong>does not</strong></span> imply bias: properly estimated standard errors will account for uncertainty in the treatment effect!</p>
+<ul>
+<li>Check this great series by Senn: <a href="https://errorstatistics.com/2020/04/20/s-senn-randomisation-is-not-about-balance-nor-about-homogeneity-but-about-randomness-guest-post/">blog</a>, <a href="https://www.ideal.rwth-aachen.de/wp-content/uploads/2014/02/Senn_Randomisation.pdf">slides</a>, <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/sim.5713">article</a></li>
+</ul>
+</div>
+</section>
+<section id="potential-issues" class="slide level2">
+<h2>Potential issues</h2>
+<p><br></p>
+<p>In random-land, everything is perfect!</p>
+<p>However, many things can go wrong in practice, threatenind <em>internal validity</em>:</p>
+<ul>
+<li><p><span class="fragment highlight-blue"><strong>Randomisation failure</strong></span>: for some reason, the physical procedure of assignment fails to be random (see Vietnam draft lottery)</p></li>
+<li><p><span class="fragment highlight-blue"><strong>Noncompliance</strong></span>: many times, participants fail to adhere to their assigned treatment status (one- or two-sided noncompliance)</p></li>
+<li><p><span class="fragment highlight-blue"><strong>Attrition and loss to follow up</strong></span>: even if randomisation is properly conducted and everyone adheres to the treatment, we may differentially lost participants in the post-treatment period!</p></li>
+</ul>
+</section>
+<section id="potential-issues-1" class="slide level2">
+<h2>Potential issues</h2>
+<p><img data-src="https://imgs.xkcd.com/comics/research_ethics.png"></p>
+
+<aside><div>
+<p><a href="https://imgs.xkcd.com/comics/research_ethics.png">xkcd ethics</a></p>
+<p><a href="https://en.wikipedia.org/wiki/When_Contact_Changes_Minds">Lacour affair</a></p>
+</div></aside></section>
+<section id="additional-resources" class="slide level2">
+<h2>Additional Resources</h2>
+<h3 id="online-learning">Online learning</h3>
+<ul>
+<li><p>J-PAL research resources <a href="https://www.povertyactionlab.org/research-resources?view=toc">here</a></p></li>
+<li><p>EGAP methods guides <a href="https://egap.org/methods-guides/">here</a></p></li>
+</ul>
+</section>
+<section id="short-activity" class="slide level2" data-background-color="#692044">
+<h2>Short activity</h2>
+<p>Think in a research question that you could possibly address using an experimental design:</p>
+<ul>
+<li><p>What is your research question?</p></li>
+<li><p>What is your <strong>estimand</strong>? (effect of what? on what? among whom?)</p></li>
+<li><p>What type of experiment would you conduct? (lab? field? survey?)</p></li>
+<li><p>What would be the level of your randomisation? (individual? cluster? why?)</p></li>
+<li><p>What ethical considerations you should take into account for your experiment to be acceptable?</p></li>
+</ul>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Potential Outcomes and Experiments</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="01-causality-po-experiments_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="01-causality-po-experiments_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="01-causality-po-experiments_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="01-causality-po-experiments_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="01-causality-po-experiments_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="01-causality-po-experiments_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="01-causality-po-experiments_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="01-causality-po-experiments_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="01-causality-po-experiments_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="01-causality-po-experiments_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="01-causality-po-experiments_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

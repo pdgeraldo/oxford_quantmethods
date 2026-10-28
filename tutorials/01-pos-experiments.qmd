@@ -1,0 +1,127 @@
+---
+title: "Quantitative Methods -- Human Sciences"
+subtitle: "Potential outcomes and experimental design"
+author: "Pablo Geraldo Bastías (pablo.geraldo@sociology.ox.ac.uk)"
+format: 
+  pdf:
+    number-sections: true
+    colorlinks: true
+    mainfont: "Crimson Text"
+    monofont: "Crimson Text"
+    sansfont: "Crimson Text"
+    fontsize: 12pt
+margin-left: 2.5cm
+margin-right: 2.5cm
+margin-top: 2cm
+margin-bottom: 2cm
+---
+
+## How to use mathematical notation
+
+You can insert in-line equations using \LaTeX ~ notation like this: `$y_i = \alpha + \beta_\tau \tau + \epsilon_i$` and they will show like this: $y_i = \alpha + \beta_\tau \tau + \epsilon_i$. If you want equations to be separated from the main body, just wrap them around double dollar signs instead of one, like this: `$$y_i = \alpha + \beta_\tau \tau + \epsilon_i$$` for the following result: $$y_i = \alpha + \beta_\tau \tau + \epsilon_i$$
+
+## Simulate a Data Generating Process (DGP)
+
+To insert `R` code (that will be rendered directly in this document), use the following syntax:
+
+```{r}
+# This is R code
+# Code and results will be shown in the compiled document
+
+# Set seed for reproducibility
+set.seed(1492)
+
+# Let's made a simple calculation
+# assuming the following model
+# Y0 ~ Norm(10,2)
+# Y1 = Y0 + \tau + epsilon_i
+# epsilon ~ Norm(0,1)
+# tau = 1.5
+
+n <- 1000 # we will create 1K cases
+tau <- 1.5 # a treatment effect that is fixed for everyone
+epsilon <- rnorm(n) # some "random noise"
+y0 <- rnorm(n, mean = 10, sd = 2) # control PO, from normal distribution
+y1 <- y0 + tau + epsilon # treated PO, control + treatment effect + noise
+
+# Now, let's create one possible random assignment vector
+# for a binary treatment with p=0.5
+d <- rbinom(n, 1, 0.5)
+
+# Let's create the observed outcome variable, using the switching equation
+y <- y1*d+(1-d)*y0
+
+```
+
+
+## Plots and figures 
+
+We can plot the data to explore what is in there. Plots will be rendered in the final document if you include their code in this document:
+
+```{r}
+# Simple plot example
+# First, let's combine our data in a single data.frame
+
+data <- data.frame(y1,y0,y,d)
+data$missing <- ifelse(d==1, "y0","y1")
+
+library(ggplot2) # Load ggplot2 package
+
+# Create a scatterplot, highlighting observed vs missing outcomes
+ggplot(data, aes(x = y0, y = y1, color = missing)) +
+  geom_point(alpha = 0.25)
+```
+
+## ATE estimation
+
+
+```{r}
+
+# Now, let's calculate the ATE
+# These two ways are equivalent (why?)
+
+mean(y1-y0)
+mean(y1) - mean(y0)
+
+# Now, let's approximate the ATE with a difference-in-means
+# Think: why cannot we simply use mean(y1-y0 anymore?)
+# Think: why does this ATEhat differs from the ATE calculated above?
+# Think: is it still a good approximation?
+
+mean(y[d==1]) - mean(y[d==0])
+```
+
+# Now it's your turn
+
+(No worries for now, we will populate this section together in class)
+
+
+## Randomisation inference
+
+```{r}
+
+```
+
+## Simple randomisation
+
+```{r}
+
+```
+
+
+## Block randomisation
+
+```{r}
+
+```
+
+
+## Clustered randomisation
+
+```{r}
+
+```
+
+
+ 
+
