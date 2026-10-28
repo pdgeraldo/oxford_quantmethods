@@ -98,12 +98,12 @@ mean(y[d==1]) - mean(y[d==0])
 
 ## Randomisation inference
 
-The *sharp null hypothesis* (Fisher) states that the treatment had **no effect for any unit**: $H_0: Y_i(1) = Y_i(0)$ for all $i$. This is a much stronger claim than "the *average* effect is zero". Its great advantage is that, if it is true, we know *both* potential outcomes for every unit: they are both equal to the observed outcome $Y_i$. Nothing is missing anymore!
+The *sharp null hypothesis* (Fisher) states that the treatment had **no effect for any unit**: $Y_{1i} = Y_{0i}$ for all $i$. This is a much stronger claim than "the *average* effect is zero". Its great advantage is that, if it is true, we know *both* potential outcomes for every unit: they are both equal to the observed outcome $Y_i$. Nothing is missing anymore!
 
 That means we can ask: *if the sharp null were true, what difference-in-means would we get under every other assignment that could have happened?* The only source of randomness is the assignment mechanism, which we control, so we can simply re-run it many times while keeping the observed outcomes fixed.
 
 ```{r}
-# Step 1: the test statistic in the data we actually observed
+# Step 1: calculate the test statistic in the data we actually observed
 # (difference in means between treated and control)
 obs_diff <- mean(y[d == 1]) - mean(y[d == 0])
 obs_diff
@@ -112,8 +112,9 @@ obs_diff
 # So we keep y fixed and "re-randomise" the treatment many times.
 # sample(d) shuffles the treatment vector: same number of treated
 # units, but given to different people.
-n_perm <- 1000
-perm_diff <- numeric(n_perm) # empty vector to store results
+
+n_perm <- 1000 # number of re-randomisations we are running
+perm_diff <- numeric(n_perm) # empty vector to store results (diff-in-means obtained in each randomisation)
 
 for (i in 1:n_perm) {
   d_perm <- sample(d)                                       # a new hypothetical assignment
@@ -130,17 +131,21 @@ p_value
 # Step 4: plot the permutation (randomisation) distribution
 # and mark where our observed estimate falls
 ggplot(data.frame(perm_diff), aes(x = perm_diff)) +
-  geom_histogram(bins = 30, fill = "grey70", color = "white") +
-  geom_vline(xintercept = obs_diff, color = "red", linewidth = 1) +
+  geom_histogram(bins = 30, fill = "grey70") +
+  geom_vline(xintercept = 1.5, color = "red", linewidth = 1) +
+  geom_vline(xintercept = obs_diff, color = "red", linetype = "dotted") +
   labs(x = "Difference in means under the sharp null",
        y = "Count",
        title = "Randomisation distribution of the difference in means",
-       subtitle = "Red line: observed difference in means")
+       subtitle = "Solid red line: True effect \nDotted line: Observed difference") +
+  theme_bw()
 ```
 
 **What do we see?** The grey histogram shows the differences in means we would get *purely by chance* if the treatment did nothing to anyone. It is centred at zero and almost all values lie between roughly `r round(quantile(perm_diff, 0.025), 2)` and `r round(quantile(perm_diff, 0.975), 2)`. Our observed estimate (`r round(obs_diff, 2)`, red line) is far outside this range: none of the `r n_perm` re-randomisations produced a difference that large, so the p-value is `r p_value` (strictly, $p < 1/`r n_perm`$). We reject the sharp null of no effect for anyone.
 
 *Things to think about:* (1) Notice we made **no assumptions** about the distribution of $Y$ (no normality, no large samples): the only thing we used is the assignment mechanism. (2) Why would the p-value be exactly 0 here but not in a smaller experiment? (3) Rejecting the sharp null tells us the treatment did *something* to *someone*. Does it tell us the size of the effect?
+
+*To practice*: Try modifying some of the simulation parameters and see how your results change!
 
 ## Simple randomisation
 
@@ -149,7 +154,7 @@ So far we have looked at a single assignment. But the assignment is random: had 
 Under **simple random assignment**, each unit independently flips a coin with $p = 0.5$, as in our DGP above (so the number of treated units varies a little from one replicate to the next).
 
 ```{r}
-set.seed(2025)
+set.seed(1492)
 
 n_sims <- 500
 true_ate <- mean(y1 - y0) # the estimand: known only because we simulated it
@@ -170,12 +175,13 @@ sd(ate_simple)   # standard deviation of the estimates = the standard error
 
 ```{r}
 ggplot(data.frame(ate_simple), aes(x = ate_simple)) +
-  geom_histogram(bins = 30, fill = "steelblue", color = "white", alpha = 0.8) +
-  geom_vline(xintercept = true_ate, color = "red", linewidth = 1) +
+  geom_histogram(bins = 30, fill = "grey", alpha = 0.8) +
+  geom_vline(xintercept = true_ate, color = "red") +
+  geom_vline(xintercept = mean(ate_simple), color = "red", linetype = "dotted") +
   labs(x = "Estimated ATE (difference in means)",
        y = "Count",
        title = "Sampling distribution under simple randomisation",
-       subtitle = "500 replicates of the assignment; red line: true ATE")
+       subtitle = "500 replicates; solid red line: true ATE; dotted line: average ATE across sims") + theme_bw()
 ```
 
 **What do we see?** Each bar collects estimates from different hypothetical experiments run on the *same* 1,000 people. Individual estimates miss the truth, sometimes by quite a lot, but they are centred on the true ATE: the average estimate is `r round(mean(ate_simple), 3)` vs. a true ATE of `r round(true_ate, 3)`. This is what it means for the difference-in-means to be **unbiased** under random assignment. The spread of the distribution (standard deviation `r round(sd(ate_simple), 3)`) is the **standard error**: it tells us how far a single experiment typically lands from the truth.
@@ -184,7 +190,7 @@ ggplot(data.frame(ate_simple), aes(x = ate_simple)) +
 
 ## Block randomisation
 
-Now suppose that, *before* the experiment, we observe a binary covariate $X$ that predicts the outcome (for instance, whether a student had high or low grades last year). We create such a covariate below: it is related to $Y(0)$ but measured with some noise.
+Now suppose that, *before* the experiment, we observe a binary covariate $X$ that predicts the outcome. We create such a covariate below: it is related to $Y_0$ but measured with some noise.
 
 In **block (stratified) randomisation** we split the sample into blocks defined by $X$ and run a separate complete randomisation *within each block*, treating exactly half of the units in each one. This guarantees the treated and control groups are perfectly balanced on $X$ in every replicate.
 
@@ -235,13 +241,14 @@ sims <- data.frame(
 )
 
 ggplot(sims, aes(x = estimate, fill = design)) +
-  geom_density(alpha = 0.5) +
+  geom_density(alpha = 0.35) +
   geom_vline(xintercept = true_ate, color = "red", linewidth = 1) +
   labs(x = "Estimated ATE",
        y = "Density",
        fill = "Design",
        title = "Sampling distribution: block vs. simple randomisation",
-       subtitle = "500 replicates of each design; red line: true ATE")
+       subtitle = "500 replicates of each design; red line: true ATE") +
+  theme_bw()
 ```
 
 **What do we see?** Both designs are centred on the true ATE (block average: `r round(mean(ate_block), 3)`), so blocking does not change *what* we estimate. What changes is the **precision**: the standard error falls from `r round(sd(ate_simple), 3)` with simple randomisation to `r round(sd(ate_block), 3)` with blocking, a reduction of about `r round(100 * (1 - sd(ate_block) / sd(ate_simple)))`%. Why? Under simple randomisation, some unlucky assignments put more "high-$X$" units in the treatment group than in the control group, inflating the estimate (or the reverse). Blocking rules out those unlucky assignments, so estimates cluster more tightly around the truth.
@@ -289,13 +296,14 @@ sims <- data.frame(
 )
 
 ggplot(sims, aes(x = estimate, fill = design)) +
-  geom_density(alpha = 0.5) +
+  geom_density(alpha = 0.35) +
   geom_vline(xintercept = true_ate, color = "red", linewidth = 1) +
   labs(x = "Estimated ATE",
        y = "Density",
        fill = "Design",
        title = "Sampling distribution: clustered vs. simple randomisation",
-       subtitle = "500 replicates of each design; red line: true ATE")
+       subtitle = "500 replicates of each design; red line: true ATE") +
+  theme_bw()
 ```
 
 **What do we see?** The clustered design is also centred on the true ATE (average estimate `r round(mean(ate_cluster), 3)`), and its standard error (`r round(sd(ate_cluster), 3)`) is very close to that of simple randomisation (`r round(sd(ate_simple), 3)`). This is because our groups are *arbitrary*: knowing which group a unit belongs to tells us nothing about its potential outcomes, so treating 25 random groups of 20 is effectively like picking 500 individuals at random.
