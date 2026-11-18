@@ -149,8 +149,8 @@ Pablo Geraldo Bastías
 </section>
 <section id="finding-as-if-random-variation" class="slide level2">
 <h2>Finding as-if random variation</h2>
-<p>Instrumental variables are a popular strategy when unconfoundedness does not hold, but we have some source of variation in the treatment status that is as-good-as-random, even if only in a particular subpopulation</p>
-<p>We will discuss identification and estimation in the instrumental variable setting under two frameworks:</p>
+<p><br> Instrumental variables are a popular strategy when unconfoundedness does not hold, but we have some source of variation in the treatment status that is as-good-as-random, even if only in a particular subpopulation</p>
+<p>Identification and estimation in the instrumental variable setting is usually discussed under two frameworks:</p>
 <div class="fragment">
 <ul>
 <li>The canonical setting, where a constant treatment effect is assumed</li>
@@ -163,7 +163,7 @@ Pablo Geraldo Bastías
 </div>
 <div class="fragment">
 <p>Depending on the invoked assumptions, the quantity identified by the IV analysis is different</p>
-<p>We will discuss in certain detail the common issues faced by all IV analyses, and also some issues particular to each framework</p>
+<p>We will focus on the modern approach, but some of the issues are common to all frameworks</p>
 </div>
 <div class="fragment">
 <div class="callout callout-warning no-icon callout-style-simple">
@@ -182,17 +182,18 @@ Pablo Geraldo Bastías
 <div class="fragment">
 <p>In the modern IV setting, the intuition is a little simpler: if we cannot randomise the treatment of interest, can we find an (as-if) random variable that <em>encourages</em> treatment taking?</p>
 </div>
-<div class="fragment">
-<p>Imagine if we want to test the hypothesis: <a href="">Does attending this lecture improves your productivity in the long-term?</a></p>
-<ul>
-<li><p>Can we directly compare the ones who attended to the ones who didn’t attend?</p></li>
-<li><p>Can we randomise who <em>actually</em> attended the lecture?</p></li>
-<li><p>Can we randomise <em>invitations</em> to the lecture, or reminders?</p></li>
-<li><p>Can we construct a variable that predicts who attended, independent of potential productivity?</p></li>
-</ul>
-</div>
 </section>
 <section id="intuition-for-iv-1" class="slide level2">
+<h2>Intuition for IV</h2>
+<p>Imagine if we want to test the hypothesis: <a href="">Does attending this lecture improves your productivity in the long-run?</a></p>
+<ul>
+<li><p>Can we directly compare the students who enrolled in this class to those who didn’t attend?</p></li>
+<li><p>Can we randomise who <em>actually</em> attended the lectures?</p></li>
+<li><p>Can we randomise <em>invitations</em> to the lectures, or reminders?</p></li>
+<li><p>Can we construct a variable that predicts who attends this class, independent of potential productivity?</p></li>
+</ul>
+</section>
+<section id="intuition-for-iv-2" class="slide level2">
 <h2>Intuition for IV</h2>
 <p>If we could actually randomise the reminders, then we would have an experiment!</p>
 <p>But remember, we want the effect of <em>attending</em> the lecture, not the effect of <em>being registered</em> in the class!</p>
@@ -219,11 +220,11 @@ ATE_{\text{reminder}} = E[P_r - P_{\bar{r}}]
 <ul>
 <li>So, the <span class="math inline">\(ATE_{\text{reminder}}\)</span> is an average of (a) the effect of the reminder sent on productivity among the switchers, and (b) the zero effect from non-switchers</li>
 </ul>
-<p>In other words, the ITT is a diluted version of the effect of interest. Can we work back to the quantity we want? Kind of</p>
+<p>In other words, the ITT is a diluted version of the effect of interest. Can we work back to the quantity we want? Kind of…</p>
 </section>
 <section id="complier-types" class="slide level2">
 <h2>Complier types</h2>
-<p>To re-scale the ITT, we need to estimate the probability of switching the attendance to the lecture due to the reminder –&gt; Randomisation!</p>
+<p>To re-scale the ITT, we need to estimate the probability of switching the attendance to the lecture due to the reminder <span class="math inline">\(\rightarrow\)</span> Randomisation!</p>
 <p>But in order to use that information, we need some further clarifications. Let’s divide the population in four latent subgroups:</p>
 <div class="fragment">
 <ul>
@@ -242,7 +243,7 @@ ATE_{\text{reminder}} = E[P_r - P_{\bar{r}}]
 </div>
 <div class="fragment">
 <ul>
-<li><strong>Defiers</strong>: those who were planned to attend, but when reminded (and after re-reading the lecture topics), they would rather not! <em>We assume that this group does not exist</em></li>
+<li><strong>Defiers</strong>: those who were planning to attend, but when reminded, they would rather not! <em>We assume that this group does not exist</em></li>
 </ul>
 </div>
 </section></section>
@@ -284,11 +285,6 @@ ATE_{\text{reminder}} = E[P_r - P_{\bar{r}}]
 <h2>IV bounds</h2>
 <p>Under no additional restrictions, i.e., from the non-parametric assumptions encoded in the DAG alone, the treatment effect <strong>cannot</strong> be identified.</p>
 <p>However, we can: 1) test the null hypothesis of no treatment effect, 2) obtain bounds for the treatment effect</p>
-</section></section>
-<section>
-<section id="classical-iv" class="title-slide slide level1 center" data-background-color="#17a091">
-<h1>Classical IV</h1>
-
 </section>
 <section id="some-iv-terminology" class="slide level2">
 <h2>Some IV terminology</h2>
@@ -296,51 +292,7 @@ ATE_{\text{reminder}} = E[P_r - P_{\bar{r}}]
 
 <aside><div>
 <p>By Felton and Stewart (2024)</p>
-</div></aside></section>
-<section id="identification-under-effect-homogeneity" class="slide level2">
-<h2>Identification under effect homogeneity</h2>
-<p>Traditionally, the IV assumptions are described in terms of two linear model and their error terms:</p>
-<p><a href="">First stage</a>: <span class="math inline">\(D = \tau + \rho Z + \eta\)</span></p>
-<p><a href="">Second stage</a>: <span class="math inline">\(Y = \gamma + \alpha D + \epsilon\)</span></p>
-<div class="callout callout-tip no-icon callout-titled callout-style-simple">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>IV identification assumptions</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li><p><strong>Exogeneity and exclusion</strong>: <span class="math inline">\(C(Z,\eta)=0\)</span>, and <span class="math inline">\(C(Z,\epsilon) =0\)</span></p></li>
-<li><p><strong>Relevance of first stage</strong>: <span class="math inline">\(\rho \neq 0\)</span></p></li>
-<li><p><strong>Constant effect</strong>: <span class="math inline">\(\alpha = Y_{1i} - Y_{0i} ~ \forall i\)</span></p></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p>Given how strong these assumptions are, one may wonder how common is for this framework to be invoked in applied research</p>
-</div>
-</section>
-<section id="iv-in-political-science" class="slide level2">
-<h2>IV in political science</h2>
-<p>A recent review by <a href="https://www.cambridge.org/core/journals/political-analysis/article/how-much-should-we-trust-instrumental-variable-estimates-in-political-science-practical-advice-based-on-67-replicated-studies/70A232CA0CD55FE8B97E93543CDD6361">Lal et al (2024)</a> found that more than 70% of published IV papers in PoliSci use continuous instruments and treatments (ill-suited for modern approach)</p>
-<p><img data-src="img/Lal_papers.png"></p>
-</section>
-<section id="types-of-instruments" class="slide level2">
-<h2>Types of instruments</h2>
-<p><img data-src="img/Lal_iv_types.png"></p>
-</section>
-<section id="issues-weak-first-stage" class="slide level2">
-<h2>Issues: Weak first-stage</h2>
-<p><img data-src="img/Lal_iv_F.png"></p>
-</section>
-<section id="issues-unreliable-inference" class="slide level2">
-<h2>Issues: Unreliable inference</h2>
-<p><img data-src="img/Lal_iv_inference.png"></p>
-</section>
-<section id="issues-comparison-to-ols" class="slide level2">
-<h2>Issues: Comparison to OLS</h2>
-<p><img data-src="img/Lal_iv_obsexp.png" style="width:40.0%"></p>
-</section></section>
+</div></aside></section></section>
 <section>
 <section id="modern-iv" class="title-slide slide level1 center" data-background-color="#17a091">
 <h1>Modern IV</h1>
@@ -450,32 +402,29 @@ D_{z=1,i} \geq D_{z=0,i} \forall i
 LATE = \frac{\text{Reduced Form}}{\text{Compliance Ratio}} = \frac{\text{ITT}}{\text{P(Complier)}}
 \]</span> <span class="math display">\[
 = \frac{Z \rightarrow Y}{Z \rightarrow D} = \frac{E[Y|Z=1] - E[Y|Z=0]}{E[D|Z=1] - E[D|Z=0]}
-\]</span> <span class="math display">\[
-= \frac{C(Z,Y)}{V(Z)}/\frac{C(Z,D)}{V(Z)}
 \]</span></p>
-<p><span class="math display">\[
-\frac{(Z'Z)^{-1}(Z'Y)}{(Z'Z)^{-1}(Z'D)} = (Z'D)^{-1}(Z'Y)
+<div class="fragment">
+<p>Or, in regression terms (just in case you’re curious about this): <span class="math display">\[
+= \frac{C(Z,Y)}{V(Z)}/\frac{C(Z,D)}{V(Z)} = \frac{(Z'Z)^{-1}(Z'Y)}{(Z'Z)^{-1}(Z'D)} = (Z'D)^{-1}(Z'Y)
 \]</span></p>
+</div>
 </section>
 <section id="issues" class="slide level2">
 <h2>Issues</h2>
+<p><br></p>
 <p>Despite being a more flexible approach, allowing for effect heterogeneity, and more clearly articulated in terms of the experimental analogy, IVs in practice are still very fragile</p>
-<p>Altough with some differences, the problems identified by Lal et al., carry over the modern IV setting</p>
 <p>Felton and Stewart identify three of these issues, all of them exacerbated by the presence of <em>weak instruments</em></p>
 <p>Here I will only focus on the first two problems they discuss: identification bias, and estimation bias</p>
-<p>The authors also discuss Type-M bias; as a complicated issue, I will not further expand on it</p>
+<p>(They also discuss Type-M bias; is a complicated issue, I will not further expand on it)</p>
 </section>
 <section id="issues-1" class="slide level2">
 <h2>Issues</h2>
-<p><img data-src="img/Felton_iv_problems.png"></p>
-</section>
-<section id="an-illustration" class="slide level2">
-<h2>An illustration</h2>
-<p><img data-src="img/Felton_iv_amplification.png"></p>
+<p><img data-src="img/Felton_iv_problems.png" style="width:80.0%"></p>
 </section>
 <section id="identification-bias" class="slide level2">
 <h2>Identification bias</h2>
-<p>Identification bias refers to the case when the required assumptions for an IV to be valid do not (perfectly hold)</p>
+<p><br></p>
+<p>Identification bias refers to the case when the required assumptions for an IV to be valid do not (perfectly) hold</p>
 <ul>
 <li><p>Unconfoundedness violation: there is an unobserved confounder between the instrument and the outcome</p></li>
 <li><p>Exclusion violation: there is an unaccounted mechanism through which the instrument affect the outcome</p></li>
@@ -496,6 +445,7 @@ LATE = \frac{\text{Reduced Form}}{\text{Compliance Ratio}} = \frac{\text{ITT}}{\
 </section>
 <section id="estimation-bias" class="slide level2">
 <h2>Estimation bias</h2>
+<p><br></p>
 <p>Estimation bias arises in the IV setting because the 2SLS estimator is biased towards the OLS estimator</p>
 <p>This bias is always present, but becomes negligible for strong instruments and large sample sizes</p>
 <div class="fragment">
@@ -516,11 +466,66 @@ LATE = \frac{\text{Reduced Form}}{\text{Compliance Ratio}} = \frac{\text{ITT}}{\
 </div>
 </div>
 </div>
+</section>
+<section id="a-toy-example" class="slide level2">
+<h2>A toy example</h2>
+<p><img data-src="img/Felton_iv_amplification.png"></p>
 </section></section>
-<section id="now-to-practice" class="title-slide slide level1 center" data-background-color="#17a091">
-<h1>Now to practice!</h1>
+<section id="now-to-the-tutorial" class="title-slide slide level1 center" data-background-color="#17a091">
+<h1>Now to the tutorial!</h1>
 
 </section>
+
+<section>
+<section id="classical-iv" class="title-slide slide level1 center" data-background-color="#17a091">
+<h1>Classical IV</h1>
+
+</section>
+<section id="identification-under-effect-homogeneity" class="slide level2">
+<h2>Identification under effect homogeneity</h2>
+<p>Traditionally, the IV assumptions are described in terms of two linear model and their error terms:</p>
+<p><a href="">First stage</a>: <span class="math inline">\(D = \tau + \rho Z + \eta\)</span></p>
+<p><a href="">Second stage</a>: <span class="math inline">\(Y = \gamma + \alpha D + \epsilon\)</span></p>
+<div class="callout callout-tip no-icon callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>IV identification assumptions</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p><strong>Exogeneity and exclusion</strong>: <span class="math inline">\(C(Z,\eta)=0\)</span>, and <span class="math inline">\(C(Z,\epsilon) =0\)</span></p></li>
+<li><p><strong>Relevance of first stage</strong>: <span class="math inline">\(\rho \neq 0\)</span></p></li>
+<li><p><strong>Constant effect</strong>: <span class="math inline">\(\alpha = Y_{1i} - Y_{0i} ~ \forall i\)</span></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>Given how strong these assumptions are, one may wonder how common is for this framework to be invoked in applied research</p>
+</div>
+</section>
+<section id="iv-in-political-science" class="slide level2">
+<h2>IV in political science</h2>
+<p>A recent review by <a href="https://www.cambridge.org/core/journals/political-analysis/article/how-much-should-we-trust-instrumental-variable-estimates-in-political-science-practical-advice-based-on-67-replicated-studies/70A232CA0CD55FE8B97E93543CDD6361">Lal et al (2024)</a> found that more than 70% of published IV papers in PoliSci use continuous instruments and treatments (ill-suited for modern approach)</p>
+<p><img data-src="img/Lal_papers.png"></p>
+</section>
+<section id="types-of-instruments" class="slide level2">
+<h2>Types of instruments</h2>
+<p><img data-src="img/Lal_iv_types.png"></p>
+</section>
+<section id="issues-weak-first-stage" class="slide level2">
+<h2>Issues: Weak first-stage</h2>
+<p><img data-src="img/Lal_iv_F.png"></p>
+</section>
+<section id="issues-unreliable-inference" class="slide level2">
+<h2>Issues: Unreliable inference</h2>
+<p><img data-src="img/Lal_iv_inference.png"></p>
+</section>
+<section id="issues-comparison-to-ols" class="slide level2">
+<h2>Issues: Comparison to OLS</h2>
+<p><img data-src="img/Lal_iv_obsexp.png" style="width:40.0%"></p>
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

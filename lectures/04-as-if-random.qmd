@@ -29,9 +29,10 @@ callout-appearance: minimal
 
 ## Finding as-if random variation
 
+<br>
 Instrumental variables are a popular strategy when unconfoundedness does not hold, but we have some source of variation in the treatment status that is as-good-as-random, even if only in a particular subpopulation
 
-We will discuss identification and estimation in the instrumental variable setting under two frameworks:
+Identification and estimation in the instrumental variable setting is usually discussed under two frameworks:
 
 . . . 
 
@@ -45,7 +46,7 @@ We will discuss identification and estimation in the instrumental variable setti
 
 Depending on the invoked assumptions, the quantity identified by the IV analysis is different
 
-We will discuss in certain detail the common issues faced by all IV analyses, and also some issues particular to each framework
+We will focus on the modern approach, but some of the issues are common to all frameworks
 
 . . .
 
@@ -63,17 +64,18 @@ Originally, the IV analysis was developed to deal with endogenous systems in equ
 
 In the modern IV setting, the intuition is a little simpler: if we cannot randomise the treatment of interest, can we find an (as-if) random variable that *encourages* treatment taking?
 
-. . .
 
-Imagine if we want to test the hypothesis: [Does attending this lecture improves your productivity in the long-term?]()
+## Intuition for IV
 
-* Can we directly compare the ones who attended to the ones who didn't attend?
+Imagine if we want to test the hypothesis: [Does attending this lecture improves your productivity in the long-run?]()
 
-* Can we randomise who *actually* attended the lecture?
+* Can we directly compare the students who enrolled in this class to those who didn't attend?
 
-* Can we randomise *invitations* to the lecture, or reminders?
+* Can we randomise who *actually* attended the lectures?
 
-* Can we construct a variable that predicts who attended, independent of potential productivity? 
+* Can we randomise *invitations* to the lectures, or reminders?
+
+* Can we construct a variable that predicts who attends this class, independent of potential productivity? 
 
 ## Intuition for IV
 
@@ -103,11 +105,11 @@ then the ITT estimate comes only from the population that changed their attendan
 
 * So, the $ATE_{\text{reminder}}$ is an average of (a) the effect of the reminder sent on productivity among the switchers, and (b) the zero effect from non-switchers
 
-In other words, the ITT is a diluted version of the effect of interest. Can we work back to the quantity we want? Kind of
+In other words, the ITT is a diluted version of the effect of interest. Can we work back to the quantity we want? Kind of...
 
 ## Complier types
 
-To re-scale the ITT, we need to estimate the probability of switching the attendance to the lecture due to the reminder --> Randomisation!
+To re-scale the ITT, we need to estimate the probability of switching the attendance to the lecture due to the reminder $\rightarrow$ Randomisation!
 
 But in order to use that information, we need some further clarifications. Let's divide the population in four latent subgroups:
 
@@ -125,7 +127,7 @@ But in order to use that information, we need some further clarifications. Let's
 
 . . .
 
-*  **Defiers**: those who were planned to attend, but when reminded (and after re-reading the lecture topics), they would rather not! *We assume that this group does not exist*
+*  **Defiers**: those who were planning to attend, but when reminded, they would rather not! *We assume that this group does not exist*
 
 # General setting {background-color="#17a091"}
 
@@ -171,9 +173,6 @@ Under no additional restrictions, i.e., from the non-parametric assumptions enco
 
 However, we can: 1) test the null hypothesis of no treatment effect, 2) obtain bounds for the treatment effect
 
-
-# Classical IV {background-color="#17a091"}
-
 ## Some IV terminology
 
 ![](img/Felton_iv_terminology.png)
@@ -181,54 +180,6 @@ However, we can: 1) test the null hypothesis of no treatment effect, 2) obtain b
 :::aside
 By Felton and Stewart (2024)
 :::
-
-## Identification under effect homogeneity
-
-Traditionally, the IV assumptions are described in terms of two linear model and their error terms:
-
-[First stage](): $D = \tau + \rho Z + \eta$
-
-[Second stage](): $Y = \gamma + \alpha D + \epsilon$
-
-:::{.callout-tip}
-## IV identification assumptions
-
-* **Exogeneity and exclusion**: $C(Z,\eta)=0$, and $C(Z,\epsilon) =0$
-
-* **Relevance of first stage**: $\rho \neq 0$
-
-* **Constant effect**: $\alpha = Y_{1i} - Y_{0i} ~ \forall i$
-
-:::
-
-. . .
-
-Given how strong these assumptions are, one may wonder how common is for this framework to be invoked in applied research
-
-## IV in political science
-
-A recent review by [Lal et al (2024)](https://www.cambridge.org/core/journals/political-analysis/article/how-much-should-we-trust-instrumental-variable-estimates-in-political-science-practical-advice-based-on-67-replicated-studies/70A232CA0CD55FE8B97E93543CDD6361) found that more than 70% of published IV papers in PoliSci use continuous instruments and treatments (ill-suited for modern approach)
-
-![](img/Lal_papers.png)
-
-
-## Types of instruments
-
-![](img/Lal_iv_types.png)
-
-
-## Issues: Weak first-stage
-
-![](img/Lal_iv_F.png)
-
-## Issues: Unreliable inference
-
-![](img/Lal_iv_inference.png)
-
-
-## Issues: Comparison to OLS
-
-![](img/Lal_iv_obsexp.png){width=40%}
 
 
 # Modern IV {background-color="#17a091"}
@@ -361,37 +312,37 @@ $$
 $$
 = \frac{Z \rightarrow Y}{Z \rightarrow D} = \frac{E[Y|Z=1] - E[Y|Z=0]}{E[D|Z=1] - E[D|Z=0]}
 $$
+
+. . . 
+
+Or, in regression terms (just in case you're curious about this):
 $$
-= \frac{C(Z,Y)}{V(Z)}/\frac{C(Z,D)}{V(Z)}
+= \frac{C(Z,Y)}{V(Z)}/\frac{C(Z,D)}{V(Z)} = \frac{(Z'Z)^{-1}(Z'Y)}{(Z'Z)^{-1}(Z'D)} = (Z'D)^{-1}(Z'Y)
 $$
 
-$$
-\frac{(Z'Z)^{-1}(Z'Y)}{(Z'Z)^{-1}(Z'D)} = (Z'D)^{-1}(Z'Y)
-$$
 
 ## Issues
 
+<br>
+
 Despite being a more flexible approach, allowing for effect heterogeneity, and more clearly articulated in terms of the experimental analogy, IVs in practice are still very fragile 
 
-Altough with some differences, the problems identified by Lal et al., carry over the modern IV setting
 
 Felton and Stewart identify three of these issues, all of them exacerbated by the presence of *weak instruments*
 
 Here I will only focus on the first two problems they discuss: identification bias, and estimation bias
 
-The authors also discuss Type-M bias; as a complicated issue, I will not further expand on it
+(They also discuss Type-M bias; is a complicated issue, I will not further expand on it)
 
 ## Issues
 
-![](img/Felton_iv_problems.png)
-
-## An illustration
-
-![](img/Felton_iv_amplification.png)
+![](img/Felton_iv_problems.png){width=80%}
 
 ## Identification bias
 
-Identification bias refers to the case when the required assumptions for an IV to be valid do not (perfectly hold)
+<br>
+
+Identification bias refers to the case when the required assumptions for an IV to be valid do not (perfectly) hold
 
 * Unconfoundedness violation: there is an unobserved confounder between the instrument and the outcome
 
@@ -408,6 +359,8 @@ For IVs, the sensitivity of the reduced form is usually the target of analysis
 :::
 
 ## Estimation bias
+
+<br>
 
 Estimation bias arises in the IV setting because the 2SLS estimator is biased towards the OLS estimator
 
@@ -428,7 +381,63 @@ Both Lal's and Felton's reviews find that, despite the test being widely referen
 This exacerbates the estimation issues of IV 
 :::
 
+## A toy example
 
-# Now to practice! {background-color="#17a091"}
+![](img/Felton_iv_amplification.png)
+
+
+# Now to the tutorial! {background-color="#17a091"}
+
+
+# Classical IV {background-color="#17a091"}
+
+## Identification under effect homogeneity
+
+Traditionally, the IV assumptions are described in terms of two linear model and their error terms:
+
+[First stage](): $D = \tau + \rho Z + \eta$
+
+[Second stage](): $Y = \gamma + \alpha D + \epsilon$
+
+:::{.callout-tip}
+## IV identification assumptions
+
+* **Exogeneity and exclusion**: $C(Z,\eta)=0$, and $C(Z,\epsilon) =0$
+
+* **Relevance of first stage**: $\rho \neq 0$
+
+* **Constant effect**: $\alpha = Y_{1i} - Y_{0i} ~ \forall i$
+
+:::
+
+. . .
+
+Given how strong these assumptions are, one may wonder how common is for this framework to be invoked in applied research
+
+## IV in political science
+
+A recent review by [Lal et al (2024)](https://www.cambridge.org/core/journals/political-analysis/article/how-much-should-we-trust-instrumental-variable-estimates-in-political-science-practical-advice-based-on-67-replicated-studies/70A232CA0CD55FE8B97E93543CDD6361) found that more than 70% of published IV papers in PoliSci use continuous instruments and treatments (ill-suited for modern approach)
+
+![](img/Lal_papers.png)
+
+
+## Types of instruments
+
+![](img/Lal_iv_types.png)
+
+
+## Issues: Weak first-stage
+
+![](img/Lal_iv_F.png)
+
+## Issues: Unreliable inference
+
+![](img/Lal_iv_inference.png)
+
+
+## Issues: Comparison to OLS
+
+![](img/Lal_iv_obsexp.png){width=40%}
+
 
 
