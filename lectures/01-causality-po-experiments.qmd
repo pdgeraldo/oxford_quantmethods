@@ -1,7 +1,7 @@
 ---
 title: "Quantitative Methods -- Human Sciences"
 author: "Pablo Geraldo Bastías"
-footer: "Potential Outcomes and Experiments"
+#footer: "Potential Outcomes and Experiments"
 date: 10/14/2026
 date-format: long
 title-slide-attributes:
@@ -24,6 +24,7 @@ callout-appearance: minimal
 
 \newcommand\indep{\perp\!\!\!\perp}
 \newcommand\nindep{\not\!\perp\!\!\!\perp}
+-\usepackage{cancel}
 
 
 ## Why should we care about causal inference?
@@ -54,11 +55,11 @@ This class is designed as a first course in causal inference, so we can focus on
 
 * Understand the role of randomisation to tackle causal questions
 
-* Use potential outcomes and the do-operator to formalize causal estimands
+* Use potential outcomes to formalize causal estimands
 
 * Use directed acyclic graphs (DAGs) to encode qualitative assumptions
 
-* Derive identification results and testable implications from a DAG 
+* Understand identification results for relevant methods
 
 * Assess the plausibility of different identification strategies applied to real problems
 
@@ -131,38 +132,6 @@ Lundberg, Johnson, and Stewart (2021) discuss this point in great detail [[link]
 *But what do we mean by design? And analysis?*
 :::
 
-
-
-## Statistics/ML vs Causal Inference
-
-::: {.columns}
-
-::: {.column width="50%"}
-***Statistics/ML***
-
-+ Passive observation of the data generating process
-+ Estimand: Joint probabilities, CEF
-$$P(Y,X)$$
-$$E(Y|X=x)$$
-+ Focus on asymptotics / out of sample prediction
-+ Estimation problem: variance-bias tradeoff
-+ Pearl: "deep learning is just curve fitting"
-:::
-
-::: {.column width="50%"}
-***Causal Inference***
-
-+ Prediction **under interventions** on the DGP
-+ Estimand: interventional quantities
-$$P(Y|do(x))$$ 
-$$E(Y|do(x)) - E(Y|do(x'))$$ 
-$$= E(Y_x) - E(Y_{x'})$$
-+ Identification problem: consistency (infinite sample)
-+ Estimation problem: in general, focus on bias over variance (but changing)
-:::
-
-:::
----
 
 ## The ladder of causation
 
@@ -393,12 +362,7 @@ ggplot(data = regresids,
 
 ## Is **doing** *really* that different from **seeing**?
 
-Where are we getting the data from? 
-
-Imagine we collected the data by looking at programs' websites, where they post the job market outcomes but 
-
-* more selective programs tend to report more
-* students will report to their programs based partially on the quality of their job offers
+Imagine we collected the data by looking at programs' websites, where they post the job market outcomes but: 1) more selective programs tend to report more, 2) students will report to their programs based partially on the quality of their job offers
 
 . . .
 
@@ -484,14 +448,8 @@ But there is nothing properly causal about a method (i.e, an estimator, an algor
 
 What makes our conclusions causal is the assumptions we make, whose plausibility is justified (or not) on a given research design
 
-
-## From causal methods to causal assumptions
-
 In this first lecture, we are going to study the formal language that allows us to clearly and transparently state both our quantities of interest and our assumptions
 
-Then we will **see** this framework in action, to understand how does it work in the context of randomised studies
-
-We should be able to understand why RCTs are often described as the "gold standard" for causal inference
 
 ## The First Commandment of Causal Inference {background-color="#692044"}
 
@@ -524,26 +482,6 @@ Where (.) = matching, IPW, IV, RDD, DML, whatever
 
 
 # Potential Outcomes {background-color="#17a091"}
-
-## Neyman, Neyman-Rubin, or Rubin Causal Model (?)
-
-<br>
-
-POs were introduced by Neyman (1923) in the context of experimental design. They remained only used in that context for decades!
-
--   Imported and extended by Donald Rubin for observational studies (c. 1974)
-
--   They are really great to clarify *what do we want to know* ([[**estimand**]()]{.fragment .fade-in})
-
--   This includes identifying *reasons for discrepancies* between what we observe and our estimand ([[**bias**]()]{.fragment .fade-in})
-
--   They are great to formalize *what needs to be true* for our estimand to be identified with a given *estimator* ([[**assumptions**]()]{.fragment .fade-in})
-
-. . .
-
--   They are not-so-great to assess if our assumptions are plausible or defensible (more on this later!)
-
-------------------------------------------------------------------------
 
 ## Notation
 
@@ -609,7 +547,7 @@ For the binary treatment case, we have: $$Y = DY_1 + (1-D)Y_0$$ (a.k.a., "switch
 What are the assumptions built in this notation? What type of dependence are we ruling out?
 :::
 
-------------------------------------------------------------------------
+
 
 ## Causal estimands
 
@@ -617,23 +555,10 @@ The first thing that potential outcomes allow us to do is to formalize the causa
 
 Some frequently invoked estimands are the following: 
 
-<br>
 
-[[Individual treatment effect]{style="color:blue;"}
-$$ITE = \tau_i = Y_{1i} - Y_{0i}$$]{.fragment .fade-in}
+[Individual treatment effect]{style="color:blue;"}
+$$ITE = \tau_i = Y_{1i} - Y_{0i}$$
 
-. . .
-
-* How can we read this expression?
-* Can we ever estimate it from data?
-
-## Causal estimands
-
-The first thing that potential outcomes allow us to do is to formalize the causal effects we may want to estimate.
-
-Some frequently invoked estimands are the following: 
-
-<br>
 
 
 [Average treatment effect]{style="color:blue;"}
@@ -641,36 +566,19 @@ $$
 ATE = E[\tau_i] = E[Y_{1i} - Y_{0i}]$$ $$= E[Y_{1i}] - E[Y_{0i}]
 $$
 
-. . .
 
-* How can we read this expression?
-* Can we ever estimate it from data?
+* How can we read these expressions?
+* Can we ever estimate them from data?
 
 ## Causal estimands
 
-The first thing that potential outcomes allow us to do is to formalize the causal effects we may want to estimate.
-
 Some frequently invoked estimands are the following:
 
-<br>
 
 [Average treatment effect on the treated]{style="color:blue;"}
 $$
 ATT = E[\tau_i|D_i=1] = E[Y_{1i} - Y_{0i}|D_i=1]$$ $$= E[Y_{1i}|D_i=1] - E[Y_{0i}|D_i=1]
 $$
-
-. . .
-
-* How can we read this expression?
-* Can we ever estimate it from data?
-
-## Causal estimands
-
-The first thing that potential outcomes allow us to do is to formalize the causal effects we may want to estimate.
-
-Some frequently invoked estimands are the following:
-
-<br>
 
 
 [Average treatment effect on the controls]{style="color:blue;"}
@@ -678,25 +586,19 @@ $$
 ATC = E[\tau_i|D_i=0] = E[Y_{1i} - Y_{0i}|D_i=0]$$ $$= E[Y_{1i}|D_i=0] - E[Y_{0i}|D_i=0]
 $$
 
-. . .
+* How can we read these expression?
+* Can we ever estimate them from data?
 
-* How can we read this expression?
-* Can we ever estimate it from data?
 
 ## Causal estimands
 
-The first thing that potential outcomes allow us to do is to formalize the causal effects we may want to estimate.
-
 Some frequently invoked estimands are the following:
-
-<br>
 
 [Conditional average treatment effect]{style="color:blue;"}
 $$
 CATE = E[\tau_i|X_i=x] = E[Y_{1i} - Y_{0i}|X_i=x]$$ $$= E[Y_{1i}|X_i=x] - E[Y_{0i}|X_i=x]
 $$
 
-. . .
 
 * How can we read this expression?
 * Can we ever estimate it from data?
@@ -773,7 +675,7 @@ Take a moment to think about your own research:
   + Averaging over which sub-population?
 -   What are the assumptions your are making in this formalization?
 
-------------------------------------------------------------------------
+
 
 ## The Science Table
 
@@ -948,100 +850,19 @@ Because: $$P(Y_a = y | D=a) \neq P(Y_a = y)$$ $$P(Y_b = y | D=b) \neq P(Y_b = y)
 :::
 :::
 
-------------------------------------------------------------------------
-
-## Identification assumptions
-
-::: columns
-::: {.column width="50%"}
-What about including another covariate $W$?
-
-Does the following condition holds? $$
-Y_d \perp\!\!\!\perp D | W
-$$
-
-Not quite either! But still "better" than before, right? right?
-
-Let's define: $$\text{CATE}_{w} = E(Y_a-Y_b|W=w)$$
-
-and the estimator $\widehat{\text{CATE}}_{w} =$ $$E(Y_i|X=a,W=w) - E(Y_i|X=b,W=w)$$
-:::
-
-::: {.column width="50%"}
-| Unit | $D_i$ | $Y_i$ | $Y_{ai}$ | $Y_{bi}$ | $\tau_i$ | $W_i$ |
-|------|-------|-------|----------|----------|----------|-------|
-| 1    | A     | 1     | 1        | 1        | 0        | Quant |
-| 2    | A     | 0     | 0        | 0        | 0        | Quant |
-| 3    | A     | 0     | 0        | 1        | -1       | Qual  |
-| 4    | A     | 1     | 1        | 0        | 1        | Quant |
-| 5    | A     | 1     | 1        | 1        | 0        | Qual  |
-| 6    | B     | 0     | 1        | 0        | 1        | Qual  |
-| 7    | B     | 0     | 1        | 0        | 1        | Quant |
-| 8    | B     | 0     | 0        | 0        | 0        | Qual  |
-| 9    | B     | 1     | 0        | 1        | -1       | Qual  |
-| 10   | B     | 1     | 1        | 1        | 0        | Quant |
-:::
-:::
-
-------------------------------------------------------------------------
-
-## Identification assumptions
-
-::: columns
-::: {.column width="50%"}
-$$\widehat{\text{CATE}}_{Quant} = \widehat{\text{CATE}}_{Qual} = 0.16$$ $$\text{ATE} = \sum_w\text{CATE}_w P(w)$$ $$\widehat{\text{ATE}} = (0.5)(0.16) + (0.5)(0.16) = 0.16$$
-
-However, look a the true $\text{ATE}_W$: $$\text{CATE}_{Quant} = -0.2$$ $$\text{CATE}_{Qual} = 0.4$$ $$\text{ATE} = (0.5)(-0.2) + (0.5)(0.4) = \color{blue}{\mathbf{0.1}}$$
-:::
-
-::: {.column width="50%"}
-| Unit | $D_i$ | $Y_i$ | $Y_{ai}$ | $Y_{bi}$ | $\tau_i$ | $W_i$ |
-|------|-------|-------|----------|----------|----------|-------|
-| 1    | A     | 1     | 1        | 1        | 0        | Quant |
-| 2    | A     | 0     | 0        | 0        | 0        | Quant |
-| 3    | A     | 0     | 0        | 1        | -1       | Qual  |
-| 4    | A     | 1     | 1        | 0        | 1        | Quant |
-| 5    | A     | 1     | 1        | 1        | 0        | Qual  |
-| 6    | B     | 0     | 1        | 0        | 1        | Qual  |
-| 7    | B     | 0     | 1        | 0        | 1        | Quant |
-| 8    | B     | 0     | 0        | 0        | 0        | Qual  |
-| 9    | B     | 1     | 0        | 1        | -1       | Qual  |
-| 10   | B     | 1     | 1        | 1        | 0        | Quant |
-:::
-:::
-
-------------------------------------------------------------------------
 
 ## So, how do we know?
 
-::: columns
-::: {.column width="50%"}
+
 In general, we rely on **extra-statistical assumptions** about the data generating process to claim causal identification.
 
 ::: callout-tip
-## "No causes in, no cases out"
+## "No causes in, no causes out"
 
 Nancy Cartwright
 :::
 
 Is there a way to design an study in which we know, **by design**, that the needed assumptions hold?
-:::
-
-::: {.column width="50%"}
-| Unit | $D_i$ | $Y_i$ | $Y_{ai}$ | $Y_{bi}$ | $\tau_i$ | $W_i$ |
-|------|-------|-------|----------|----------|----------|-------|
-| 1    | A     | 1     | 1        | .        | .        | Quant |
-| 2    | A     | 0     | 0        | .        | .        | Quant |
-| 3    | A     | 0     | 0        | .        | .        | Qual  |
-| 4    | A     | 1     | 1        | .        | .        | Quant |
-| 5    | A     | 1     | 1        | .        | .        | Qual  |
-| 6    | B     | 0     | .        | 0        | .        | Qual  |
-| 7    | B     | 0     | .        | 0        | .        | Quant |
-| 8    | B     | 0     | .        | 0        | .        | Qual  |
-| 9    | B     | 1     | .        | 1        | .        | Qual  |
-| 10   | B     | 1     | .        | 1        | .        | Quant |
-:::
-:::
 
 # Randomised Experiments {background-color="#17a091"}
 
@@ -1051,28 +872,17 @@ Is there a way to design an study in which we know, **by design**, that the need
 
 If we want to [**predict under interventions**]{style="color:blue;"}, then the best way to do it is **interveening**!
 
-. . .
 
 Random assignment has been called the **gold standard** for causal inference: it guarantees the necessary assumptions for causal inference hold by design.
 
-. . .
 
 ::: callout-note
 What is the difference between random *assignment* and random *sampling*???
 :::
 
 
-## Why randomisation?
+Even when unfeasible, imagining a hypothetical experiment still offers a useful benchmark to assess the validity of causal claims, and even to clarify [what do we mean]{style="color:blue;"} by a particular causal effect.
 
-<br>
-
-When unfeasible, imagining a hypothetical experiment still offers a useful benchmark to assess the validity of causal claims, and even to clarify [what do we mean]{style="color:blue;"} by a particular causal effect.
-
-Experiments come in many different flavors: lab, field, survey, and even quasi-experiments!
-
-Here we will only scratch the surface of social science experiments: the idea is to get you interested and point you to the resources out there
-
-------------------------------------------------------------------------
 
 
 ## Why randomisation? Intuition
@@ -1087,7 +897,7 @@ $$
 
 . . .
 
-Basically, the idea (somewhat counter-intuitive) is that:
+Basically, the idea is that:
 
 * Potential outcomes are fixed ($Y_1$ and $Y_0$ just exists out there)
 
@@ -1095,46 +905,26 @@ Basically, the idea (somewhat counter-intuitive) is that:
 
 Then, it is clear that, [when $D$ is randomly assigned]{style="color:green;"}, we get a random sample of both $Y_1$ and $Y_0$, allowing us to estimate the ATE!
 
-:::aside
-We won't discuss it here, but there are ways to conceptualize potential outcomes as random instead of fixed. This mostly affects estimation rather than identification
-:::
+
+## Why randomisation? (more formally)
+
+We already said that we can identify the causal effect of $D$ on $Y$ if the treatment assignment is independent of the potential outcomes. That's it, when $(Y_{1},Y_{0}) \perp\!\!\!\perp D$
+
+As we saw earlier, if we compare the means of two groups, we get a mix of the thing we want and some biases:
+
+$$\underbrace{E(Y_i|D=1) - E(Y_i|D=0)}_{\text{diff-in-means}} = \color{green}{\underbrace{E(Y_1 - Y_{0})}_{\text{ATE}}} + $$ 
+$$\color{red}{\underbrace{(E[Y_{0}|D=1] - E[Y_{0}|D=0])}_{\text{group differences under control}}} + \color{red}{\underbrace{(1-P[D])(ATT-ATC)}_{\text{different responses to the treatment}}}$$
 
 
-## Why randomisation?
+## Why randomisation? (more formally)
 
-### (more formally)
+We already said that we can identify the causal effect of $D$ on $Y$ if the treatment assignment is independent of the potential outcomes. That's it, when $(Y_{1},Y_{0}) \perp\!\!\!\perp D$
 
-We already said that we can identify the causal effect of $D$ on $Y$ if the treatment assignment is independent of the potential outcomes. Formally, when $$(Y_{d=1},Y_{d=0}) \perp\!\!\!\perp D$$
+[But randomisation allocates treatment independent of your potential outcomes, so we should not expect baseline differences (under control) nor the groups responding differently to the treatment!]{style="color:blue;"}
 
-
-## Why randomisation?
-
-### (more formally)
-
-Recall the diff-in-means bias decomposition we reviewed earlier:
-
-By consistency
-
-$$E(Y_i|D=1) - E(Y_i|D=0) = E(Y_1|D=1) - E(Y_{0}|D=0)$$
-
-Plus some algebra (explicit derivation in Morgan and Winship)
-
-$$= E(Y_1 - Y_{0}) + (E[Y_{0}|D=1] - E[Y_{0}|D=0])+(1-P[D])(ATT-ATC)$$
-
-[Pause! What is the meaning of each term?]{.fragment .fade-in .highlight-blue}
+$$\underbrace{E(Y_i|D=1) - E(Y_i|D=0)}_{\text{diff-in-means}} = \color{green}{\underbrace{E(Y_1 - Y_{0})}_{\text{ATE}}}$$ 
 
 
-## Why randomisation?
-
-### (more formally)
-
-$$= E(Y_1 - Y_{0}) + (E[Y_{0}|D=1] - E[Y_{0}|D=0])+(1-P[D])(ATT-ATC)$$
-
-Given [**ignorability**]{style="color:red;"} of the treatment assignment, we can further simplify it as:
-
-$$E(Y_1 - Y_{0}) = ATE$$
-
-------------------------------------------------------------------------
 
 ## Forms of validity
 
@@ -1142,47 +932,70 @@ $$E(Y_1 - Y_{0}) = ATE$$
 
 Traditionally, researchers have argued about the validity of a study's causal conclusion (and, more generally, about the validity of different research designs) based on the potential biases that pose **threats to validity**. 
 
-Check [this](https://journals.lww.com/epidem/Fulltext/2020/05000/A_Graphical_Catalog_of_Threats_to_Validity_.11.aspx) amazing paper by Matthay and Glymour for a review.
+(Check [this](https://journals.lww.com/epidem/Fulltext/2020/05000/A_Graphical_Catalog_of_Threats_to_Validity_.11.aspx) amazing paper by Matthay and Glymour for more details)
 
-## Forms of validity
+We generally say that experiments are great for [internal validity]{style="color:green;"}: *among the people that participated in our study*, we can rule out systematic sources of bias!
+
+However, this does not imply that our results are [externally valid]{style="color:red;"}, i.e., that they apply to people *outside our study*! We need further assumptions to move from one to another.
+
+# Now to the tutorial!
+
+
+# Appendix
+
+
+
+## Statistics/ML vs Causal Inference
+
+::: {.columns}
+
+::: {.column width="50%"}
+***Statistics/ML***
+
++ Passive observation of the data generating process
++ Estimand: Joint probabilities, CEF
+$$P(Y,X)$$
+$$E(Y|X=x)$$
++ Focus on asymptotics / out of sample prediction
++ Estimation problem: variance-bias tradeoff
++ Pearl: "deep learning is just curve fitting"
+:::
+
+::: {.column width="50%"}
+***Causal Inference***
+
++ Prediction **under interventions** on the DGP
++ Estimand: interventional quantities
+$$P(Y|do(x))$$ 
+$$E(Y|do(x)) - E(Y|do(x'))$$ 
+$$= E(Y_x) - E(Y_{x'})$$
++ Identification problem: consistency (infinite sample)
++ Estimation problem: in general, focus on bias over variance (but changing)
+:::
+
+:::
+
+
+## Neyman, Neyman-Rubin, or Rubin Causal Model (?)
 
 <br>
 
-We reviewed the bias in the difference-in-means estimator: baseline differences (under the control condition), and differential response to the treatment (under the exposure condition).
+POs were introduced by Neyman (1923) in the context of experimental design. They remained only used in that context for decades!
+
+-   Imported and extended by Donald Rubin for observational studies (c. 1974)
+
+-   They are really great to clarify *what do we want to know* ([[**estimand**]()]{.fragment .fade-in})
+
+-   This includes identifying *reasons for discrepancies* between what we observe and our estimand ([[**bias**]()]{.fragment .fade-in})
+
+-   They are great to formalize *what needs to be true* for our estimand to be identified with a given *estimator* ([[**assumptions**]()]{.fragment .fade-in})
 
 . . .
 
-But when we randomize an exposure, we know that who ends up in each treatment arm has nothing to do with their potential outcomes!
-
-. . .
-
-This is why we generally say that experiments are great for [internal validity]{style="color:green;"}: among the people that participated in our study, we can rule out systematic sources of bias!
-
-However, this does not imply that our results are [externally valid]{style="color:red;"}, i.e., that they apply to people outside our study! We need further assumptions to move from one to another.
-
-## Types of experiments
-
--   [**Laboratory experiments**]{.fragment .highlight-blue}: Usually conducted with a small sample (of undergraduate psychology students), many times involving games in a computer. Helpful for cognitive/behavioral questions.
-
--   [**Field experiments**]{.fragment .highlight-blue}: In order to obtain more *externally valid* results, experiments conducted in the field (i.e., under real-world conditions) are the way to go. Definitely more expensive though. Audit studies are a particular type of field experiment.
-
--   [**Survey experiments**]{.fragment .highlight-blue}: One can randomize treatment conditions *in a survey* to evaluate how participants change their responses based on certain stimulus. Vignettes and list experiments are examples of this approach.
-
--   [**(Bonus) Quasi-experiments**]{.fragment .highlight-blue}: Researchers usually call quasi-experiments to real-world situations that offer as-if random variation in a treatment of interest. For example, earthquakes, change in laws, date of birth, etc.
-
-------------------------------------------------------------------------
+-   They are not-so-great to assess if our assumptions are plausible or defensible (more on this later!)
 
 
-## Short activity (3 mins) {background-color="#692044"}
 
-Sometimes it is hard to imagine an experiment that would be relevant for the type of questions we care about.
-
-Some people even say (and I for sure partially agree!) that experiments tend to emphasize "small" versus "big" questions, promoting incremental/testable policies.
-
-However, there are tons of examples of researchers using experiments to address important, **big** and difficult questions. **Do you know of any example?**
-
-
-------------------------------------------------------------------------
 
 ## How to randomise?
 
@@ -1342,3 +1155,5 @@ Think in a research question that you could possibly address using an experiment
 -   What would be the level of your randomisation? (individual? cluster? why?)
 
 - What ethical considerations you should take into account for your experiment to be acceptable?
+
+

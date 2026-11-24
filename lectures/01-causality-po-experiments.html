@@ -211,7 +211,7 @@ Pablo Geraldo Bastías
 <section>
 <section id="motivation" class="title-slide slide level1 center" data-background-color="#002147">
 <h1>Motivation</h1>
-
+-
 </section>
 <section id="why-should-we-care-about-causal-inference" class="slide level2">
 <h2>Why should we care about causal inference?</h2>
@@ -232,9 +232,9 @@ Pablo Geraldo Bastías
 <ul>
 <li><p>Familiarize yourself with the most widely used causal inference frameworks</p></li>
 <li><p>Understand the role of randomisation to tackle causal questions</p></li>
-<li><p>Use potential outcomes and the do-operator to formalize causal estimands</p></li>
+<li><p>Use potential outcomes to formalize causal estimands</p></li>
 <li><p>Use directed acyclic graphs (DAGs) to encode qualitative assumptions</p></li>
-<li><p>Derive identification results and testable implications from a DAG</p></li>
+<li><p>Understand identification results for relevant methods</p></li>
 <li><p>Assess the plausibility of different identification strategies applied to real problems</p></li>
 </ul>
 </section>
@@ -286,28 +286,6 @@ Pablo Geraldo Bastías
 <div class="fragment r-stack">
 <p><em>But what do we mean by design? And analysis?</em></p>
 </div>
-</section>
-<section id="statisticsml-vs-causal-inference" class="slide level2">
-<h2>Statistics/ML vs Causal Inference</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong><em>Statistics/ML</em></strong></p>
-<ul>
-<li>Passive observation of the data generating process</li>
-<li>Estimand: Joint probabilities, CEF <span class="math display">\[P(Y,X)\]</span> <span class="math display">\[E(Y|X=x)\]</span></li>
-<li>Focus on asymptotics / out of sample prediction</li>
-<li>Estimation problem: variance-bias tradeoff</li>
-<li>Pearl: “deep learning is just curve fitting”</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><strong><em>Causal Inference</em></strong></p>
-<ul>
-<li>Prediction <strong>under interventions</strong> on the DGP</li>
-<li>Estimand: interventional quantities <span class="math display">\[P(Y|do(x))\]</span> <span class="math display">\[E(Y|do(x)) - E(Y|do(x'))\]</span> <span class="math display">\[= E(Y_x) - E(Y_{x'})\]</span></li>
-<li>Identification problem: consistency (infinite sample)</li>
-<li>Estimation problem: in general, focus on bias over variance (but changing)</li>
-</ul>
-</div></div>
 </section>
 <section id="the-ladder-of-causation" class="slide level2">
 <h2>The ladder of causation</h2>
@@ -594,12 +572,7 @@ Coefficients:
 </section>
 <section id="is-doing-really-that-different-from-seeing-4" class="slide level2">
 <h2>Is <strong>doing</strong> <em>really</em> that different from <strong>seeing</strong>?</h2>
-<p>Where are we getting the data from?</p>
-<p>Imagine we collected the data by looking at programs’ websites, where they post the job market outcomes but</p>
-<ul>
-<li>more selective programs tend to report more</li>
-<li>students will report to their programs based partially on the quality of their job offers</li>
-</ul>
+<p>Imagine we collected the data by looking at programs’ websites, where they post the job market outcomes but: 1) more selective programs tend to report more, 2) students will report to their programs based partially on the quality of their job offers</p>
 <div class="fragment">
 <div class="columns">
 <div class="column" style="width:40%;">
@@ -658,12 +631,7 @@ Coefficients:
 <p>It is common to hear the idea that some <em>methods</em> are inherently causal: propensity score matching, IPW, instrumental variables, panel methods, and even machine learning</p>
 <p>But there is nothing properly causal about a method (i.e, an estimator, an algorithm, a formula)!</p>
 <p>What makes our conclusions causal is the assumptions we make, whose plausibility is justified (or not) on a given research design</p>
-</section>
-<section id="from-causal-methods-to-causal-assumptions-2" class="slide level2">
-<h2>From causal methods to causal assumptions</h2>
 <p>In this first lecture, we are going to study the formal language that allows us to clearly and transparently state both our quantities of interest and our assumptions</p>
-<p>Then we will <strong>see</strong> this framework in action, to understand how does it work in the context of randomised studies</p>
-<p>We should be able to understand why RCTs are often described as the “gold standard” for causal inference</p>
 </section>
 <section id="the-first-commandment-of-causal-inference" class="slide level2" data-background-color="#692044">
 <h2>The First Commandment of Causal Inference</h2>
@@ -702,22 +670,6 @@ Coefficients:
 <section id="potential-outcomes" class="title-slide slide level1 center" data-background-color="#17a091">
 <h1>Potential Outcomes</h1>
 
-</section>
-<section id="neyman-neyman-rubin-or-rubin-causal-model" class="slide level2">
-<h2>Neyman, Neyman-Rubin, or Rubin Causal Model (?)</h2>
-<p><br></p>
-<p>POs were introduced by Neyman (1923) in the context of experimental design. They remained only used in that context for decades!</p>
-<ul>
-<li><p>Imported and extended by Donald Rubin for observational studies (c.&nbsp;1974)</p></li>
-<li><p>They are really great to clarify <em>what do we want to know</em> (<span class="fragment fade-in"><a href=""><strong>estimand</strong></a></span>)</p></li>
-<li><p>This includes identifying <em>reasons for discrepancies</em> between what we observe and our estimand (<span class="fragment fade-in"><a href=""><strong>bias</strong></a></span>)</p></li>
-<li><p>They are great to formalize <em>what needs to be true</em> for our estimand to be identified with a given <em>estimator</em> (<span class="fragment fade-in"><a href=""><strong>assumptions</strong></a></span>)</p></li>
-</ul>
-<div class="fragment">
-<ul>
-<li>They are not-so-great to assess if our assumptions are plausible or defensible (more on this later!)</li>
-</ul>
-</div>
 </section>
 <section id="notation" class="slide level2">
 <h2>Notation</h2>
@@ -781,74 +733,39 @@ Coefficients:
 <h2>Causal estimands</h2>
 <p>The first thing that potential outcomes allow us to do is to formalize the causal effects we may want to estimate.</p>
 <p>Some frequently invoked estimands are the following:</p>
-<p><br></p>
-<p><span class="fragment fade-in"><span style="color:blue;">Individual treatment effect</span> <span class="math display">\[ITE = \tau_i = Y_{1i} - Y_{0i}\]</span></span></p>
-<div class="fragment">
-<ul>
-<li>How can we read this expression?</li>
-<li>Can we ever estimate it from data?</li>
-</ul>
-</div>
-</section>
-<section id="causal-estimands-1" class="slide level2">
-<h2>Causal estimands</h2>
-<p>The first thing that potential outcomes allow us to do is to formalize the causal effects we may want to estimate.</p>
-<p>Some frequently invoked estimands are the following:</p>
-<p><br></p>
+<p><span style="color:blue;">Individual treatment effect</span> <span class="math display">\[ITE = \tau_i = Y_{1i} - Y_{0i}\]</span></p>
 <p><span style="color:blue;">Average treatment effect</span> <span class="math display">\[
 ATE = E[\tau_i] = E[Y_{1i} - Y_{0i}]\]</span> <span class="math display">\[= E[Y_{1i}] - E[Y_{0i}]
 \]</span></p>
-<div class="fragment">
 <ul>
-<li>How can we read this expression?</li>
-<li>Can we ever estimate it from data?</li>
+<li>How can we read these expressions?</li>
+<li>Can we ever estimate them from data?</li>
 </ul>
-</div>
 </section>
-<section id="causal-estimands-2" class="slide level2">
+<section id="causal-estimands-1" class="slide level2">
 <h2>Causal estimands</h2>
-<p>The first thing that potential outcomes allow us to do is to formalize the causal effects we may want to estimate.</p>
 <p>Some frequently invoked estimands are the following:</p>
-<p><br></p>
 <p><span style="color:blue;">Average treatment effect on the treated</span> <span class="math display">\[
 ATT = E[\tau_i|D_i=1] = E[Y_{1i} - Y_{0i}|D_i=1]\]</span> <span class="math display">\[= E[Y_{1i}|D_i=1] - E[Y_{0i}|D_i=1]
 \]</span></p>
-<div class="fragment">
-<ul>
-<li>How can we read this expression?</li>
-<li>Can we ever estimate it from data?</li>
-</ul>
-</div>
-</section>
-<section id="causal-estimands-3" class="slide level2">
-<h2>Causal estimands</h2>
-<p>The first thing that potential outcomes allow us to do is to formalize the causal effects we may want to estimate.</p>
-<p>Some frequently invoked estimands are the following:</p>
-<p><br></p>
 <p><span style="color:blue;">Average treatment effect on the controls</span> <span class="math display">\[
 ATC = E[\tau_i|D_i=0] = E[Y_{1i} - Y_{0i}|D_i=0]\]</span> <span class="math display">\[= E[Y_{1i}|D_i=0] - E[Y_{0i}|D_i=0]
 \]</span></p>
-<div class="fragment">
 <ul>
-<li>How can we read this expression?</li>
-<li>Can we ever estimate it from data?</li>
+<li>How can we read these expression?</li>
+<li>Can we ever estimate them from data?</li>
 </ul>
-</div>
 </section>
-<section id="causal-estimands-4" class="slide level2">
+<section id="causal-estimands-2" class="slide level2">
 <h2>Causal estimands</h2>
-<p>The first thing that potential outcomes allow us to do is to formalize the causal effects we may want to estimate.</p>
 <p>Some frequently invoked estimands are the following:</p>
-<p><br></p>
 <p><span style="color:blue;">Conditional average treatment effect</span> <span class="math display">\[
 CATE = E[\tau_i|X_i=x] = E[Y_{1i} - Y_{0i}|X_i=x]\]</span> <span class="math display">\[= E[Y_{1i}|X_i=x] - E[Y_{0i}|X_i=x]
 \]</span></p>
-<div class="fragment">
 <ul>
 <li>How can we read this expression?</li>
 <li>Can we ever estimate it from data?</li>
 </ul>
-</div>
 </section>
 <section id="checking-intuitions" class="slide level2">
 <h2>Checking intuitions</h2>
@@ -1430,248 +1347,13 @@ Y_d \perp\!\!\!\perp D
 </table>
 </div></div>
 </section>
-<section id="identification-assumptions-1" class="slide level2">
-<h2>Identification assumptions</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>What about including another covariate <span class="math inline">\(W\)</span>?</p>
-<p>Does the following condition holds? <span class="math display">\[
-Y_d \perp\!\!\!\perp D | W
-\]</span></p>
-<p>Not quite either! But still “better” than before, right? right?</p>
-<p>Let’s define: <span class="math display">\[\text{CATE}_{w} = E(Y_a-Y_b|W=w)\]</span></p>
-<p>and the estimator <span class="math inline">\(\widehat{\text{CATE}}_{w} =\)</span> <span class="math display">\[E(Y_i|X=a,W=w) - E(Y_i|X=b,W=w)\]</span></p>
-</div><div class="column" style="width:50%;">
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Unit</th>
-<th><span class="math inline">\(D_i\)</span></th>
-<th><span class="math inline">\(Y_i\)</span></th>
-<th><span class="math inline">\(Y_{ai}\)</span></th>
-<th><span class="math inline">\(Y_{bi}\)</span></th>
-<th><span class="math inline">\(\tau_i\)</span></th>
-<th><span class="math inline">\(W_i\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>A</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>Quant</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>A</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>Quant</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>A</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>-1</td>
-<td>Qual</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>A</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>Quant</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>A</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>Qual</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>B</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>Qual</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>B</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>Quant</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>B</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>Qual</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>B</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>-1</td>
-<td>Qual</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>B</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>Quant</td>
-</tr>
-</tbody>
-</table>
-</div></div>
-</section>
-<section id="identification-assumptions-2" class="slide level2">
-<h2>Identification assumptions</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><span class="math display">\[\widehat{\text{CATE}}_{Quant} = \widehat{\text{CATE}}_{Qual} = 0.16\]</span> <span class="math display">\[\text{ATE} = \sum_w\text{CATE}_w P(w)\]</span> <span class="math display">\[\widehat{\text{ATE}} = (0.5)(0.16) + (0.5)(0.16) = 0.16\]</span></p>
-<p>However, look a the true <span class="math inline">\(\text{ATE}_W\)</span>: <span class="math display">\[\text{CATE}_{Quant} = -0.2\]</span> <span class="math display">\[\text{CATE}_{Qual} = 0.4\]</span> <span class="math display">\[\text{ATE} = (0.5)(-0.2) + (0.5)(0.4) = \color{blue}{\mathbf{0.1}}\]</span></p>
-</div><div class="column" style="width:50%;">
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Unit</th>
-<th><span class="math inline">\(D_i\)</span></th>
-<th><span class="math inline">\(Y_i\)</span></th>
-<th><span class="math inline">\(Y_{ai}\)</span></th>
-<th><span class="math inline">\(Y_{bi}\)</span></th>
-<th><span class="math inline">\(\tau_i\)</span></th>
-<th><span class="math inline">\(W_i\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>A</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>Quant</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>A</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>Quant</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>A</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>-1</td>
-<td>Qual</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>A</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>Quant</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>A</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>Qual</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>B</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>Qual</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>B</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>Quant</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>B</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>Qual</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>B</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>-1</td>
-<td>Qual</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>B</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>Quant</td>
-</tr>
-</tbody>
-</table>
-</div></div>
-</section>
 <section id="so-how-do-we-know" class="slide level2">
 <h2>So, how do we know?</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
 <p>In general, we rely on <strong>extra-statistical assumptions</strong> about the data generating process to claim causal identification.</p>
 <div class="callout callout-tip no-icon callout-titled callout-style-simple">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>“No causes in, no cases out”</strong></p>
+<p><strong>“No causes in, no causes out”</strong></p>
 </div>
 <div class="callout-content">
 <p>Nancy Cartwright</p>
@@ -1679,113 +1361,6 @@ Y_d \perp\!\!\!\perp D | W
 </div>
 </div>
 <p>Is there a way to design an study in which we know, <strong>by design</strong>, that the needed assumptions hold?</p>
-</div><div class="column" style="width:50%;">
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Unit</th>
-<th><span class="math inline">\(D_i\)</span></th>
-<th><span class="math inline">\(Y_i\)</span></th>
-<th><span class="math inline">\(Y_{ai}\)</span></th>
-<th><span class="math inline">\(Y_{bi}\)</span></th>
-<th><span class="math inline">\(\tau_i\)</span></th>
-<th><span class="math inline">\(W_i\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>A</td>
-<td>1</td>
-<td>1</td>
-<td>.</td>
-<td>.</td>
-<td>Quant</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>A</td>
-<td>0</td>
-<td>0</td>
-<td>.</td>
-<td>.</td>
-<td>Quant</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>A</td>
-<td>0</td>
-<td>0</td>
-<td>.</td>
-<td>.</td>
-<td>Qual</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>A</td>
-<td>1</td>
-<td>1</td>
-<td>.</td>
-<td>.</td>
-<td>Quant</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>A</td>
-<td>1</td>
-<td>1</td>
-<td>.</td>
-<td>.</td>
-<td>Qual</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>B</td>
-<td>0</td>
-<td>.</td>
-<td>0</td>
-<td>.</td>
-<td>Qual</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>B</td>
-<td>0</td>
-<td>.</td>
-<td>0</td>
-<td>.</td>
-<td>Quant</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>B</td>
-<td>0</td>
-<td>.</td>
-<td>0</td>
-<td>.</td>
-<td>Qual</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>B</td>
-<td>1</td>
-<td>.</td>
-<td>1</td>
-<td>.</td>
-<td>Qual</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>B</td>
-<td>1</td>
-<td>.</td>
-<td>1</td>
-<td>.</td>
-<td>Quant</td>
-</tr>
-</tbody>
-</table>
-</div></div>
 </section></section>
 <section>
 <section id="randomised-experiments" class="title-slide slide level1 center" data-background-color="#17a091">
@@ -1796,10 +1371,7 @@ Y_d \perp\!\!\!\perp D | W
 <h2>Why randomisation?</h2>
 <p><br></p>
 <p>If we want to <span style="color:blue;"><strong>predict under interventions</strong></span>, then the best way to do it is <strong>interveening</strong>!</p>
-<div class="fragment">
 <p>Random assignment has been called the <strong>gold standard</strong> for causal inference: it guarantees the necessary assumptions for causal inference hold by design.</p>
-</div>
-<div class="fragment">
 <div class="callout callout-note no-icon callout-style-simple">
 <div class="callout-body">
 <div class="callout-content">
@@ -1807,14 +1379,7 @@ Y_d \perp\!\!\!\perp D | W
 </div>
 </div>
 </div>
-</div>
-</section>
-<section id="why-randomisation-1" class="slide level2">
-<h2>Why randomisation?</h2>
-<p><br></p>
-<p>When unfeasible, imagining a hypothetical experiment still offers a useful benchmark to assess the validity of causal claims, and even to clarify <span style="color:blue;">what do we mean</span> by a particular causal effect.</p>
-<p>Experiments come in many different flavors: lab, field, survey, and even quasi-experiments!</p>
-<p>Here we will only scratch the surface of social science experiments: the idea is to get you interested and point you to the resources out there</p>
+<p>Even when unfeasible, imagining a hypothetical experiment still offers a useful benchmark to assess the validity of causal claims, and even to clarify <span style="color:blue;">what do we mean</span> by a particular causal effect.</p>
 </section>
 <section id="why-randomisation-intuition" class="slide level2">
 <h2>Why randomisation? Intuition</h2>
@@ -1825,71 +1390,81 @@ Y = DY_1 + (1-D)Y_0
 \]</span></p>
 </div>
 <div class="fragment">
-<p>Basically, the idea (somewhat counter-intuitive) is that:</p>
+<p>Basically, the idea is that:</p>
 <ul>
 <li><p>Potential outcomes are fixed (<span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_0\)</span> just exists out there)</p></li>
 <li><p>The treatment’s <span class="math inline">\(D\)</span> sole function is to “reveal” one or another!</p></li>
 </ul>
 <p>Then, it is clear that, <span style="color:green;">when <span class="math inline">\(D\)</span> is randomly assigned</span>, we get a random sample of both <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_0\)</span>, allowing us to estimate the ATE!</p>
-
 </div>
-<aside><div>
-<p>We won’t discuss it here, but there are ways to conceptualize potential outcomes as random instead of fixed. This mostly affects estimation rather than identification</p>
-</div></aside></section>
-<section id="why-randomisation-2" class="slide level2">
-<h2>Why randomisation?</h2>
-<h3 id="more-formally">(more formally)</h3>
-<p>We already said that we can identify the causal effect of <span class="math inline">\(D\)</span> on <span class="math inline">\(Y\)</span> if the treatment assignment is independent of the potential outcomes. Formally, when <span class="math display">\[(Y_{d=1},Y_{d=0}) \perp\!\!\!\perp D\]</span></p>
 </section>
-<section id="why-randomisation-3" class="slide level2">
-<h2>Why randomisation?</h2>
-<h3 id="more-formally-1">(more formally)</h3>
-<p>Recall the diff-in-means bias decomposition we reviewed earlier:</p>
-<p>By consistency</p>
-<p><span class="math display">\[E(Y_i|D=1) - E(Y_i|D=0) = E(Y_1|D=1) - E(Y_{0}|D=0)\]</span></p>
-<p>Plus some algebra (explicit derivation in Morgan and Winship)</p>
-<p><span class="math display">\[= E(Y_1 - Y_{0}) + (E[Y_{0}|D=1] - E[Y_{0}|D=0])+(1-P[D])(ATT-ATC)\]</span></p>
-<p><span class="fragment fade-in highlight-blue">Pause! What is the meaning of each term?</span></p>
+<section id="why-randomisation-more-formally" class="slide level2">
+<h2>Why randomisation? (more formally)</h2>
+<p>We already said that we can identify the causal effect of <span class="math inline">\(D\)</span> on <span class="math inline">\(Y\)</span> if the treatment assignment is independent of the potential outcomes. That’s it, when <span class="math inline">\((Y_{1},Y_{0}) \perp\!\!\!\perp D\)</span></p>
+<p>As we saw earlier, if we compare the means of two groups, we get a mix of the thing we want and some biases:</p>
+<p><span class="math display">\[\underbrace{E(Y_i|D=1) - E(Y_i|D=0)}_{\text{diff-in-means}} = \color{green}{\underbrace{E(Y_1 - Y_{0})}_{\text{ATE}}} + \]</span> <span class="math display">\[\color{red}{\underbrace{(E[Y_{0}|D=1] - E[Y_{0}|D=0])}_{\text{group differences under control}}} + \color{red}{\underbrace{(1-P[D])(ATT-ATC)}_{\text{different responses to the treatment}}}\]</span></p>
 </section>
-<section id="why-randomisation-4" class="slide level2">
-<h2>Why randomisation?</h2>
-<h3 id="more-formally-2">(more formally)</h3>
-<p><span class="math display">\[= E(Y_1 - Y_{0}) + (E[Y_{0}|D=1] - E[Y_{0}|D=0])+(1-P[D])(ATT-ATC)\]</span></p>
-<p>Given <span style="color:red;"><strong>ignorability</strong></span> of the treatment assignment, we can further simplify it as:</p>
-<p><span class="math display">\[E(Y_1 - Y_{0}) = ATE\]</span></p>
+<section id="why-randomisation-more-formally-1" class="slide level2">
+<h2>Why randomisation? (more formally)</h2>
+<p>We already said that we can identify the causal effect of <span class="math inline">\(D\)</span> on <span class="math inline">\(Y\)</span> if the treatment assignment is independent of the potential outcomes. That’s it, when <span class="math inline">\((Y_{1},Y_{0}) \perp\!\!\!\perp D\)</span></p>
+<p><span style="color:blue;">But randomisation allocates treatment independent of your potential outcomes, so we should not expect baseline differences (under control) nor the groups responding differently to the treatment!</span></p>
+<p><span class="math display">\[\underbrace{E(Y_i|D=1) - E(Y_i|D=0)}_{\text{diff-in-means}} = \color{green}{\underbrace{E(Y_1 - Y_{0})}_{\text{ATE}}}\]</span></p>
 </section>
 <section id="forms-of-validity" class="slide level2">
 <h2>Forms of validity</h2>
 <p><br></p>
 <p>Traditionally, researchers have argued about the validity of a study’s causal conclusion (and, more generally, about the validity of different research designs) based on the potential biases that pose <strong>threats to validity</strong>.</p>
-<p>Check <a href="https://journals.lww.com/epidem/Fulltext/2020/05000/A_Graphical_Catalog_of_Threats_to_Validity_.11.aspx">this</a> amazing paper by Matthay and Glymour for a review.</p>
+<p>(Check <a href="https://journals.lww.com/epidem/Fulltext/2020/05000/A_Graphical_Catalog_of_Threats_to_Validity_.11.aspx">this</a> amazing paper by Matthay and Glymour for more details)</p>
+<p>We generally say that experiments are great for <span style="color:green;">internal validity</span>: <em>among the people that participated in our study</em>, we can rule out systematic sources of bias!</p>
+<p>However, this does not imply that our results are <span style="color:red;">externally valid</span>, i.e., that they apply to people <em>outside our study</em>! We need further assumptions to move from one to another.</p>
+</section></section>
+<section id="now-to-the-tutorial" class="title-slide slide level1 center">
+<h1>Now to the tutorial!</h1>
+
 </section>
-<section id="forms-of-validity-1" class="slide level2">
-<h2>Forms of validity</h2>
-<p><br></p>
-<p>We reviewed the bias in the difference-in-means estimator: baseline differences (under the control condition), and differential response to the treatment (under the exposure condition).</p>
-<div class="fragment">
-<p>But when we randomize an exposure, we know that who ends up in each treatment arm has nothing to do with their potential outcomes!</p>
-</div>
-<div class="fragment">
-<p>This is why we generally say that experiments are great for <span style="color:green;">internal validity</span>: among the people that participated in our study, we can rule out systematic sources of bias!</p>
-<p>However, this does not imply that our results are <span style="color:red;">externally valid</span>, i.e., that they apply to people outside our study! We need further assumptions to move from one to another.</p>
-</div>
+
+<section>
+<section id="appendix" class="title-slide slide level1 center">
+<h1>Appendix</h1>
+
 </section>
-<section id="types-of-experiments" class="slide level2">
-<h2>Types of experiments</h2>
+<section id="statisticsml-vs-causal-inference" class="slide level2">
+<h2>Statistics/ML vs Causal Inference</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong><em>Statistics/ML</em></strong></p>
 <ul>
-<li><p><span class="fragment highlight-blue"><strong>Laboratory experiments</strong></span>: Usually conducted with a small sample (of undergraduate psychology students), many times involving games in a computer. Helpful for cognitive/behavioral questions.</p></li>
-<li><p><span class="fragment highlight-blue"><strong>Field experiments</strong></span>: In order to obtain more <em>externally valid</em> results, experiments conducted in the field (i.e., under real-world conditions) are the way to go. Definitely more expensive though. Audit studies are a particular type of field experiment.</p></li>
-<li><p><span class="fragment highlight-blue"><strong>Survey experiments</strong></span>: One can randomize treatment conditions <em>in a survey</em> to evaluate how participants change their responses based on certain stimulus. Vignettes and list experiments are examples of this approach.</p></li>
-<li><p><span class="fragment highlight-blue"><strong>(Bonus) Quasi-experiments</strong></span>: Researchers usually call quasi-experiments to real-world situations that offer as-if random variation in a treatment of interest. For example, earthquakes, change in laws, date of birth, etc.</p></li>
+<li>Passive observation of the data generating process</li>
+<li>Estimand: Joint probabilities, CEF <span class="math display">\[P(Y,X)\]</span> <span class="math display">\[E(Y|X=x)\]</span></li>
+<li>Focus on asymptotics / out of sample prediction</li>
+<li>Estimation problem: variance-bias tradeoff</li>
+<li>Pearl: “deep learning is just curve fitting”</li>
 </ul>
+</div><div class="column" style="width:50%;">
+<p><strong><em>Causal Inference</em></strong></p>
+<ul>
+<li>Prediction <strong>under interventions</strong> on the DGP</li>
+<li>Estimand: interventional quantities <span class="math display">\[P(Y|do(x))\]</span> <span class="math display">\[E(Y|do(x)) - E(Y|do(x'))\]</span> <span class="math display">\[= E(Y_x) - E(Y_{x'})\]</span></li>
+<li>Identification problem: consistency (infinite sample)</li>
+<li>Estimation problem: in general, focus on bias over variance (but changing)</li>
+</ul>
+</div></div>
 </section>
-<section id="short-activity-3-mins-1" class="slide level2" data-background-color="#692044">
-<h2>Short activity (3 mins)</h2>
-<p>Sometimes it is hard to imagine an experiment that would be relevant for the type of questions we care about.</p>
-<p>Some people even say (and I for sure partially agree!) that experiments tend to emphasize “small” versus “big” questions, promoting incremental/testable policies.</p>
-<p>However, there are tons of examples of researchers using experiments to address important, <strong>big</strong> and difficult questions. <strong>Do you know of any example?</strong></p>
+<section id="neyman-neyman-rubin-or-rubin-causal-model" class="slide level2">
+<h2>Neyman, Neyman-Rubin, or Rubin Causal Model (?)</h2>
+<p><br></p>
+<p>POs were introduced by Neyman (1923) in the context of experimental design. They remained only used in that context for decades!</p>
+<ul>
+<li><p>Imported and extended by Donald Rubin for observational studies (c.&nbsp;1974)</p></li>
+<li><p>They are really great to clarify <em>what do we want to know</em> (<span class="fragment fade-in"><a href=""><strong>estimand</strong></a></span>)</p></li>
+<li><p>This includes identifying <em>reasons for discrepancies</em> between what we observe and our estimand (<span class="fragment fade-in"><a href=""><strong>bias</strong></a></span>)</p></li>
+<li><p>They are great to formalize <em>what needs to be true</em> for our estimand to be identified with a given <em>estimator</em> (<span class="fragment fade-in"><a href=""><strong>assumptions</strong></a></span>)</p></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>They are not-so-great to assess if our assumptions are plausible or defensible (more on this later!)</li>
+</ul>
+</div>
 </section>
 <section id="how-to-randomise" class="slide level2">
 <h2>How to randomise?</h2>
@@ -2031,7 +1606,7 @@ Y = DY_1 + (1-D)Y_0
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>Potential Outcomes and Experiments</p>
+
 </div>
 </div></div>
 

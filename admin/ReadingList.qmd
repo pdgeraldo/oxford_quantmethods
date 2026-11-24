@@ -27,37 +27,41 @@ That said, the only *required* readings are from Huntington-Klein's *The Effect*
 
 # Required readings
 
-**Week 1**: Causality and the experimental ideal
+**Causality and the experimental ideal**
 
-*The Effect*, chapters 1-4
+Required: *The Effect*, chapter 5 and 10
 
-**Week 2**: A crash course on Directed Acyclic Graphs
+Suggested: *The Effect*, chapters 1-4
+\bigskip
 
-*The Effect*, chapters 5-8
+**A crash course on Directed Acyclic Graphs**
 
-**Week 3**: Selection on observables I (matching, regression, weighting)
+Required: *The Effect*, chapters 6 and 8
 
-*The Effect*, chapters 13-14
+Suggested: *The Effect*, chapter 7 and 9
+\bigskip
 
-**Week 4**: Selection on observables II (matching, regression, weighting)
 
-*The Effect*, chapters 13-14
+**Selection on observables (matching, regression, weighting)**
 
-**Week 5**: As-if-random assignment (instrumental variables and quasi-experiments)
+Required: *The Effect*, chapter 13 (section 13.1 and 13.2) and chapter 14 (sections 14.1 - 14.4)
 
-*The Effect*, chapters 19-20
+Suggested: *The Effect*, chapter 13 (remaining sections) and chapter 14 (remaining sections)
+\bigskip
 
-**Week 6**: Parallel trends I (difference-in-differences and extensions)
+**As-if-random assignment (instrumental variables and quasi-experiments)**
 
-*The Effect*, chapters 16-18
+Required: *The Effect*, chapter 19 (sections 19.1-19.2)
 
-**Week 7**: Parallel trends II (difference-in-differences and extensions)
+Suggested: *The Effect*, chapter 19 (remaining sections)
+\bigskip
 
-*The Effect*, chapters 16-18
+**Parallel trends (difference-in-differences and extensions)**
 
-**Week 8**: Sensitivity analysis (quantitative bias analysis)
+Required: *The Effect*, chapter 18 (sections 18.1-18.2)
 
-*The Effect*, chapter 21
+Suggested: *The Effect*, chapter 18 (remaining sections), chapters 16 and 17
+\bigskip
 
 \newpage
 
