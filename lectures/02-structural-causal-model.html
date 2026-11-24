@@ -427,9 +427,9 @@ Pablo Geraldo Bastías
 <h1>What to do?</h1>
 
 </section>
-<section id="wrong-answer" class="slide level2">
-<h2>Wrong answer</h2>
-<h3 id="include-whatever-and-as-much-as-you-have">Include whatever and as much as you have!</h3>
+<section id="include-whatever-and-as-much-as-you-have" class="slide level2">
+<h2>Include whatever and as much as you have!</h2>
+<h3 id="wrong-answer">(Wrong answer!)</h3>
 <p><img data-src="img/ovb_authors.jpg" class="center"></p>
 </section>
 <section id="deal-with-imbalance-delta-by-design" class="slide level2">
@@ -443,20 +443,8 @@ Pablo Geraldo Bastías
 <p><img data-src="img/ovb_rct.png" class="fragment center"></p>
 </div>
 </section>
-<section id="benchmarking-and-sensitivity" class="slide level2">
-<h2>Benchmarking and sensitivity</h2>
-<p>Instead of assuming away OVB, we can try to bound the estimated treatment effect under plausible assumptions around its magnitude</p>
-<div class="r-stack">
-<div class="fragment">
-<p><strong>Worst-case bounds:</strong> Assume a <span class="math inline">\(W\)</span> perfectly predicting <span class="math inline">\(Y\)</span> (strongest possible <span class="math inline">\(\gamma\)</span>), and ask how much the imbalance (<span class="math inline">\(\delta\)</span>) should be to change our conclusions</p>
-<p><strong>Simulate:</strong> Use a range of <span class="math inline">\(\gamma \times \delta\)</span> values to simulate how the results would change for a range of values of OVB</p>
-<p><strong>Benchmark:</strong> Use included variables to benchmark the magnitude of the possibly excluded factors</p>
-</div>
-<p><img data-src="img/ovb_cinelli_hazlett.png" class="fragment center"></p>
-</div>
-</section>
-<section id="summary-and-beyond-when-is-ovb-an-issue" class="slide level2">
-<h2>Summary and beyond: When is OVB an issue?</h2>
+<section id="when-is-ovb-an-issue" class="slide level2">
+<h2>When is OVB an issue?</h2>
 <ul>
 <li><p>Ask yourself if you’re trying to get a causal relationship</p>
 <ul>
@@ -481,25 +469,6 @@ Pablo Geraldo Bastías
 <h1>Structural Causal Model</h1>
 
 </section>
-<section id="recap-from-previous-session" class="slide level2">
-<h2>Recap from previous session</h2>
-<ul>
-<li><p>We studied the difference between <span class="fragment highlight-red"><strong>seeing</strong></span> (the focus of Stats/ML) and <span class="fragment highlight-red"><strong>doing</strong></span> (the focus of causal inference)</p></li>
-<li><p>We studied the importance of using the formal language of potential outcomes to:</p>
-<ul>
-<li><p>clarify <em>what do we want to know</em> (<span style="color:blue"><strong>estimand</strong></span>)</p></li>
-<li><p>identify <em>reasons for discrepancies</em> between what we observe and our target (<span style="color:blue"><strong>bias</strong></span>)</p></li>
-<li><p>formalize <em>what needs to be true</em> for our estimand to be identified with a given <em>estimator</em> (<span style="color:blue"><strong>assumptions</strong></span>)</p></li>
-</ul></li>
-<li><p>We studied the role of <strong>randomisation</strong> to identify causal effects <span style="color:green"><strong>by design</strong></span>.</p></li>
-</ul>
-<div class="fragment">
-<p>But what do we do when we have <em>less than perfect</em> experiments?</p>
-</div>
-<div class="fragment">
-<p>And how to assess our assumptions with <em>observational data</em>?</p>
-</div>
-</section>
 <section id="lecture-2-from-causal-assumptions-to-causal-models" class="slide level2">
 <h2>Lecture 2: From causal assumptions to causal models</h2>
 <p>When introducing potential outcomes, we emphasized that it is not the method what makes our results causal, but our <span style="color:red"><strong>assumptions</strong></span></p>
@@ -513,11 +482,8 @@ Pablo Geraldo Bastías
 <ul>
 <li><p>In this lecture we will introduce a framework that makes formulating such models easy and intuitive</p></li>
 <li><p>We will develop the machinery needed to be explicit about our model and derive its testable implications</p></li>
-<li><p>Potential outcomes appear now, not as <em>primitives</em>, but as quantities <em>derived</em> from a more fundamental entity: a <span style="color:green"><em>structural model</em></span></p></li>
 </ul>
-</div>
-<div class="fragment">
-<p>Researchers often leave the model implicit and unspecified. I will argue that making it explicit can greatly improve transparency in scientific communication</p>
+<p>(Researchers often leave the model implicit and unspecified. I will argue that making it explicit can greatly improve transparency in scientific communication)</p>
 </div>
 </section></section>
 <section>
@@ -547,18 +513,6 @@ Pablo Geraldo Bastías
 <li><p>What kind of criteria should we use in our own research to judge if we are getting what we are looking for?</p></li>
 </ul>
 <p>Here is where DAGs shine, offering a graphical criteria that is equivalent to the unconfoundedness statement, the <span style="color:red"><em>backdoor criterion</em></span>.</p>
-</section>
-<section id="structural-causal-model-scm" class="slide level2">
-<h2>Structural Causal Model (SCM)</h2>
-<p>Unifying approach to causal inference, developed by Pearl, Robins, among others, following early developments by Wright:</p>
-<ul>
-<li><p>(Non-parametric) Structural Equation Models</p></li>
-<li><p>Generalization of the path analysis and SEM you might be familiar with</p></li>
-<li><p>Graphical representation using Directed Acyclic Graphs (DAGs)</p></li>
-<li><p>Potential Outcomes are <span style="color:blue"><strong>derived</strong> from</span> a SCM</p></li>
-<li><p>Transparent representation of <strong>qualitative assumptions</strong></p></li>
-<li><h2 id="testable-implications-of-our-model-of-the-data-generating-process">Testable implications of our model of the data generating process</h2></li>
-</ul>
 </section>
 <section id="directed-acyclic-graphs-dags" class="slide level2">
 <h2>Directed Acyclic Graphs (DAGs)</h2>
@@ -631,6 +585,73 @@ Pablo Geraldo Bastías
 <li>When you adjust for a collider variable <span class="math inline">\(C\)</span>, the pair <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> become <span class="math inline">\(d-\)</span>connected and, therefore, <span style="color:green"><em>conditionally associated</em></span>:</li>
 </ul>
 <p><span class="math display">\[X \color{green}{\cdots} \boxed{C} \color{green}{\cdots} Y\]</span></p>
+</section>
+<section id="structural-causal-model-scm-key-insights" class="slide level2">
+<h2>Structural Causal Model (SCM): Key insights</h2>
+<ul>
+<li><p>Causal identification is contingent on a given model encoding our assumptions</p></li>
+<li><p>Causal identification is finding an observational quantity that is equivalent to an interventional quantity</p></li>
+<li><p>Confounding (and bias) is a property of paths in a graph, not variables</p></li>
+<li><p>Confounding is relative to the pair <span class="math inline">\((X,Y)\)</span>, not just <span class="math inline">\(X\)</span></p></li>
+<li><p>It is not necessary to adjust for all <em>parents</em> of the treatment to block all backdoor paths</p></li>
+<li><p>Bias is not monotonically decreasing on the number of variables included</p></li>
+<li><p><span class="math inline">\(do-\)</span>calculus can be used to identify the effect of multiple interventions, to recover from missingness data, and to generalize study results.</p></li>
+</ul>
+</section>
+<section id="scm-limitations" class="slide level2">
+<h2>SCM: limitations</h2>
+<div class="fragment">
+<p>Conditional on your model, most identification tasks are rather trivial (algorithmic). But before that you need to assume a certain DAG!</p>
+</div>
+<div class="fragment">
+<div class="callout callout-warning no-icon callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>“Causality is in the model”</strong></p>
+</div>
+<div class="callout-content">
+<p>James Heckman (2005)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>However, this is something that we always do! The only matter is how transparent are we about the assumptions we are making anyway</p>
+</div>
+<div class="fragment">
+<p>Another problem, more important for issues like mediation analysis and counterfactuals in general, is that we are sometimes making more assumptions that we are willing to</p>
+</div>
+<div class="fragment">
+<p>For these cases, other causal (and graphical) models, like the <a href="https://www.csss.washington.edu/Papers/wp128.pdf">Single World Intervention Graphs</a> (Richardson and Robins, 2013) can help</p>
+</div>
+<div class="fragment">
+<p>Being fully non-parametric, certain canonical models are not identified using DAGs (like IVs).</p>
+</div>
+<div class="fragment">
+<p>However, this only shows that they require parametric assumptions, no matter how weak!</p>
+</div>
+</section></section>
+<section id="to-the-tutorial" class="title-slide slide level1 center">
+<h1>To the tutorial!</h1>
+
+</section>
+
+<section>
+<section id="appendix" class="title-slide slide level1 center">
+<h1>Appendix</h1>
+
+</section>
+<section id="structural-causal-model-scm" class="slide level2">
+<h2>Structural Causal Model (SCM)</h2>
+<p>Unifying approach to causal inference, developed by Pearl, Robins, among others, following early developments by Wright:</p>
+<ul>
+<li><p>(Non-parametric) Structural Equation Models</p></li>
+<li><p>Generalization of the path analysis and SEM you might be familiar with</p></li>
+<li><p>Graphical representation using Directed Acyclic Graphs (DAGs)</p></li>
+<li><p>Potential Outcomes are <span style="color:blue"><strong>derived</strong> from</span> a SCM</p></li>
+<li><p>Transparent representation of <strong>qualitative assumptions</strong></p></li>
+<li><p>Testable implications of our model of the data generating process</p></li>
+</ul>
 </section>
 <section id="alternative-representations" class="slide level2">
 <h2>Alternative representations</h2>
@@ -1256,57 +1277,12 @@ Pablo Geraldo Bastías
 <p><span class="math inline">\(Z \rightarrow D\)</span></p>
 <p><span class="math inline">\(D \leftarrow (U) \rightarrow Y\)</span></p>
 <p>Where <span class="math inline">\((U)\)</span> is unobserved, and therefore, it cannot be adjusted for</p>
-</section>
-<section id="scm-key-insights" class="slide level2">
-<h2>SCM: Key insights</h2>
-<ul>
-<li><p>Causal identification is contingent on a given model encoding our assumptions</p></li>
-<li><p>Causal identification is finding an observational quantity that is equivalent to an interventional quantity</p></li>
-<li><p>Confounding (and bias) is a property of paths in a graph, not variables</p></li>
-<li><p>Confounding is relative to the pair <span class="math inline">\((X,Y)\)</span>, not just <span class="math inline">\(X\)</span></p></li>
-<li><p>It is not necessary to adjust for all <em>parents</em> of the treatment to block all backdoor paths</p></li>
-<li><p>Bias is not monotonically decreasing on the number of variables included</p></li>
-<li><p><span class="math inline">\(do-\)</span>calculus can be used to identify the effect of multiple interventions, to recover from missingness data, and to generalize study results.</p></li>
-</ul>
-</section>
-<section id="scm-limitations" class="slide level2">
-<h2>SCM: limitations</h2>
-<div class="fragment">
-<p>Conditional on your model, most identification tasks are rather trivial (algorithmic). But before that you need to assume a certain DAG!</p>
-</div>
-<div class="fragment">
-<div class="callout callout-warning no-icon callout-titled callout-style-simple">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>“Causality is in the model”</strong></p>
-</div>
-<div class="callout-content">
-<p>James Heckman (2005)</p>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p>However, this is something that we always do! The only matter is how transparent are we about the assumptions we are making anyway</p>
-</div>
-<div class="fragment">
-<p>Another problem, more important for issues like mediation analysis and counterfactuals in general, is that we are sometimes making more assumptions that we are willing to</p>
-</div>
-<div class="fragment">
-<p>For these cases, other causal (and graphical) models, like the <a href="https://www.csss.washington.edu/Papers/wp128.pdf">Single World Intervention Graphs</a> (Richardson and Robins, 2013) can help</p>
-</div>
-<div class="fragment">
-<p>Being fully non-parametric, certain canonical models are not identified using DAGs (like IVs).</p>
-</div>
-<div class="fragment">
-<p>However, this only shows that they require parametric assumptions, no matter how weak!</p>
 
-</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>Structural Causal Model</p>
+
 </div>
 </div></div>
 

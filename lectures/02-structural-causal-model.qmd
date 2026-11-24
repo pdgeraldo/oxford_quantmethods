@@ -1,7 +1,7 @@
 ---
 title: "Quantitative Methods -- Human Sciences"
 author: "Pablo Geraldo Bastías"
-footer: "Structural Causal Model"
+#footer: "Structural Causal Model"
 date: 10/21/2026
 date-format: long
 title-slide-attributes:
@@ -524,8 +524,8 @@ $$
 
 # What to do? {background-color="#002147"}
 
-## Wrong answer
-### Include whatever and as much as you have!
+## Include whatever and as much as you have!
+### (Wrong answer!)
 
 ![](img/ovb_authors.jpg){.center}
 
@@ -546,25 +546,8 @@ $$
 
 :::
 
-## Benchmarking and sensitivity
 
-Instead of assuming away OVB, we can try to bound the estimated treatment effect under plausible assumptions around its magnitude
-
-:::{.r-stack}
-
-:::{.fragment}
-**Worst-case bounds:** Assume a $W$ perfectly predicting $Y$ (strongest possible $\gamma$), and ask how much the imbalance ($\delta$) should be to change our conclusions
-  
-**Simulate:** Use a range of $\gamma \times \delta$ values to simulate how the results would change for a range of values of OVB
-
-**Benchmark:** Use included variables to benchmark the magnitude of the possibly excluded factors
-:::
-
-![](img/ovb_cinelli_hazlett.png){.fragment .center}
-
-:::
-
-## Summary and beyond: When is OVB an issue?
+## When is OVB an issue?
 
 * Ask yourself if you're trying to get a causal relationship
 
@@ -592,30 +575,6 @@ Instead of assuming away OVB, we can try to bound the estimated treatment effect
 # Structural Causal Model {background-color="#002147"}
 
 
-## Recap from previous session
-
-* We studied the difference between [**seeing**]{.fragment .highlight-red} (the focus of Stats/ML) and [**doing**]{.fragment .highlight-red} (the focus of causal inference)
-
-* We studied the importance of using the formal language  of potential outcomes to:
-  
-  + clarify *what do we want to know* ([**estimand**]{style="color:blue"})
-  
-  + identify *reasons for discrepancies* between what we observe and our target ([**bias**]{style="color:blue"}) 
-  
-  + formalize *what needs to be true*  for our estimand to be identified with a given *estimator* ([**assumptions**]{style="color:blue"})
-  
-  
-* We studied the role of **randomisation** to identify causal effects [**by design**]{style="color:green"}.
-
-. . .
-
-But what do we do when we have *less than perfect* experiments?
-
-. . .
-
-And how to assess our assumptions with *observational data*?
-
-
 ## Lecture 2: From causal assumptions to causal models
 
 When introducing potential outcomes, we emphasized that it is not the method what makes our results causal, but our [**assumptions**]{style="color:red"}
@@ -634,11 +593,7 @@ To answer that question, we need to be explicit about our **model**, i.e., how d
 
 + We will develop the machinery needed to be explicit about our model and derive its testable implications
 
-+ Potential outcomes appear now, not as *primitives*, but as quantities *derived* from a more fundamental entity: a [*structural model*]{style="color:green"}
-
-. . . 
-
-Researchers often leave the model implicit and unspecified. I will argue that making it explicit can greatly improve transparency in scientific communication
+(Researchers often leave the model implicit and unspecified. I will argue that making it explicit can greatly improve transparency in scientific communication)
 
 # Graphical models {background-color="#17a091"}
 
@@ -672,24 +627,6 @@ When we say the treatment assignment is [**strongly ignorable**]{style="color:re
 * What kind of criteria should we use in our own research to judge if we are getting what we are looking for?
 
 Here is where DAGs shine, offering a graphical criteria that is equivalent to the unconfoundedness statement, the [*backdoor criterion*]{style="color:red"}.
-
-
-## Structural Causal Model (SCM)
-
-Unifying approach to causal inference, developed by Pearl, Robins, among others, following early developments by Wright:
-
-* (Non-parametric) Structural Equation Models
-  
-* Generalization of the path analysis and SEM you might be familiar with
-
-* Graphical representation using Directed Acyclic Graphs (DAGs)
-
-* Potential Outcomes are [**derived** from]{style="color:blue"} a SCM
-
-* Transparent representation of **qualitative assumptions**
-
-* Testable implications of our model of the data generating process
----
 
 
 ## Directed Acyclic Graphs (DAGs)
@@ -765,6 +702,80 @@ $$X \color{red}{\leftarrow} \boxed{W} \color{red}{\rightarrow} Y$$
 * When you adjust for a collider variable $C$, the pair $X$ and $Y$ become $d-$connected and, therefore, [*conditionally associated*]{style="color:green"}: 
 
 $$X \color{green}{\cdots} \boxed{C} \color{green}{\cdots} Y$$
+
+## Structural Causal Model (SCM): Key insights
+
+
+* Causal identification is contingent on a given model encoding our assumptions
+
+* Causal identification is finding an observational quantity that is equivalent to an interventional quantity
+
+* Confounding (and bias) is a property of paths in a graph, not variables
+
+* Confounding is relative to the pair $(X,Y)$, not just $X$
+
+* It is not necessary to adjust for all *parents* of the treatment to block all backdoor paths
+
+* Bias is not monotonically decreasing on the number of variables included
+
+* $do-$calculus can be used to identify the effect of multiple interventions, to recover from missingness data, and to generalize study results.
+
+
+## SCM: limitations
+
+. . . 
+
+Conditional on your model, most identification tasks are rather trivial (algorithmic). But before that you need to assume a certain DAG!
+
+. . .
+
+:::{.callout-warning}
+## "Causality is in the model"
+James Heckman (2005)
+:::
+
+. . . 
+
+However, this is something that we always do! The only matter is how transparent are we about the assumptions we are making anyway
+
+. . .
+
+Another problem, more important for issues like mediation analysis and counterfactuals in general, is that we are sometimes making more assumptions that we are willing to
+
+. . . 
+
+For these cases, other causal (and graphical) models, like the [Single World Intervention Graphs](https://www.csss.washington.edu/Papers/wp128.pdf) (Richardson and Robins, 2013) can help
+
+. . . 
+
+Being fully non-parametric, certain canonical models are not identified using DAGs (like IVs). 
+
+. . . 
+
+However, this only shows that they require parametric assumptions, no matter how weak!
+
+
+
+# To the tutorial!
+
+# Appendix
+
+## Structural Causal Model (SCM)
+
+Unifying approach to causal inference, developed by Pearl, Robins, among others, following early developments by Wright:
+
+* (Non-parametric) Structural Equation Models
+  
+* Generalization of the path analysis and SEM you might be familiar with
+
+* Graphical representation using Directed Acyclic Graphs (DAGs)
+
+* Potential Outcomes are [**derived** from]{style="color:blue"} a SCM
+
+* Transparent representation of **qualitative assumptions**
+
+* Testable implications of our model of the data generating process
+
 
 ## Alternative representations
 
@@ -1471,55 +1482,4 @@ $D \leftarrow (U) \rightarrow Y$
 Where $(U)$ is unobserved, and therefore, it cannot be adjusted for
 
 
-
-## SCM: Key insights
-
-
-* Causal identification is contingent on a given model encoding our assumptions
-
-* Causal identification is finding an observational quantity that is equivalent to an interventional quantity
-
-* Confounding (and bias) is a property of paths in a graph, not variables
-
-* Confounding is relative to the pair $(X,Y)$, not just $X$
-
-* It is not necessary to adjust for all *parents* of the treatment to block all backdoor paths
-
-* Bias is not monotonically decreasing on the number of variables included
-
-* $do-$calculus can be used to identify the effect of multiple interventions, to recover from missingness data, and to generalize study results.
-
-
-## SCM: limitations
-
-. . . 
-
-Conditional on your model, most identification tasks are rather trivial (algorithmic). But before that you need to assume a certain DAG!
-
-. . .
-
-:::{.callout-warning}
-## "Causality is in the model"
-James Heckman (2005)
-:::
-
-. . . 
-
-However, this is something that we always do! The only matter is how transparent are we about the assumptions we are making anyway
-
-. . .
-
-Another problem, more important for issues like mediation analysis and counterfactuals in general, is that we are sometimes making more assumptions that we are willing to
-
-. . . 
-
-For these cases, other causal (and graphical) models, like the [Single World Intervention Graphs](https://www.csss.washington.edu/Papers/wp128.pdf) (Richardson and Robins, 2013) can help
-
-. . . 
-
-Being fully non-parametric, certain canonical models are not identified using DAGs (like IVs). 
-
-. . . 
-
-However, this only shows that they require parametric assumptions, no matter how weak!
 
