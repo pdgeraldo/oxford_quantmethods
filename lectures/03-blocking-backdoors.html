@@ -153,7 +153,7 @@ Pablo Geraldo Bastías
 <ul>
 <li><p>First, we will locate it under the general umbrella of <a href="">observational studies</a>.</p></li>
 <li><p>Then we will review the required assumptions and show the identication results</p></li>
-<li><p>Finally, we will discuss common estimation methods: regression (including imputation), subclassification and matching, weighting, and a preview of augmented estimators</p></li>
+<li><p>Finally, we will discuss common estimation methods: regression (including imputation), subclassification and matching, and weighting</p></li>
 </ul>
 </section></section>
 <section>
@@ -252,22 +252,19 @@ Pablo Geraldo Bastías
 </section>
 <section id="identification-of-ateatt" class="slide level2">
 <h2>Identification of ATE/ATT</h2>
-<p><strong>Intuition</strong>: Within strata of X, we have an experiment</p>
-<p><strong>Proof</strong>: Let’s start with the strata effects <span class="math inline">\(\tau(x)\)</span></p>
+<p><strong>Intuition</strong>: <span style="color:red">Within strata of X, we have an experiment</span></p>
+<p><strong>Proof</strong> (only if you’re feeling curious): Let’s start with the strata effects <span class="math inline">\(\tau(x)\)</span></p>
 <p><span class="math display">\[
-E[Y_{1i} - Y_{0i}|X=x] = E[Y_{1i}|X=x] - E[Y_{0i}|X=x]  
+E[Y_{1i} - Y_{0i}|x] = E[Y_{1i}|x] - E[Y_{0i}|x]  
 \]</span> <span class="math display">\[
-= E[Y_{1i}|X=x, D_i=1] - E[Y_{0i}|X=x, D_i=0]
+= E[Y_{1i}|x, D_i=1] - E[Y_{0i}|x, D_i=0]
 \]</span></p>
 <p><span class="math display">\[
-= E[Y_{i}|X=x, D_i=1] - E[Y_{i}|X=x, D_i=0]
-\]</span> Then, let’s use the <strong>positivity</strong> assumption:</p>
-<p><span class="math display">\[
-ATE = E_x[\tau(x)] = E_x(E[Y_{1i} - Y_{0i}|X=x] )
+= E[Y_{i}|x, D_i=1] - E[Y_{i}|x, D_i=0]
+\]</span> Then, assuming <em>positivity</em> (i.e., we have both D=1 and D=0 with the same <span class="math inline">\(x\)</span>) <span class="math display">\[
+ATE = E_x[\tau(x)] = E_x(E[Y_{1i} - Y_{0i}|x] ) = \color{red}{\sum_x \tau(x) p(x)}
 \]</span></p>
-<p><span class="math display">\[
-= \sum_x \tau(x) p(x)
-\]</span></p>
+<p><span style="color:red">In words: Take the strata-specific effect <span class="math inline">\(\tau(x)\)</span> and multiply for the strata proportion in the population <span class="math inline">\(p(x)\)</span>. Then sum over strata and you get the ATE!</span></p>
 </section></section>
 <section>
 <section id="estimation" class="title-slide slide level1 center" data-background-color="#002147">
@@ -283,7 +280,6 @@ ATE = E_x[\tau(x)] = E_x(E[Y_{1i} - Y_{0i}|X=x] )
 <li>Subclassification and Matching</li>
 <li>Weighting</li>
 <li>Regression</li>
-<li>Augmented estimators</li>
 </ul>
 <p>Let’s take a look at each in general, before we move into a practical application</p>
 </section></section>
@@ -389,29 +385,6 @@ w_i = \frac{D_i}{e(X_i)} + \frac{1-D_i}{1-e(X_i)}
 <aside><div>
 <p>Following Chattopadhyay, Hase, and Zubizarreta (2020)</p>
 </div></aside></section>
-<section id="balance" class="slide level2">
-<h2>Balance</h2>
-<p>Traditionally, balance in the distribution of covariates is assessed based on the absoluted standardized difference in means (ASMD):</p>
-<p><span class="math display">\[
-ASMD(x) = \frac{|\bar{x}_{w,t} - \bar{x}_{w,c}|}{\sqrt{(s^2_t + s^2_c)/2}}
-\]</span></p>
-<p>Chattopadhyay, Hase, and Zubizarreta (2020) proposed using a <em>targeted</em> version of this instead:</p>
-<p><span class="math display">\[
-TASMD(x_g) = \frac{|\bar{x}_{w,g} - \bar{x}^*|}{s_g}
-\]</span></p>
-</section>
-<section id="balance-1" class="slide level2">
-<h2>Balance</h2>
-<p>Chattopadhyay, Hase, and Zubizarreta (2020) proposed using a <em>targeted</em> version of this instead:</p>
-<p><span class="math display">\[
-TASMD(x_g) = \frac{|\bar{x}_{w,g} - \bar{x}^*|}{s_g}
-\]</span></p>
-<p>Which can be further refined as:</p>
-<p><span class="math display">\[
-TASMD(B_k(X)_g) = \frac{|\overline{B_k(X)_{w,g}} - \overline{B_k(X)}^*|}{s_g\{B_k(X)\}}
-\]</span></p>
-<p>Where <span class="math inline">\(B_k(X)\)</span> is a transformation of the original covariate.</p>
-</section>
 <section id="remember-propensity-score-is-not-an-identification-strategy-either" class="slide level2">
 <h2>Remember: Propensity score is NOT an identification strategy either!</h2>
 </section>
@@ -477,6 +450,46 @@ E[Y_i|D_i,X_i] = \beta_0 + \beta_1 D_i + \gamma^{\top}X_i
 <p>In epidemiology, this is known as g-computation (“g” stands for “generalized”)</p>
 <p>This works incredibly well, above and beyond what looking at a single coefficient would give you</p>
 <p>Even more, this can be paired with flexible machine learning approaches, going beyond linear regression models</p>
+</section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<p><br></p>
+<p>There are different ways to, in practice, implement the intuition behind unconfoundedness.</p>
+<p>Some rely on modeling the treatment assignment (like matching and weighting), some rely of modeling the outcome expectation (like regression), and some even combine both approaches (doubly robust methods).</p>
+<p>It is crucial to remember, however, that all these methods rely on the same qualitative assumption: there is no unmeasured confounding. If that assumption is not credible, no amount of “modeling” or fancy statistics will fix your problem!</p>
+</section></section>
+<section id="to-the-tutorial" class="title-slide slide level1 center">
+<h1>To the tutorial!</h1>
+
+</section>
+
+<section>
+<section id="appendix" class="title-slide slide level1 center">
+<h1>Appendix</h1>
+
+</section>
+<section id="balance" class="slide level2">
+<h2>Balance</h2>
+<p>Traditionally, balance in the distribution of covariates is assessed based on the absoluted standardized difference in means (ASMD):</p>
+<p><span class="math display">\[
+ASMD(x) = \frac{|\bar{x}_{w,t} - \bar{x}_{w,c}|}{\sqrt{(s^2_t + s^2_c)/2}}
+\]</span></p>
+<p>Chattopadhyay, Hase, and Zubizarreta (2020) proposed using a <em>targeted</em> version of this instead:</p>
+<p><span class="math display">\[
+TASMD(x_g) = \frac{|\bar{x}_{w,g} - \bar{x}^*|}{s_g}
+\]</span></p>
+</section>
+<section id="balance-1" class="slide level2">
+<h2>Balance</h2>
+<p>Chattopadhyay, Hase, and Zubizarreta (2020) proposed using a <em>targeted</em> version of this instead:</p>
+<p><span class="math display">\[
+TASMD(x_g) = \frac{|\bar{x}_{w,g} - \bar{x}^*|}{s_g}
+\]</span></p>
+<p>Which can be further refined as:</p>
+<p><span class="math display">\[
+TASMD(B_k(X)_g) = \frac{|\overline{B_k(X)_{w,g}} - \overline{B_k(X)}^*|}{s_g\{B_k(X)\}}
+\]</span></p>
+<p>Where <span class="math inline">\(B_k(X)\)</span> is a transformation of the original covariate.</p>
 </section></section>
 <section>
 <section id="augmented-estimators" class="title-slide slide level1 center" data-background-color="#E9004C">
@@ -536,7 +549,7 @@ E[Y_i|D_i,X_i] = \beta_0 + \beta_1 D_i + \gamma^{\top}X_i
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>Blocking backdoor paths</p>
+
 </div>
 </div></div>
 

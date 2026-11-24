@@ -1,7 +1,6 @@
 ---
 title: "Quantitative Methods -- Human Sciences"
 author: "Pablo Geraldo Bastías"
-footer: "Blocking backdoor paths"
 date: 10/28/2026
 date-format: long
 title-slide-attributes:
@@ -34,7 +33,7 @@ During this lecture, we will cover one of the most popular identification strate
 
 * Then we will review the required assumptions and show the identication results
 
-* Finally, we will discuss common estimation methods: regression (including imputation), subclassification and matching, weighting, and a preview of augmented estimators
+* Finally, we will discuss common estimation methods: regression (including imputation), subclassification and matching, and weighting
 
 # Observational studies {background-color="#002147"}
 
@@ -138,29 +137,26 @@ $$
 
 ## Identification of ATE/ATT
 
-**Intuition**: Within strata of X, we have an experiment
+**Intuition**: [Within strata of X, we have an experiment]{style="color:red"}
 
-**Proof**: Let's start with the strata effects $\tau(x)$
-
-$$
-E[Y_{1i} - Y_{0i}|X=x] = E[Y_{1i}|X=x] - E[Y_{0i}|X=x]  
-$$
-$$
-= E[Y_{1i}|X=x, D_i=1] - E[Y_{0i}|X=x, D_i=0] 
-$$
+**Proof** (only if you're feeling curious): Let's start with the strata effects $\tau(x)$
 
 $$
-= E[Y_{i}|X=x, D_i=1] - E[Y_{i}|X=x, D_i=0]
+E[Y_{1i} - Y_{0i}|x] = E[Y_{1i}|x] - E[Y_{0i}|x]  
 $$
-Then, let's use the **positivity** assumption:
-
 $$
-ATE = E_x[\tau(x)] = E_x(E[Y_{1i} - Y_{0i}|X=x] )
+= E[Y_{1i}|x, D_i=1] - E[Y_{0i}|x, D_i=0] 
 $$
 
 $$
-= \sum_x \tau(x) p(x)
+= E[Y_{i}|x, D_i=1] - E[Y_{i}|x, D_i=0]
 $$
+Then, assuming *positivity* (i.e., we have both D=1 and D=0 with the same $x$)
+$$
+ATE = E_x[\tau(x)] = E_x(E[Y_{1i} - Y_{0i}|x] ) = \color{red}{\sum_x \tau(x) p(x)}
+$$
+
+[In words: Take the strata-specific effect $\tau(x)$ and multiply for the strata proportion in the population $p(x)$. Then sum over strata and you get the ATE!]{style="color:red"}
 
 # Estimation {background-color="#002147"}
 
@@ -175,7 +171,6 @@ The most widely used are
 - Subclassification and Matching
 - Weighting
 - Regression
-- Augmented estimators
 
 Let's take a look at each in general, before we move into a practical application
 
@@ -294,36 +289,6 @@ $$
 Following Chattopadhyay, Hase, and Zubizarreta (2020)
 :::
 
-## Balance
-
-Traditionally, balance in the distribution of covariates is assessed based on the absoluted standardized difference in means (ASMD):
-
-$$
-ASMD(x) = \frac{|\bar{x}_{w,t} - \bar{x}_{w,c}|}{\sqrt{(s^2_t + s^2_c)/2}}
-$$
-
-Chattopadhyay, Hase, and Zubizarreta (2020) proposed using a *targeted* version of this instead: 
-
-$$
-TASMD(x_g) = \frac{|\bar{x}_{w,g} - \bar{x}^*|}{s_g}
-$$
-
-## Balance
-
-Chattopadhyay, Hase, and Zubizarreta (2020) proposed using a *targeted* version of this instead: 
-
-$$
-TASMD(x_g) = \frac{|\bar{x}_{w,g} - \bar{x}^*|}{s_g}
-$$
-
-Which can be further refined as:
-
-$$
-TASMD(B_k(X)_g) = \frac{|\overline{B_k(X)_{w,g}} - \overline{B_k(X)}^*|}{s_g\{B_k(X)\}}
-$$
-
-Where $B_k(X)$ is a transformation of the original covariate.
-
 ## Remember: Propensity score is NOT an identification strategy either!
 
 ## Optimization (or calibration) weights
@@ -404,6 +369,53 @@ In epidemiology, this is known as g-computation ("g" stands for "generalized")
 This works incredibly well, above and beyond what looking at a single coefficient would give you
 
 Even more, this can be paired with flexible machine learning approaches, going beyond linear regression models
+
+## Summary
+
+<br>
+
+There are different ways to, in practice, implement the intuition behind unconfoundedness. 
+
+Some rely on modeling the treatment assignment (like matching and weighting), some rely of modeling the outcome expectation (like regression), and some even combine both approaches (doubly robust methods).
+
+It is crucial to remember, however, that all these methods rely on the same qualitative assumption: there is no unmeasured confounding. If that assumption is not credible, no amount of "modeling" or fancy statistics will fix your problem!
+
+
+# To the tutorial!
+
+# Appendix
+
+
+## Balance
+
+Traditionally, balance in the distribution of covariates is assessed based on the absoluted standardized difference in means (ASMD):
+
+$$
+ASMD(x) = \frac{|\bar{x}_{w,t} - \bar{x}_{w,c}|}{\sqrt{(s^2_t + s^2_c)/2}}
+$$
+
+Chattopadhyay, Hase, and Zubizarreta (2020) proposed using a *targeted* version of this instead: 
+
+$$
+TASMD(x_g) = \frac{|\bar{x}_{w,g} - \bar{x}^*|}{s_g}
+$$
+
+## Balance
+
+Chattopadhyay, Hase, and Zubizarreta (2020) proposed using a *targeted* version of this instead: 
+
+$$
+TASMD(x_g) = \frac{|\bar{x}_{w,g} - \bar{x}^*|}{s_g}
+$$
+
+Which can be further refined as:
+
+$$
+TASMD(B_k(X)_g) = \frac{|\overline{B_k(X)_{w,g}} - \overline{B_k(X)}^*|}{s_g\{B_k(X)\}}
+$$
+
+Where $B_k(X)$ is a transformation of the original covariate.
+
 
 # Augmented estimators {background-color="#E9004C"}
 
