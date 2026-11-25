@@ -56,19 +56,21 @@ Pennsylvania," \textit{American Economic Review}, vol. 84, 772-793.
 Card and Krueger are interested in estimating the impact of minimum wage on teenage employment. Conventional economic wisdom states that raises in minimum wages hurt employment, especially teenage employment, which often takes wages that will be affected by minimum wage law. However, empirical analysis has failed to find evidence of employment responses to raises in minimum wages. In 1992, New Jersey's minimum wage increased from \$4.25 to \$5.05 while the minimum wage in Pennsylvania remained at \$4.25. The authors used data on employment at fast-food establishments in New Jersey and Pennsylvania before and after the increase in the minimum wage to measure the impact of the increase in minimum wage on teenage employment. Download and import the dataset, \texttt{card\_krueger.RData}, from the course website.
 
 The dataset contains the following variables, with one row corresponding to a single fast-food restaurant:
-\bitem
-\item \texttt{state}: New Jersey or Pennsylvania
-\item \texttt{chain}: the fast-food chain to which the restaurant belongs
-\item \texttt{wage\_pre}: starting wage in February 1992, in dollars per hour
-\item \texttt{wage\_post}: starting wage in November 1992, in dollars per hour
-\item \texttt{emp\_pre}: employment in February 1992, in number of full-time equivalent (FTE) employees
-\item \texttt{emp\_post}: employment in November 1992, in number of full-time equivalent (FTE) employees
-\item \texttt{closed}: whether the store was closed in November 1992
+
+
+* \texttt{state}: New Jersey or Pennsylvania
+* \texttt{chain}: the fast-food chain to which the restaurant belongs
+* \texttt{wage\_pre}: starting wage in February 1992, in dollars per hour
+* \texttt{wage\_post}: starting wage in November 1992, in dollars per hour
+* \texttt{emp\_pre}: employment in February 1992, in number of full-time equivalent (FTE) employees
+* \texttt{emp\_post}: employment in November 1992, in number of full-time equivalent (FTE) employees
+* \texttt{closed}: whether the store was closed in November 1992
 \eitem
 
 
-\benum
-\item Assume that the fast-food restaurants surveyed by Card and Krueger represent a random sample from a larger population of all fast-food restaurants in New Jersey and eastern Pennsylvania. Consider the estimands in table \ref{tab:estimands}, which correspond to the mean level of full-time equivalent (FTE) employment for population subgroups (restaurants within a given state-time). For example, $\alpha = \mathbb{E}[Y_i|T=\text{February},\text{state}=\text{NJ}]$.
+## 
+
+Assume that the fast-food restaurants surveyed by Card and Krueger represent a random sample from a larger population of all fast-food restaurants in New Jersey and eastern Pennsylvania. Consider the estimands in table \ref{tab:estimands}, which correspond to the mean level of full-time equivalent (FTE) employment for population subgroups (restaurants within a given state-time). For example, $\alpha = \mathbb{E}[Y_i|T=\text{February},\text{state}=\text{NJ}]$.
 
 \begin{table}[!ht]
 \begin{center}
@@ -82,8 +84,8 @@ Pennsylvania    &   $\gamma$      &   $\delta$      \\
 \end{center}
 \end{table}
 
-\benum
-\item[(i)] Define the difference-in-differences (DID) estimand in terms of these values, and concisely explain what this represents.
+
+*[(i)] Define the difference-in-differences (DID) estimand in terms of these values, and concisely explain what this represents.
 
 The DiD estimand can be obtained in two equivalent ways: 1) First differencing post- and pre-treatment periods within states, and then differencing states; 2) First differencing states within either pre- and post-treatment periods, and then differencing both periods. This would be equivalent to:
 
@@ -92,7 +94,7 @@ $$\text{DiD}_{(2)} = (\beta - \delta) - (\alpha - \gamma)$$
 
 As the name indicates, this quantity is the combination of two comparisons: over time, and over groups. A comparison over time in the treatment group would be unbiased for the causal effect of interest (see below) only if there is no time trend in its potential outcomes, while an over groups comparison would be unbiased only if there is no selection into the treatment (randomization). Both assumptions are hard to believe in observational contexts, so by combining them we are trying to weakening the identification assumption. In the context of DiD, the result would be unbiased even in the presence of selection and time trends, as long as 1) the time trend in the control condition is common to both groups, and 2) the selection into the treatment (average gap in control potential outcomes) is constant over time. 
 
-\item[(ii)] Consider the eight potential quantities $\{\alpha(0), \alpha(1), \beta(0)...\}$. Let these represent the mean \textit{potential} level of FTE employment levels that \textit{would have realized} if the minimum wage had been raised in each state at each time. For example, $\alpha(0) = \mathbb{E}[Y_i(D=0)|T=\text{February},\text{state}=\text{NJ}]$. Define the causal quantity of interest, the ATT, in terms of these potential outcomes. Describe which of these are observed.
+*[(ii)] Consider the eight potential quantities $\{\alpha(0), \alpha(1), \beta(0)...\}$. Let these represent the mean \textit{potential} level of FTE employment levels that \textit{would have realized} if the minimum wage had been raised in each state at each time. For example, $\alpha(0) = \mathbb{E}[Y_i(D=0)|T=\text{February},\text{state}=\text{NJ}]$. Define the causal quantity of interest, the ATT, in terms of these potential outcomes. Describe which of these are observed.
 
 The causal quantity of interest, the ATT, is the effect of rising the minimun wage in the state that actually experienced the increase (New Jersery). Then, our quantity of interest would be:
 
@@ -102,7 +104,7 @@ $$\beta(1) - \beta(0)$$
 
 By consistency and SUTVA, we can replace $\beta(1)$ by just $\beta$, the observed outcome of the treated group in the postreatment period. The second term, the control potential outcome of the treated state in the post-treatment period, is not observed (counterfactual).
 
-\item[(iii)] Discuss the identification assumption required for DID to yield a causal effect: (a) state it in general terms and then as applied to this problem; (b) explain in simple and intuitive terms why this is a useful assumption; (c) finally, tell us whether you think it is a good assumption here, and if not, what violations you imagine are problematic.
+*[(iii)] Discuss the identification assumption required for DID to yield a causal effect: (a) state it in general terms and then as applied to this problem; (b) explain in simple and intuitive terms why this is a useful assumption; (c) finally, tell us whether you think it is a good assumption here, and if not, what violations you imagine are problematic.
 
 The identification assumption required to give a causal interpretation to DiD is known as parallel trends, and can be formally stated as: 
 
@@ -116,7 +118,7 @@ In the context of the problem at hand, the assumption means that the average cha
 
 For example, potential violations would be that the trends in employment in both states were significatively different to begin with, given idiosyncratic reasons; that the closeness of both states makes that policy change in one state affects the outcomes in the other state; that other policies were changing at the same time that the rise in minimum salary in New Jersery, and therefore that there are time-varying confounders invalidating the assumptions, etc. Not being an expert in the matter, I don't really know if the assumption is plausible enough, but at least its plausibility should be explicitly defended because of many potential invalidating situations.  
 
-\item[(iv)] Making the required identifical assumption from above, show that the DID estimand (part (i)) can identify the ATT (part (ii)). Show all your work and note where the identification assumption comes in.
+*[(iv)] Making the required identifical assumption from above, show that the DID estimand (part (i)) can identify the ATT (part (ii)). Show all your work and note where the identification assumption comes in.
 
 With a slightly different notation, we can write the DiD estimand as:
 
@@ -130,9 +132,10 @@ DiD = & $\E[Y(1)-Y(0)~|~D=1] - \E[Y(1)-Y(0)~|~D=0]$ & by definition\\
       & ATT
 \end{tabular}
 
-\eenum
 
-\item Estimate all quantities in table \ref{tab:estimands} and write them in a similar table. 
+##
+
+* Estimate all quantities in table \ref{tab:estimands} and write them in a similar table. 
 
 ```{r}
 library("kableExtra")
@@ -144,7 +147,7 @@ d |>  group_by(state) |>
             november = mean(emp_post, na.rm=TRUE)) |> kable()
 ```
 
-\item Calculate your DID estimate (with a standard error and p-value) and interpret the result. 
+* Calculate your DID estimate (with a standard error and p-value) and interpret the result. 
 
 ```{r, echo=TRUE, results='hide'}
 library("estimatr")
@@ -172,4 +175,3 @@ did |> kable()
 
 Here our focal result is the third coefficient, \texttt{period:state}, which corresponds to the difference-in-difference. If our identification assumption holds, then we can interpret the coefficient causally, as the effect of increasing the minimum wage during 1992 in the state of New Jersey, from 4.25 USD to 5.05 USD, which produces an average increase of 2.75 full-time equivalent employees in the fast-food chains affected by the change. The result is not statistically significant at conventional levels. 
 
-\eenum
