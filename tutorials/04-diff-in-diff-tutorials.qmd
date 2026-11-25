@@ -1,0 +1,157 @@
+---
+title: "Quantitative Methods -- Human Sciences"
+subtitle: "Difference-in-differences"
+author: 
+  - "Pablo Geraldo Bastías (pablo.geraldo@sociology.ox.ac.uk)"
+  - "Your name here"
+format: 
+  pdf:
+    include-in-header: preamble.tex
+    number-sections: true
+    colorlinks: true
+    mainfont: "Crimson Text"
+    monofont: "Crimson Text"
+    sansfont: "Crimson Text"
+    fontsize: 12pt
+margin-left: 2.5cm
+margin-right: 2.5cm
+margin-top: 2cm
+margin-bottom: 2cm
+---
+
+
+\newcommand{\benum}{\begin{enumerate}}
+\newcommand{\eenum}{\end{enumerate}}
+\newcommand{\bitem}{\begin{itemize}}
+\newcommand{\eitem}{\end{itemize}}
+
+
+# Difference-in-difference in theory (for self-study)
+
+For this section, I ask you to explain the difference-in-difference estimator for the Average Treatment Effect on the Treated (ATT)
+
+
+## Write down and explain the parallel trends assumptions 
+
+
+
+## Is the parallel trend assumption verifiable from data? What about "pre-trend" plots?
+
+
+
+## Is the two-way fixed effects (TWFE) estimator always equivalent to the difference-in-differences (DiD) model?
+
+
+
+
+# DiD in practice
+
+In this problem, you will analyze data from the Card and Krueger paper discussed in lecture.
+\begin{quote}
+Card, D. and A. B. Krueger (1994), "Minimum Wages and
+Employment: A Case Study of the Fast-Food Industry in New Jersey and
+Pennsylvania," \textit{American Economic Review}, vol. 84, 772-793.
+\end{quote}
+
+Card and Krueger are interested in estimating the impact of minimum wage on teenage employment. Conventional economic wisdom states that raises in minimum wages hurt employment, especially teenage employment, which often takes wages that will be affected by minimum wage law. However, empirical analysis has failed to find evidence of employment responses to raises in minimum wages. In 1992, New Jersey's minimum wage increased from \$4.25 to \$5.05 while the minimum wage in Pennsylvania remained at \$4.25. The authors used data on employment at fast-food establishments in New Jersey and Pennsylvania before and after the increase in the minimum wage to measure the impact of the increase in minimum wage on teenage employment. Download and import the dataset, \texttt{card\_krueger.RData}, from the course website.
+
+The dataset contains the following variables, with one row corresponding to a single fast-food restaurant:
+
+
+* \texttt{state}: New Jersey or Pennsylvania
+* \texttt{chain}: the fast-food chain to which the restaurant belongs
+* \texttt{wage\_pre}: starting wage in February 1992, in dollars per hour
+* \texttt{wage\_post}: starting wage in November 1992, in dollars per hour
+* \texttt{emp\_pre}: employment in February 1992, in number of full-time equivalent (FTE) employees
+* \texttt{emp\_post}: employment in November 1992, in number of full-time equivalent (FTE) employees
+* \texttt{closed}: whether the store was closed in November 1992
+\eitem
+
+
+## 
+
+Assume that the fast-food restaurants surveyed by Card and Krueger represent a random sample from a larger population of all fast-food restaurants in New Jersey and eastern Pennsylvania. Consider the estimands in table \ref{tab:estimands}, which correspond to the mean level of full-time equivalent (FTE) employment for population subgroups (restaurants within a given state-time). For example, $\alpha = \mathbb{E}[Y_i|T=\text{February},\text{state}=\text{NJ}]$.
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{rcc}
+               &   February    &   November    \\
+New Jersey      &   $\alpha$      &   $\beta$       \\
+Pennsylvania    &   $\gamma$      &   $\delta$      \\
+\end{tabular}
+\caption{Average population FTE employment, by state and time}
+\label{tab:estimands}
+\end{center}
+\end{table}
+
+
+(i) Define the difference-in-differences (DID) estimand in terms of these values, and concisely explain what this represents.
+
+
+
+(ii) Consider the eight potential quantities $\{\alpha(0), \alpha(1), \beta(0)...\}$. Let these represent the mean \textit{potential} level of FTE employment levels that \textit{would have realized} if the minimum wage had been raised in each state at each time. For example, $\alpha(0) = \mathbb{E}[Y_i(D=0)|T=\text{February},\text{state}=\text{NJ}]$. Define the causal quantity of interest, the ATT, in terms of these potential outcomes. Describe which of these are observed.
+
+
+
+(iii) Discuss the identification assumption required for DID to yield a causal effect: (a) state it in general terms and then as applied to this problem; (b) explain in simple and intuitive terms why this is a useful assumption; (c) finally, tell us whether you think it is a good assumption here, and if not, what violations you imagine are problematic.
+
+
+(iv) Making the required identifical assumption from above, show that the DID estimand (part (i)) can identify the ATT (part (ii)). Show all your work and note where the identification assumption comes in. [This is just extra, in case you're curious about it!]
+
+With a slightly different notation, we can write the DiD estimand as:
+
+\begin{tabular}{l l l}
+DiD = & $\E[Y(1)-Y(0)~|~D=1] - \E[Y(1)-Y(0)~|~D=0]$ & by definition\\
+      & $\{\E[Y(1)~|~D=1]-\E[Y(0)~|~D=1]\} - \{\E[Y(1)~|~D=0]-\E[Y(0)~|~D=0]\}$ & linearity \\
+      & $\{\E[Y_1(1)~|~D=1]-\E[Y_0(0)~|~D=1]\} - \{\E[Y_0(1)~|~D=0]-\E[Y_0(0)~|~D=0]\}$ & consistency \\ 
+      & $\{\E[Y_1(1)~|~D=1]-\E[Y_0(0)~|~D=1]\} - \{\E[Y_0(1)~|~D=1]-\E[Y_0(0)~|~D=1]\}$ & parallel trends \\ 
+      &  $\{\E[Y_1(1)~|~D=1]-\E[Y_0(1)~|~D=1]\} -\E[Y_0(0)~|~D=1]+\E[Y_0(0)~|~D=1]$ & rearrange \\
+      & $\E[Y_1(1)~|~D=1]-\E[Y_0(1)~|~D=1]$ & cancell out\\
+      & ATT
+\end{tabular}
+
+
+##
+
+* Estimate all quantities in table \ref{tab:estimands} and write them in a similar table. 
+
+```{r}
+library("kableExtra")
+library("dplyr")
+load("card_krueger.Rdata")
+
+d |>  group_by(state) |> 
+  summarise(february = mean(emp_pre, na.rm=TRUE),
+            november = mean(emp_post, na.rm=TRUE)) |> kable()
+```
+
+
+
+* Calculate your DID estimate (with a standard error and p-value) and interpret the result. 
+
+```{r, echo=TRUE, results='hide'}
+library("estimatr")
+library("tidyr")
+
+#d_long <- gather(d, period, employment, emp_pre:emp_post) |>
+#  mutate(period = if_else(period=="emp_post", 1, 0),
+#         state = if_else(state=="nj", 1, 0))
+
+d_long <- d |>
+  pivot_longer(
+    cols = emp_pre:emp_post,
+    names_to = "period",
+    values_to = "employment"
+  ) |>
+  mutate(period = if_else(period == "emp_post", 1, 0),
+         state  = if_else(state == "nj", 1, 0))
+did <-
+  lm_robust(employment ~ period + state + state*period, data=d_long) |>
+  print() |> data.frame() 
+```
+```{r}
+did |> kable()
+```
+
+Here our focal result is the third coefficient, \texttt{period:state}, which corresponds to the difference-in-difference. If our identification assumption holds, then we can interpret the coefficient causally, as the effect of increasing the minimum wage during 1992 in the state of New Jersey, from 4.25 USD to 5.05 USD, which produces an average increase of 2.75 full-time equivalent employees in the fast-food chains affected by the change. The result is not statistically significant at conventional levels. 
+
