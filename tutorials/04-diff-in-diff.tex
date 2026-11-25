@@ -1,0 +1,637 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  12pt,
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+\usepackage{xcolor}
+\usepackage[lmargin=2.5cm,rmargin=2.5cm,tmargin=2cm,bmargin=2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{Crimson Text}
+  \setsansfont[]{Crimson Text}
+  \setmonofont[]{Crimson Text}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{lscape}
+\usepackage{adjustbox}
+\usepackage{makecell}
+\usepackage{threeparttable}
+\usepackage{caption}
+
+\newcommand{\blandscape}{\begin{landscape}}
+\newcommand{\elandscape}{\end{landscape}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Cov}{\text{Cov}}
+\newcommand\indep{\perp\!\!\!\perp}
+\newcommand\nindep{\not\!\perp\!\!\!\perp}
+\newcommand{\1}[1]{\mathds{1}\left[#1\right]}
+\newcommand{\X}{\mathbf{X}}
+\newcommand{\Y}{\mathbf{Y}}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Quantitative Methods -- Human Sciences},
+  pdfauthor={Pablo Geraldo Bastías (pablo.geraldo@sociology.ox.ac.uk); Your name here},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Quantitative Methods -- Human Sciences}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Difference-in-differences}
+\author{Pablo Geraldo Bastías
+(pablo.geraldo@sociology.ox.ac.uk) \and Your name here}
+\date{}
+\begin{document}
+\maketitle
+
+
+\newcommand{\benum}{\begin{enumerate}}
+\newcommand{\eenum}{\end{enumerate}}
+\newcommand{\bitem}{\begin{itemize}}
+\newcommand{\eitem}{\end{itemize}}
+
+\section{Difference-in-difference in theory (for
+self-study)}\label{difference-in-difference-in-theory-for-self-study}
+
+For this section, I ask you to explain the difference-in-difference
+estimator for the Average Treatment Effect on the Treated (ATT)
+
+\subsection{Write down and explain the parallel trends
+assumptions}\label{write-down-and-explain-the-parallel-trends-assumptions}
+
+\subsection{Is the parallel trend assumption verifiable from data? What
+about ``pre-trend''
+plots?}\label{is-the-parallel-trend-assumption-verifiable-from-data-what-about-pre-trend-plots}
+
+\subsection{Is the two-way fixed effects (TWFE) estimator always
+equivalent to the difference-in-differences (DiD)
+model?}\label{is-the-two-way-fixed-effects-twfe-estimator-always-equivalent-to-the-difference-in-differences-did-model}
+
+\section{DiD in practice}\label{did-in-practice}
+
+In this problem, you will analyze data from the Card and Krueger paper
+discussed in lecture.
+
+\begin{quote}
+Card, D. and A. B. Krueger (1994), "Minimum Wages and
+Employment: A Case Study of the Fast-Food Industry in New Jersey and
+Pennsylvania," \textit{American Economic Review}, vol. 84, 772-793.
+\end{quote}
+
+Card and Krueger are interested in estimating the impact of minimum wage
+on teenage employment. Conventional economic wisdom states that raises
+in minimum wages hurt employment, especially teenage employment, which
+often takes wages that will be affected by minimum wage law. However,
+empirical analysis has failed to find evidence of employment responses
+to raises in minimum wages. In 1992, New Jersey's minimum wage increased
+from \$4.25 to \$5.05 while the minimum wage in Pennsylvania remained at
+\$4.25. The authors used data on employment at fast-food establishments
+in New Jersey and Pennsylvania before and after the increase in the
+minimum wage to measure the impact of the increase in minimum wage on
+teenage employment. Download and import the dataset,
+\texttt{card\_krueger.RData}, from the course website.
+
+The dataset contains the following variables, with one row corresponding
+to a single fast-food restaurant:
+
+\item
+
+\texttt{state}: New Jersey or Pennsylvania
+
+\item
+
+\texttt{chain}: the fast-food chain to which the restaurant belongs
+
+\item
+
+\texttt{wage\_pre}: starting wage in February 1992, in dollars per hour
+
+\item
+
+\texttt{wage\_post}: starting wage in November 1992, in dollars per hour
+
+\item
+
+\texttt{emp\_pre}: employment in February 1992, in number of full-time
+equivalent (FTE) employees
+
+\item
+
+\texttt{emp\_post}: employment in November 1992, in number of full-time
+equivalent (FTE) employees
+
+\item
+
+\texttt{closed}: whether the store was closed in November 1992
+
+\begin{enumerate}
+\item
+
+Assume that the fast-food restaurants surveyed by Card and Krueger
+represent a random sample from a larger population of all fast-food
+restaurants in New Jersey and eastern Pennsylvania. Consider the
+estimands in table \ref{tab:estimands}, which correspond to the mean
+level of full-time equivalent (FTE) employment for population subgroups
+(restaurants within a given state-time). For example,
+\(\alpha = \mathbb{E}[Y_i|T=\text{February},\text{state}=\text{NJ}]\).
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{rcc}
+               &   February    &   November    \\
+New Jersey      &   $\alpha$      &   $\beta$       \\
+Pennsylvania    &   $\gamma$      &   $\delta$      \\
+\end{tabular}
+\caption{Average population FTE employment, by state and time}
+\label{tab:estimands}
+\end{center}
+\end{table}
+
+\begin{enumerate}
+\item[(i)]
+
+Define the difference-in-differences (DID) estimand in terms of these
+values, and concisely explain what this represents.
+
+The DiD estimand can be obtained in two equivalent ways: 1) First
+differencing post- and pre-treatment periods within states, and then
+differencing states; 2) First differencing states within either pre- and
+post-treatment periods, and then differencing both periods. This would
+be equivalent to:
+
+\[\text{DiD}_{(1)} = (\beta - \alpha) - (\delta - \gamma)\]
+\[\text{DiD}_{(2)} = (\beta - \delta) - (\alpha - \gamma)\]
+
+As the name indicates, this quantity is the combination of two
+comparisons: over time, and over groups. A comparison over time in the
+treatment group would be unbiased for the causal effect of interest (see
+below) only if there is no time trend in its potential outcomes, while
+an over groups comparison would be unbiased only if there is no
+selection into the treatment (randomization). Both assumptions are hard
+to believe in observational contexts, so by combining them we are trying
+to weakening the identification assumption. In the context of DiD, the
+result would be unbiased even in the presence of selection and time
+trends, as long as 1) the time trend in the control condition is common
+to both groups, and 2) the selection into the treatment (average gap in
+control potential outcomes) is constant over time.
+
+\item[(ii)]
+
+Consider the eight potential quantities
+\(\{\alpha(0), \alpha(1), \beta(0)...\}\). Let these represent the mean
+\textit{potential} level of FTE employment levels that
+\textit{would have realized} if the minimum wage had been raised in each
+state at each time. For example,
+\(\alpha(0) = \mathbb{E}[Y_i(D=0)|T=\text{February},\text{state}=\text{NJ}]\).
+Define the causal quantity of interest, the ATT, in terms of these
+potential outcomes. Describe which of these are observed.
+
+The causal quantity of interest, the ATT, is the effect of rising the
+minimun wage in the state that actually experienced the increase (New
+Jersery). Then, our quantity of interest would be:
+
+\[\E[Y_i(D=1)~|~T=\text{November}, \text{state}=\text{NJ}] - \E[Y_i(D=0)~|~T=\text{November}, \text{state}=\text{NJ}]\]
+
+\[\beta(1) - \beta(0)\]
+
+By consistency and SUTVA, we can replace \(\beta(1)\) by just \(\beta\),
+the observed outcome of the treated group in the postreatment period.
+The second term, the control potential outcome of the treated state in
+the post-treatment period, is not observed (counterfactual).
+
+\item[(iii)]
+
+Discuss the identification assumption required for DID to yield a causal
+effect: (a) state it in general terms and then as applied to this
+problem; (b) explain in simple and intuitive terms why this is a useful
+assumption; (c) finally, tell us whether you think it is a good
+assumption here, and if not, what violations you imagine are
+problematic.
+
+The identification assumption required to give a causal interpretation
+to DiD is known as parallel trends, and can be formally stated as:
+
+\[\E[Y_0(1)-Y_0(0)~|~D=1] = \E[Y_0(1)-Y_0(0)~|~D=0]\]
+
+The DiD is a combination of two comparisons: over time, and over groups.
+A comparison over time in the treatment group would be unbiased for the
+causal effect of interest only if there is no time trend in its
+potential outcomes, while an over groups comparison would be unbiased
+only if there is no selection into the treatment (randomization). Both
+assumptions are hard to believe in observational contexts, so by
+combining them we are are to weakening the identification assumption. In
+the context of DiD, the result would be unbiased even in the presence of
+selection and time trends, as long as 1) the time trend in the control
+condition is common to both groups, and 2) the selection into the
+treatment (average gap in control potential outcomes) is constant over
+time.
+
+The usefulness of this assumption in observational studies came from the
+fact that one can accept some level of selection bias (in the sense of
+non-interchangeable potential outcomes between groups), if that
+selection is constant over time. In many contexts this assumption would
+be more credible than assuming that, conditioning on certain covariates,
+the treatment assignment is as-if random. Of course, this is still an
+identification \textit{assumption}, in the sense that includes
+unobserved or counterfactual quantities and, therefore, is non-testable.
+We can only provide suggestive evidence of its plausibility and test
+some observable implications, but not actually demonstrate that the
+assumption holds.
+
+In the context of the problem at hand, the assumption means that the
+average change on employment between February and November in New
+Jersey, given that there is no change in the minimum wage (control
+condition), would be the same as the observed average change on
+employment between February and November in Pennsylvania, where no
+change in the minimum wage occurred during the period. Although this
+parallel trends assumption is weaker than selection on observables, one
+can imagine many circumstances that threaten its validity.
+
+For example, potential violations would be that the trends in employment
+in both states were significatively different to begin with, given
+idiosyncratic reasons; that the closeness of both states makes that
+policy change in one state affects the outcomes in the other state; that
+other policies were changing at the same time that the rise in minimum
+salary in New Jersery, and therefore that there are time-varying
+confounders invalidating the assumptions, etc. Not being an expert in
+the matter, I don't really know if the assumption is plausible enough,
+but at least its plausibility should be explicitly defended because of
+many potential invalidating situations.
+
+\item[(iv)]
+
+Making the required identifical assumption from above, show that the DID
+estimand (part (i)) can identify the ATT (part (ii)). Show all your work
+and note where the identification assumption comes in.
+
+With a slightly different notation, we can write the DiD estimand as:
+
+\begin{tabular}{l l l}
+DiD = & $\E[Y(1)-Y(0)~|~D=1] - \E[Y(1)-Y(0)~|~D=0]$ & by definition\\
+      & $\{\E[Y(1)~|~D=1]-\E[Y(0)~|~D=1]\} - \{\E[Y(1)~|~D=0]-\E[Y(0)~|~D=0]\}$ & linearity \\
+      & $\{\E[Y_1(1)~|~D=1]-\E[Y_0(0)~|~D=1]\} - \{\E[Y_0(1)~|~D=0]-\E[Y_0(0)~|~D=0]\}$ & consistency \\ 
+      & $\{\E[Y_1(1)~|~D=1]-\E[Y_0(0)~|~D=1]\} - \{\E[Y_0(1)~|~D=1]-\E[Y_0(0)~|~D=1]\}$ & parallel trends \\ 
+      &  $\{\E[Y_1(1)~|~D=1]-\E[Y_0(1)~|~D=1]\} -\E[Y_0(0)~|~D=1]+\E[Y_0(0)~|~D=1]$ & rearrange \\
+      & $\E[Y_1(1)~|~D=1]-\E[Y_0(1)~|~D=1]$ & cancell out\\
+      & ATT
+\end{tabular}
+
+\end{enumerate}
+
+\item
+
+Estimate all quantities in table \ref{tab:estimands} and write them in a
+similar table.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{"kableExtra"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:kableExtra':
+
+    group_rows
+\end{verbatim}
+
+\begin{verbatim}
+The following objects are masked from 'package:stats':
+
+    filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{load}\NormalTok{(}\StringTok{"card\_krueger.Rdata"}\NormalTok{)}
+
+\NormalTok{d }\SpecialCharTok{|\textgreater{}}  \FunctionTok{group\_by}\NormalTok{(state) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{february =} \FunctionTok{mean}\NormalTok{(emp\_pre, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{),}
+            \AttributeTok{november =} \FunctionTok{mean}\NormalTok{(emp\_post, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} \FunctionTok{kable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrr@{}}
+\toprule\noalign{}
+state & february & november \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+nj & 20.43941 & 21.02743 \\
+pa & 23.33117 & 21.16558 \\
+\end{longtable}
+
+\item
+
+Calculate your DID estimate (with a standard error and p-value) and
+interpret the result.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{"estimatr"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(}\StringTok{"tidyr"}\NormalTok{)}
+
+\CommentTok{\#d\_long \textless{}{-} gather(d, period, employment, emp\_pre:emp\_post) |\textgreater{}}
+\CommentTok{\#  mutate(period = if\_else(period=="emp\_post", 1, 0),}
+\CommentTok{\#         state = if\_else(state=="nj", 1, 0))}
+
+\NormalTok{d\_long }\OtherTok{\textless{}{-}}\NormalTok{ d }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{pivot\_longer}\NormalTok{(}
+    \AttributeTok{cols =}\NormalTok{ emp\_pre}\SpecialCharTok{:}\NormalTok{emp\_post,}
+    \AttributeTok{names\_to =} \StringTok{"period"}\NormalTok{,}
+    \AttributeTok{values\_to =} \StringTok{"employment"}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{period =} \FunctionTok{if\_else}\NormalTok{(period }\SpecialCharTok{==} \StringTok{"emp\_post"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+         \AttributeTok{state  =} \FunctionTok{if\_else}\NormalTok{(state }\SpecialCharTok{==} \StringTok{"nj"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{did }\OtherTok{\textless{}{-}}
+  \FunctionTok{lm\_robust}\NormalTok{(employment }\SpecialCharTok{\textasciitilde{}}\NormalTok{ period }\SpecialCharTok{+}\NormalTok{ state }\SpecialCharTok{+}\NormalTok{ state}\SpecialCharTok{*}\NormalTok{period, }\AttributeTok{data=}\NormalTok{d\_long) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{print}\NormalTok{() }\SpecialCharTok{|\textgreater{}} \FunctionTok{data.frame}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{did }\SpecialCharTok{|\textgreater{}} \FunctionTok{kable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1625}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1375}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1375}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1375}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Std..Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+t.value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pr\ldots t..
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+CI.Lower
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+CI.Upper
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+DF
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(Intercept) & 23.331169 & 1.351149 & 17.267652 & 0.0000000 & 20.6789023
+& 25.9834354 & 790 \\
+period & -2.165584 & 1.647808 & -1.314222 & 0.1891530 & -5.4001833 &
+1.0690145 & 790 \\
+state & -2.891761 & 1.443583 & -2.003183 & 0.0454988 & -5.7254731 &
+-0.0580484 & 790 \\
+period:state & 2.753606 & 1.801200 & 1.528762 & 0.1267237 & -0.7820976 &
+6.2893092 & 790 \\
+\end{longtable}
+
+Here our focal result is the third coefficient, \texttt{period:state},
+which corresponds to the difference-in-difference. If our identification
+assumption holds, then we can interpret the coefficient causally, as the
+effect of increasing the minimum wage during 1992 in the state of New
+Jersey, from 4.25 USD to 5.05 USD, which produces an average increase of
+2.75 full-time equivalent employees in the fast-food chains affected by
+the change. The result is not statistically significant at conventional
+levels.
+
+\end{enumerate}
+
+
+
+
+\end{document}
